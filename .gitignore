@@ -31,5 +31,9 @@ Thumbs.db
 
 # Saves
 saves/
-*.json
 !.github/
+
+# Allow game data
+!game_data_full.json
+!game_data.json
+!game_schema.json

@@ -1,0 +1,5392 @@
+{
+  "meta": {
+    "version": "3.3.0",
+    "lastUpdated": "2026-05-08",
+    "author": "Claude",
+    "description": "洪荒神话文字游戏完整剧本 - 从龙汉初劫到巫妖大战 - 增强版（死亡机制、悟道系统、成就系统）",
+    "totalNodes": 109,
+    "totalCharacters": 15,
+    "features": [
+      "death_mechanism",
+      "cultivation_system",
+      "achievement_system",
+      "historical_intervention",
+      "buff_system"
+    ]
+  },
+  "achievements": [
+    {
+      "id": "ach_first_demon",
+      "name": "洞察魔踪",
+      "description": "第一个发现罗睺的魔气踪迹",
+      "condition": {
+        "type": "flag",
+        "target": "flag_sensed_demon",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_found_luohuo",
+      "name": "直面魔祖",
+      "description": "亲眼见到罗睺并存活",
+      "condition": {
+        "type": "flag",
+        "target": "flag_found_luohuo",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_hongjun_disciple",
+      "name": "道门弟子",
+      "description": "成为鸿钧的记名弟子",
+      "condition": {
+        "type": "flag",
+        "target": "flag_hongjun_disciple",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_cushion",
+      "name": "紫霄蒲团",
+      "description": "在紫霄宫占据蒲团",
+      "condition": {
+        "type": "flag",
+        "target": "flag_got_cushion",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_rescue_civilians",
+      "name": "功德无量",
+      "description": "在三族之战中救助无辜生灵",
+      "condition": {
+        "type": "flag",
+        "target": "flag_rescued_civilians",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_houtu_reincarnation",
+      "name": "见证轮回",
+      "description": "亲眼见证后土化身轮回",
+      "condition": {
+        "type": "flag",
+        "target": "flag_witnessed_reincarnation",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_patch_sky",
+      "name": "补天见证",
+      "description": "见证女娲炼石补天",
+      "condition": {
+        "type": "flag",
+        "target": "flag_witnessed_patch_sky",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_protect_human",
+      "name": "人族守护",
+      "description": "在巫妖之战中保护人族",
+      "condition": {
+        "type": "flag",
+        "target": "flag_protect_human",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_luohuo_helper",
+      "name": "魔道盟友",
+      "description": "帮助罗睺挑拨三族",
+      "condition": {
+        "type": "flag",
+        "target": "flag_helped_luohuo",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_cultivation_master",
+      "name": "悟道大师",
+      "description": "通过闭关修炼使道行达到90以上",
+      "condition": {
+        "type": "attribute",
+        "target": "daohang",
+        "operator": ">=",
+        "value": 90,
+        "requireFlag": "flag_cultivation_reached_90"
+      }
+    },
+    {
+      "id": "ach_defy_history",
+      "name": "逆天而行",
+      "description": "尝试阻止历史大事件但失败",
+      "condition": {
+        "type": "flag",
+        "target": "flag_defied_history",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_survivor",
+      "name": "洪荒幸存者",
+      "description": "在所有大劫中存活到结局",
+      "condition": {
+        "type": "flag",
+        "target": "flag_game_complete",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_ruins_explorer",
+      "name": "遗迹探索者",
+      "description": "发现并探索上古遗迹",
+      "condition": {
+        "type": "flag",
+        "target": "flag_found_ruins",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_star_seeker",
+      "name": "星辰问道",
+      "description": "参悟周天星斗大阵的奥秘",
+      "condition": {
+        "type": "flag",
+        "target": "flag_mastered_star",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_reincarnation_witness",
+      "name": "轮回见证者",
+      "description": "亲眼见证后土化身轮回",
+      "condition": {
+        "type": "flag",
+        "target": "flag_witnessed_reincarnation",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_human_teacher",
+      "name": "人族导师",
+      "description": "传授人族钻木取火之法",
+      "condition": {
+        "type": "flag",
+        "target": "flag_taught_fire",
+        "operator": "==",
+        "value": true
+      }
+    },
+    {
+      "id": "ach_kindness",
+      "name": "善有善报",
+      "description": "救助受伤的先天生灵并获得回报",
+      "condition": {
+        "type": "flag",
+        "target": "flag_got_secret",
+        "operator": "==",
+        "value": true
+      }
+    }
+  ],
+  "characters": [
+    {
+      "id": "dijun",
+      "name": "帝俊",
+      "title": "妖皇",
+      "faction": "妖族",
+      "attributes": {
+        "genjiao": {
+          "min": 80,
+          "max": 100,
+          "default": 95
+        },
+        "qiyun": {
+          "min": 60,
+          "max": 90,
+          "default": 75
+        },
+        "daohang": {
+          "min": 70,
+          "max": 95,
+          "default": 85
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 100,
+          "default": 70
+        },
+        "xinxing": {
+          "min": 30,
+          "max": 80,
+          "default": 50
+        }
+      },
+      "startingItems": [
+        "item_hetuluo",
+        "item_hundun_bell"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "taiyi",
+          "value": 95,
+          "tags": [
+            "挚友",
+            "兄弟"
+          ]
+        },
+        {
+          "characterId": "nuwa",
+          "value": 60,
+          "tags": [
+            "同门"
+          ]
+        },
+        {
+          "characterId": "changxi",
+          "value": 70,
+          "tags": [
+            "道侣"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_hetuluo_formation",
+        "skill_sun_true_fire"
+      ],
+      "background": "先天三足金乌化形，与东皇太一并为妖族双皇。立天庭，欲统御洪荒。心机深沉，志在霸业。",
+      "specialAbility": {
+        "name": "河洛大阵",
+        "description": "战斗中可召唤河洛大阵，大幅提升战斗力",
+        "trigger": "battle_start",
+        "effect": "战斗力×1.5，持续3回合"
+      },
+      "exclusiveNodes": [
+        "node_dijun_tianqing",
+        "node_dijun_sacrifice",
+        "node_dijun_sun_star"
+      ],
+      "endings": {
+        "sacrifice": {
+          "nodeId": "ending_dijun_sacrifice",
+          "description": "以身祭阵，与巫族同归于尽"
+        },
+        "dominate": {
+          "nodeId": "ending_dijun_dominate",
+          "description": "一统洪荒，成就妖族霸业"
+        }
+      }
+    },
+    {
+      "id": "taiyi",
+      "name": "东皇太一",
+      "title": "东皇",
+      "faction": "妖族",
+      "attributes": {
+        "genjiao": {
+          "min": 80,
+          "max": 100,
+          "default": 92
+        },
+        "qiyun": {
+          "min": 70,
+          "max": 95,
+          "default": 80
+        },
+        "daohang": {
+          "min": 75,
+          "max": 95,
+          "default": 88
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 100,
+          "default": 65
+        },
+        "xinxing": {
+          "min": 40,
+          "max": 90,
+          "default": 60
+        }
+      },
+      "startingItems": [
+        "item_chaos_bloth"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "dijun",
+          "value": 95,
+          "tags": [
+            "挚友",
+            "兄弟"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_chaos_bloth",
+        "skill_sun_true_fire"
+      ],
+      "background": "先天三足金乌化形，帝俊之弟。执掌混沌钟，战力冠绝妖族。性情刚烈，重情重义。",
+      "specialAbility": {
+        "name": "混沌钟护体",
+        "description": "受到致命伤害时自动触发，免疫一次死亡",
+        "trigger": "fatal_damage",
+        "effect": "免疫致命伤害一次，冷却10回合"
+      },
+      "exclusiveNodes": [
+        "node_taiyi_brotherhood",
+        "node_taiyi_final_stand"
+      ]
+    },
+    {
+      "id": "laozi",
+      "name": "老子",
+      "title": "太清道德天尊",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 90,
+          "max": 100,
+          "default": 98
+        },
+        "qiyun": {
+          "min": 80,
+          "max": 100,
+          "default": 85
+        },
+        "daohang": {
+          "min": 85,
+          "max": 100,
+          "default": 95
+        },
+        "shengwang": {
+          "min": 60,
+          "max": 100,
+          "default": 80
+        },
+        "xinxing": {
+          "min": 70,
+          "max": 100,
+          "default": 90
+        }
+      },
+      "startingItems": [
+        "item_taichi_diagram",
+        "item_xuanhuang_tower"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "yuan_shi",
+          "value": 80,
+          "tags": [
+            "师兄弟"
+          ]
+        },
+        {
+          "characterId": "tongtian",
+          "value": 70,
+          "tags": [
+            "师兄弟"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_one_qi_three_purities"
+      ],
+      "background": "盘古元神所化，三清之首。清静无为，深谙大道。鸿钧首徒，执掌太极图。",
+      "specialAbility": {
+        "name": "一气化三清",
+        "description": "战斗中可分化三身，三倍战力",
+        "trigger": "battle_critical",
+        "effect": "召唤三清化身参战"
+      },
+      "exclusiveNodes": [
+        "node_laozi_wuwei",
+        "node_laozi_scripture"
+      ]
+    },
+    {
+      "id": "yuan_shi",
+      "name": "元始天尊",
+      "title": "玉清元始天尊",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 90,
+          "max": 100,
+          "default": 96
+        },
+        "qiyun": {
+          "min": 75,
+          "max": 95,
+          "default": 82
+        },
+        "daohang": {
+          "min": 80,
+          "max": 98,
+          "default": 90
+        },
+        "shengwang": {
+          "min": 60,
+          "max": 100,
+          "default": 75
+        },
+        "xinxing": {
+          "min": 50,
+          "max": 90,
+          "default": 65
+        }
+      },
+      "startingItems": [
+        "item_pan_gu_banner"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "laozi",
+          "value": 80,
+          "tags": [
+            "师兄弟"
+          ]
+        },
+        {
+          "characterId": "tongtian",
+          "value": 60,
+          "tags": [
+            "师兄弟"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_pan_gu_true_body"
+      ],
+      "background": "盘古元神所化，阐教之主。讲究根脚出身，门规森严。执掌盘古幡，攻伐第一。",
+      "exclusiveNodes": [
+        "node_yuanshi_disciple",
+        "node_yuanshi_jade_palace"
+      ]
+    },
+    {
+      "id": "tongtian",
+      "name": "通天教主",
+      "title": "上清灵宝天尊",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 90,
+          "max": 100,
+          "default": 94
+        },
+        "qiyun": {
+          "min": 70,
+          "max": 95,
+          "default": 78
+        },
+        "daohang": {
+          "min": 80,
+          "max": 98,
+          "default": 88
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 100,
+          "default": 60
+        },
+        "xinxing": {
+          "min": 40,
+          "max": 85,
+          "default": 55
+        }
+      },
+      "startingItems": [
+        "item_zhu_xian_sword",
+        "item_zhu_xian_array"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "laozi",
+          "value": 70,
+          "tags": [
+            "师兄弟"
+          ]
+        },
+        {
+          "characterId": "yuan_shi",
+          "value": 60,
+          "tags": [
+            "师兄弟"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_zhu_xian_four_swords"
+      ],
+      "background": "盘古元神所化，截教之主。有教无类，门徒众多。诛仙四剑在手，杀伐之力无双。",
+      "exclusiveNodes": [
+        "node_tongtian_disciples",
+        "node_tongtian_sword"
+      ]
+    },
+    {
+      "id": "kunpeng",
+      "name": "鲲鹏",
+      "title": "妖师",
+      "faction": "妖族",
+      "attributes": {
+        "genjiao": {
+          "min": 85,
+          "max": 98,
+          "default": 90
+        },
+        "qiyun": {
+          "min": 65,
+          "max": 90,
+          "default": 72
+        },
+        "daohang": {
+          "min": 75,
+          "max": 95,
+          "default": 82
+        },
+        "shengwang": {
+          "min": 40,
+          "max": 90,
+          "default": 55
+        },
+        "xinxing": {
+          "min": 20,
+          "max": 70,
+          "default": 35
+        }
+      },
+      "startingItems": [
+        "item_north_ming"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "dijun",
+          "value": 30,
+          "tags": [
+            "同僚"
+          ]
+        },
+        {
+          "characterId": "taiyi",
+          "value": 25,
+          "tags": [
+            "同僚"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_kunpeng_change"
+      ],
+      "background": "北海巨兽，扶摇九万里。心思深沉，善于趋利避害。妖师之名，实为自保。",
+      "exclusiveNodes": [
+        "node_kunpeng_escape",
+        "node_kunpeng_opportunity"
+      ]
+    },
+    {
+      "id": "hongyun",
+      "name": "红云",
+      "title": "红云老祖",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 75,
+          "max": 90,
+          "default": 80
+        },
+        "qiyun": {
+          "min": 30,
+          "max": 60,
+          "default": 40
+        },
+        "daohang": {
+          "min": 70,
+          "max": 90,
+          "default": 78
+        },
+        "shengwang": {
+          "min": 40,
+          "max": 80,
+          "default": 55
+        },
+        "xinxing": {
+          "min": 70,
+          "max": 100,
+          "default": 85
+        }
+      },
+      "startingItems": [],
+      "startingRelationships": [
+        {
+          "characterId": "zhenyuanzi",
+          "value": 80,
+          "tags": [
+            "挚友"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_nine_turn_gourd"
+      ],
+      "background": "先天云气化形，性情敦厚。因让座之恩，结下因果。气运不佳，命途多舛。",
+      "exclusiveNodes": [
+        "node_hongyun_seat",
+        "node_hongyun_tribulation"
+      ]
+    },
+    {
+      "id": "minghe",
+      "name": "冥河",
+      "title": "冥河老祖",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 80,
+          "max": 95,
+          "default": 85
+        },
+        "qiyun": {
+          "min": 60,
+          "max": 85,
+          "default": 70
+        },
+        "daohang": {
+          "min": 70,
+          "max": 92,
+          "default": 80
+        },
+        "shengwang": {
+          "min": 30,
+          "max": 80,
+          "default": 45
+        },
+        "xinxing": {
+          "min": 30,
+          "max": 75,
+          "default": 50
+        }
+      },
+      "startingItems": [
+        "item_xue_he",
+        "item_yuan_tu_a_bei"
+      ],
+      "startingRelationships": [],
+      "skills": [
+        "skill_xue_he_shen_shu"
+      ],
+      "background": "血海化形，修阿修罗道。元屠、阿鼻双剑在手，杀伐极重。立阿修罗族，与佛门因果纠缠。",
+      "exclusiveNodes": [
+        "node_minghe_asura",
+        "node_minghe_blood_sea"
+      ]
+    },
+    {
+      "id": "xiwangmu",
+      "name": "西王母",
+      "title": "王母",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 80,
+          "max": 95,
+          "default": 88
+        },
+        "qiyun": {
+          "min": 70,
+          "max": 90,
+          "default": 78
+        },
+        "daohang": {
+          "min": 70,
+          "max": 92,
+          "default": 82
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 95,
+          "default": 70
+        },
+        "xinxing": {
+          "min": 50,
+          "max": 90,
+          "default": 68
+        }
+      },
+      "startingItems": [
+        "item_kun_lun_mirror"
+      ],
+      "startingRelationships": [],
+      "skills": [
+        "skill_kun_lun_illusion"
+      ],
+      "background": "昆仑之主，执掌瑶池。女仙之首，威仪天下。",
+      "exclusiveNodes": [
+        "node_xiwangmu_yaochi",
+        "node_xiwangmu_peach"
+      ]
+    },
+    {
+      "id": "changxi",
+      "name": "常羲",
+      "title": "太阴女神",
+      "faction": "妖族",
+      "attributes": {
+        "genjiao": {
+          "min": 80,
+          "max": 95,
+          "default": 86
+        },
+        "qiyun": {
+          "min": 65,
+          "max": 88,
+          "default": 75
+        },
+        "daohang": {
+          "min": 70,
+          "max": 90,
+          "default": 78
+        },
+        "shengwang": {
+          "min": 40,
+          "max": 85,
+          "default": 55
+        },
+        "xinxing": {
+          "min": 55,
+          "max": 95,
+          "default": 72
+        }
+      },
+      "startingItems": [
+        "item_lunar_essence"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "xihe",
+          "value": 85,
+          "tags": [
+            "姐妹"
+          ]
+        },
+        {
+          "characterId": "dijun",
+          "value": 70,
+          "tags": [
+            "道侣"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_lunar_cold_fire"
+      ],
+      "background": "太阴星化形，羲和之妹。与帝俊结为道侣，生十二月。温婉贤淑，心怀慈念。",
+      "exclusiveNodes": [
+        "node_changxi_moon",
+        "node_changxi_children"
+      ]
+    },
+    {
+      "id": "nuwa",
+      "name": "女娲",
+      "title": "女娲娘娘",
+      "faction": "先天神魔",
+      "attributes": {
+        "genjiao": {
+          "min": 90,
+          "max": 100,
+          "default": 95
+        },
+        "qiyun": {
+          "min": 85,
+          "max": 100,
+          "default": 92
+        },
+        "daohang": {
+          "min": 80,
+          "max": 98,
+          "default": 88
+        },
+        "shengwang": {
+          "min": 70,
+          "max": 100,
+          "default": 85
+        },
+        "xinxing": {
+          "min": 70,
+          "max": 100,
+          "default": 88
+        }
+      },
+      "startingItems": [
+        "item_nuwa_stone",
+        "item_maple_flag"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "hou_tu",
+          "value": 85,
+          "tags": [
+            "挚友"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_create_human",
+        "skill_patch_sky"
+      ],
+      "background": "盘古元神与心血所化，圣人道果。抟土造人，炼石补天。慈悲为怀，功德无量。",
+      "exclusiveNodes": [
+        "node_nuwa_create_human",
+        "node_nuwa_patch_sky"
+      ]
+    },
+    {
+      "id": "hou_tu",
+      "name": "后土",
+      "title": "后土皇地祇",
+      "faction": "巫族",
+      "attributes": {
+        "genjiao": {
+          "min": 85,
+          "max": 98,
+          "default": 92
+        },
+        "qiyun": {
+          "min": 70,
+          "max": 95,
+          "default": 80
+        },
+        "daohang": {
+          "min": 75,
+          "max": 95,
+          "default": 85
+        },
+        "shengwang": {
+          "min": 60,
+          "max": 95,
+          "default": 75
+        },
+        "xinxing": {
+          "min": 75,
+          "max": 100,
+          "default": 88
+        }
+      },
+      "startingItems": [
+        "item_hou_tu_flag"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "nuwa",
+          "value": 85,
+          "tags": [
+            "挚友"
+          ]
+        },
+        {
+          "characterId": "zhurong",
+          "value": 70,
+          "tags": [
+            "同族"
+          ]
+        },
+        {
+          "characterId": "gonggong",
+          "value": 65,
+          "tags": [
+            "同族"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_reincarnation"
+      ],
+      "background": "盘古精血所化，祖巫之一。身化轮回，功德成圣。慈悲心肠，不忍生灵无归。",
+      "exclusiveNodes": [
+        "node_houtu_reincarnation",
+        "node_houtu_sacrifice"
+      ]
+    },
+    {
+      "id": "yuan_feng",
+      "name": "元凤",
+      "title": "凤凰始祖",
+      "faction": "凤族",
+      "attributes": {
+        "genjiao": {
+          "min": 88,
+          "max": 100,
+          "default": 95
+        },
+        "qiyun": {
+          "min": 60,
+          "max": 85,
+          "default": 70
+        },
+        "daohang": {
+          "min": 80,
+          "max": 96,
+          "default": 88
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 95,
+          "default": 72
+        },
+        "xinxing": {
+          "min": 50,
+          "max": 90,
+          "default": 68
+        }
+      },
+      "startingItems": [
+        "item_feng_huang_qin"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "zu_long",
+          "value": 40,
+          "tags": [
+            "竞争"
+          ]
+        },
+        {
+          "characterId": "shi_qi_lin",
+          "value": 35,
+          "tags": [
+            "竞争"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_nirvana",
+        "skill_feng_huang_true_fire"
+      ],
+      "background": "凤凰始祖，涅槃不死。龙凤初劫后元气大伤，退隐不死火山。",
+      "exclusiveNodes": [
+        "node_yuanfeng_nirvana",
+        "node_yuanfeng_egg"
+      ]
+    },
+    {
+      "id": "zu_long",
+      "name": "祖龙",
+      "title": "龙族始祖",
+      "faction": "龙族",
+      "attributes": {
+        "genjiao": {
+          "min": 88,
+          "max": 100,
+          "default": 96
+        },
+        "qiyun": {
+          "min": 55,
+          "max": 80,
+          "default": 65
+        },
+        "daohang": {
+          "min": 80,
+          "max": 96,
+          "default": 90
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 95,
+          "default": 75
+        },
+        "xinxing": {
+          "min": 45,
+          "max": 85,
+          "default": 60
+        }
+      },
+      "startingItems": [
+        "item_long_yuan"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "yuan_feng",
+          "value": 40,
+          "tags": [
+            "竞争"
+          ]
+        },
+        {
+          "characterId": "shi_qi_lin",
+          "value": 35,
+          "tags": [
+            "竞争"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_long_yuan_sword",
+        "skill_hai_yan_bo_tao"
+      ],
+      "background": "龙族始祖，统御四海。龙凤初劫后龙族元气大伤，困守四海。",
+      "exclusiveNodes": [
+        "node_zulong_sea",
+        "node_zulong_tribute"
+      ]
+    },
+    {
+      "id": "shi_qi_lin",
+      "name": "始麒麟",
+      "title": "麒麟始祖",
+      "faction": "麒麟族",
+      "attributes": {
+        "genjiao": {
+          "min": 88,
+          "max": 100,
+          "default": 94
+        },
+        "qiyun": {
+          "min": 50,
+          "max": 75,
+          "default": 60
+        },
+        "daohang": {
+          "min": 78,
+          "max": 94,
+          "default": 85
+        },
+        "shengwang": {
+          "min": 50,
+          "max": 90,
+          "default": 70
+        },
+        "xinxing": {
+          "min": 55,
+          "max": 90,
+          "default": 70
+        }
+      },
+      "startingItems": [
+        "item_qi_lin_yin"
+      ],
+      "startingRelationships": [
+        {
+          "characterId": "zu_long",
+          "value": 35,
+          "tags": [
+            "竞争"
+          ]
+        },
+        {
+          "characterId": "yuan_feng",
+          "value": 35,
+          "tags": [
+            "竞争"
+          ]
+        }
+      ],
+      "skills": [
+        "skill_qi_lin_step",
+        "skill_rui_qi"
+      ],
+      "background": "麒麟始祖，走兽之首。龙凤初劫后麒麟族几乎灭绝，退隐中央。",
+      "exclusiveNodes": [
+        "node_qilin_central",
+        "node_qilin_omen"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "item_hetuluo",
+      "name": "河图洛书",
+      "type": "先天灵宝",
+      "rarity": "先天灵宝",
+      "description": "先天灵宝，演天机，布大阵。帝俊立天庭之基。"
+    },
+    {
+      "id": "item_chaos_bloth",
+      "name": "混沌钟",
+      "type": "先天灵宝",
+      "rarity": "先天灵宝",
+      "description": "先天至宝，镇压鸿蒙。攻防一体，万法不侵。"
+    },
+    {
+      "id": "item_taichi_diagram",
+      "name": "太极图",
+      "type": "先天灵宝",
+      "rarity": "先天灵宝",
+      "description": "先天至宝，老子执掌。可定地水火风，分理阴阳。"
+    },
+    {
+      "id": "item_pan_gu_banner",
+      "name": "盘古幡",
+      "type": "先天灵宝",
+      "rarity": "先天灵宝",
+      "description": "先天至宝，攻伐第一。可撕裂混沌，破开虚空。"
+    },
+    {
+      "id": "item_zhu_xian_sword",
+      "name": "诛仙四剑",
+      "type": "先天灵宝",
+      "rarity": "先天灵宝",
+      "description": "诛仙、戮仙、陷仙、绝仙四剑，非四圣不可破。"
+    },
+    {
+      "id": "item_nuwa_stone",
+      "name": "女娲石",
+      "type": "先天灵宝",
+      "rarity": "先天灵宝",
+      "description": "五色神石，炼石补天，抟土造人。"
+    },
+    {
+      "id": "item_jade_disc_fragment",
+      "name": "造化玉碟碎片",
+      "type": "特殊",
+      "rarity": "混沌至宝",
+      "description": "鸿钧所赐，蕴含大道至理。"
+    },
+    {
+      "id": "item_hongjun_protection",
+      "name": "鸿钧护佑",
+      "type": "特殊",
+      "rarity": "仙品",
+      "description": "道祖护佑，可抵御一次致命伤害。"
+    },
+    {
+      "id": "item_dragon_scale",
+      "name": "祖龙之鳞",
+      "type": "材料",
+      "rarity": "仙品",
+      "description": "祖龙所赐，蕴含龙族之力。"
+    },
+    {
+      "id": "item_phoenix_feather",
+      "name": "元凤之羽",
+      "type": "材料",
+      "rarity": "仙品",
+      "description": "元凤所赐，蕴含涅槃之火。"
+    },
+    {
+      "id": "item_houtu_flag",
+      "name": "后土旗",
+      "type": "法宝",
+      "rarity": "仙品",
+      "description": "后土祖巫信物，可号令部分巫族。"
+    },
+    {
+      "id": "item_kun_lun_mirror",
+      "name": "昆仑镜",
+      "type": "法宝",
+      "rarity": "仙品",
+      "description": "昆仑至宝，可照见过去未来。"
+    },
+    {
+      "id": "item_lunar_essence",
+      "name": "太阴精华",
+      "type": "材料",
+      "rarity": "仙品",
+      "description": "太阴星精华，可炼制月系法宝。"
+    },
+    {
+      "id": "item_long_yuan",
+      "name": "龙渊剑",
+      "type": "法宝",
+      "rarity": "仙品",
+      "description": "祖龙佩剑，龙族至宝。"
+    },
+    {
+      "id": "item_feng_huang_qin",
+      "name": "凤凰琴",
+      "type": "法宝",
+      "rarity": "仙品",
+      "description": "元凤所炼，可引动涅槃之火。"
+    },
+    {
+      "id": "item_qi_lin_yin",
+      "name": "麒麟印",
+      "type": "法宝",
+      "rarity": "仙品",
+      "description": "麒麟族至宝，可号令走兽。"
+    },
+    {
+      "id": "item_chaos_stone",
+      "name": "混沌灵石",
+      "type": "material",
+      "rarity": "legendary",
+      "description": "混沌时代遗留的本源灵石，蕴含天地初开时的力量"
+    },
+    {
+      "id": "item_rainbow_herb",
+      "name": "七彩仙草",
+      "type": "consumable",
+      "rarity": "epic",
+      "description": "传说中的灵草，服用后可大幅提升根脚"
+    },
+    {
+      "id": "item_star_essence",
+      "name": "星辰精华",
+      "type": "material",
+      "rarity": "epic",
+      "description": "帝俊赐予的星辰之力精华"
+    }
+  ],
+  "npcs": [
+    {
+      "id": "hongjun",
+      "name": "鸿钧道祖",
+      "title": "道祖",
+      "faction": "先天神魔",
+      "importance": "core",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "luohuo",
+      "name": "罗睺",
+      "title": "魔祖",
+      "faction": "先天神魔",
+      "importance": "core",
+      "defaultRelationship": 0
+    },
+    {
+      "id": "zhurong",
+      "name": "祝融",
+      "title": "祖巫",
+      "faction": "巫族",
+      "importance": "major",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "gonggong",
+      "name": "共工",
+      "title": "祖巫",
+      "faction": "巫族",
+      "importance": "major",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "houyi",
+      "name": "后羿",
+      "title": "大巫",
+      "faction": "巫族",
+      "importance": "major",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "xihe",
+      "name": "羲和",
+      "title": "太阳女神",
+      "faction": "妖族",
+      "importance": "major",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "zhenyuanzi",
+      "name": "镇元子",
+      "title": "地仙之祖",
+      "faction": "先天神魔",
+      "importance": "major",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "dongwanggong",
+      "name": "东王公",
+      "title": "男仙之首",
+      "faction": "先天神魔",
+      "importance": "minor",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "jieyin",
+      "name": "接引",
+      "title": "西方二圣",
+      "faction": "先天神魔",
+      "importance": "major",
+      "defaultRelationship": 50
+    },
+    {
+      "id": "zhunti",
+      "name": "准提",
+      "title": "西方二圣",
+      "faction": "先天神魔",
+      "importance": "major",
+      "defaultRelationship": 50
+    }
+  ],
+  "timeline": [
+    {
+      "phase": "dragon_phoenix_war",
+      "name": "龙汉初劫",
+      "description": "三族争霸，洪荒染血。祖龙、元凤、始麒麟三族大战，生灵涂炭。",
+      "startNode": "node_phase1_start",
+      "endMilestone": "milestone_phase1_end"
+    },
+    {
+      "phase": "luohuo_fall",
+      "name": "道魔之战",
+      "description": "鸿钧与罗睺决战，西方二圣助战。罗睺欲毁洪荒，鸿钧以造化玉碟镇压。",
+      "startNode": "node_phase2_start",
+      "endMilestone": "milestone_phase2_end"
+    },
+    {
+      "phase": "hongjun_lecture",
+      "name": "紫霄宫讲道",
+      "description": "鸿钧成圣，紫霄宫讲道三次。分座七圣，赐予鸿蒙紫气。",
+      "startNode": "node_phase3_start",
+      "endMilestone": "milestone_phase3_end"
+    },
+    {
+      "phase": "wu_yao_rise",
+      "name": "巫妖崛起",
+      "description": "巫妖二族崛起，争夺天地主角之位。天庭立，巫族聚十二都天神煞大阵。",
+      "startNode": "node_phase4_start",
+      "endMilestone": "milestone_phase4_end"
+    },
+    {
+      "phase": "wu_yao_final",
+      "name": "巫妖决战",
+      "description": "巫妖二族决战，同归于尽。人族崛起，三皇五帝治世。",
+      "startNode": "node_phase5_start",
+      "endMilestone": "milestone_game_end"
+    }
+  ],
+  "endings": [
+    {
+      "id": "ending_ascend",
+      "name": "飞升成圣",
+      "type": "飞升",
+      "description": "证得混元道果，超脱洪荒。"
+    },
+    {
+      "id": "ending_fall",
+      "name": "陨落",
+      "type": "陨落",
+      "description": "身死道消，归于混沌。"
+    },
+    {
+      "id": "ending_retire",
+      "name": "隐退",
+      "type": "隐退",
+      "description": "看破红尘，隐居世外。"
+    },
+    {
+      "id": "ending_dominate",
+      "name": "称霸洪荒",
+      "type": "称霸",
+      "description": "一统洪荒，万族臣服。"
+    },
+    {
+      "id": "ending_sacrifice",
+      "name": "以身证道",
+      "type": "特殊",
+      "description": "牺牲自我，成就大义。"
+    },
+    {
+      "id": "ending_dijun_sacrifice",
+      "name": "帝俊祭阵",
+      "type": "特殊",
+      "description": "以身祭周天星斗大阵，与巫族同归于尽。"
+    },
+    {
+      "id": "ending_dijun_dominate",
+      "name": "妖族霸业",
+      "type": "称霸",
+      "description": "一统洪荒，成就妖族万世基业。"
+    },
+    {
+      "id": "ending_phase1_hongjun",
+      "name": "道门之路",
+      "type": "过渡",
+      "description": "追随鸿钧，准备对抗罗睺。"
+    },
+    {
+      "id": "ending_phase1_solo",
+      "name": "独行之道",
+      "type": "过渡",
+      "description": "独自修炼，积蓄力量。"
+    },
+    {
+      "id": "ending_phase1_power",
+      "name": "野心之路",
+      "type": "过渡",
+      "description": "趁乱扩张，建立势力。"
+    },
+    {
+      "id": "ending_phase2",
+      "name": "道魔终战",
+      "type": "过渡",
+      "description": "魔祖陨落，新时代开启。"
+    },
+    {
+      "id": "ending_phase3",
+      "name": "讲道结束",
+      "type": "过渡",
+      "description": "紫霄宫讲道结束，各奔前程。"
+    },
+    {
+      "id": "ending_phase4",
+      "name": "巫妖对立",
+      "type": "过渡",
+      "description": "巫妖矛盾激化，大战在即。"
+    },
+    {
+      "id": "ending_survivor",
+      "name": "劫后余生",
+      "type": "neutral",
+      "description": "在浩劫中侥幸存活，隐居洪荒"
+    }
+  ],
+  "storyNodes": [
+    {
+      "id": "node_phase1_start",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "天地初开",
+      "content": "混沌初分，盘古开天。清气上升为天，浊气下沉为地。\n\n你于混沌中孕育千万载，今日终于化形而出。放眼洪荒，龙族霸四海，凤族据不死火山，麒麟族统中央大地。\n\n三族鼎立，表面相安无事，暗地里却暗流涌动……",
+      "autoNextId": "node_phase1_character_intro"
+    },
+    {
+      "id": "node_phase1_character_intro",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "choice",
+      "title": "命运之始",
+      "content": "你感受到体内的力量在涌动，属于你的命运即将展开……",
+      "choices": [
+        {
+          "id": "choice_char_dijun",
+          "text": "（帝俊专属）太阳星化形",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "dijun",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_dijun_sun_star"
+        },
+        {
+          "id": "choice_char_kunpeng",
+          "text": "（鲲鹏专属）北海机遇",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "kunpeng",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_kunpeng_opportunity"
+        },
+        {
+          "id": "choice_char_changxi",
+          "text": "（常羲专属）太阴星",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "changxi",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_changxi_moon"
+        },
+        {
+          "id": "choice_char_default",
+          "text": "继续你的旅程",
+          "nextNodeId": "node_phase1_choice"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_choice",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "choice",
+      "title": "初入洪荒",
+      "content": "你初次行走于洪荒大地，感受到天地间充沛的灵气。远处传来阵阵龙吟凤鸣，三族的势力范围清晰可见。\n\n你该如何抉择？",
+      "choices": [
+        {
+          "id": "choice_p1_explore",
+          "text": "独自游历，观察局势",
+          "description": "保持中立，积蓄实力",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "choice_p1_dragon",
+          "text": "前往东海，拜访龙族",
+          "description": "与龙族建立联系",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 85
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "zu_long",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase1_dragon_palace"
+        },
+        {
+          "id": "choice_p1_phoenix",
+          "text": "前往不死火山，拜访凤族",
+          "description": "与凤族建立联系",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 85
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "yuan_feng",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase1_phoenix_mountain"
+        },
+        {
+          "id": "choice_p1_secluded",
+          "text": "寻一处洞府，闭关修炼",
+          "description": "远离纷争，专注修行",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_secluded"
+        },
+        {
+          "id": "choice_intervention",
+          "text": "感知命运的走向，尝试干预历史",
+          "description": "进入历史干预选择",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_intervention_choice"
+        },
+        {
+          "id": "choice_p1_ruins",
+          "text": "探索未知区域",
+          "description": "可能发现上古遗迹",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 65
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "event_ancient_ruins"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_sense_demon",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "察觉魔踪",
+      "milestone": "milestone_sense_demon",
+      "content": "你行走于洪荒，渐渐察觉到一丝异样。\n\n天地间的灵气似乎被某种力量搅动，三族之间的关系也在悄然变化。原本只是小规模的摩擦，如今却愈演愈烈。\n\n一日，你在西方须弥山附近，感受到一股极其隐晦却邪恶的气息。那气息一闪而逝，却让你心中警铃大作。\n\n「这是……魔气？」",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_sensed_demon",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p1_investigate",
+          "text": "深入调查这股魔气",
+          "description": "风险与机遇并存",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 75
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_demon_investigation"
+        },
+        {
+          "id": "choice_p1_report",
+          "text": "将此事告知鸿钧道人",
+          "description": "寻求强者帮助",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "hongjun",
+              "operator": ">=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase1_hongjun_response"
+        },
+        {
+          "id": "choice_p1_ignore",
+          "text": "装作不知，继续观察",
+          "description": "明哲保身",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_war_begins"
+        },
+        {
+          "id": "choice_meditate",
+          "text": "就地打坐，尝试顿悟",
+          "description": "触发修炼事件",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 3
+            }
+          ],
+          "nextNodeId": "node_cultivation_event"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_dragon_palace",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "东海龙宫",
+      "content": "你来到东海，只见波涛汹涌，一座宏伟的水晶宫殿矗立海底。\n\n祖龙亲自接见了你。这位龙族始祖威严无比，周身龙气缭绕。\n\n「道友远道而来，有失远迎。」祖龙的声音如雷鸣般回荡，「不知道友此来，有何贵干？」",
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "zu_long",
+          "value": 5
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p1_dragon_alliance",
+          "text": "提议与龙族结盟",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "zu_long",
+              "value": 15
+            },
+            {
+              "type": "relationship_change",
+              "target": "yuan_feng",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "choice_p1_dragon_warn",
+          "text": "暗示龙族谨慎行事",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "zu_long",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "choice_p1_dragon_leave",
+          "text": "简单寒暄后告辞",
+          "nextNodeId": "node_phase1_sense_demon"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_phoenix_mountain",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "不死火山",
+      "content": "你来到不死火山，炽热的火焰气息扑面而来。这里是凤族的圣地，涅槃之火永不熄灭。\n\n元凤在火山深处接见了你。她的身姿优雅而威严，周身环绕着五彩神光。\n\n「道友能来到此地，想必也是非凡之辈。」元凤的声音清冷，「凤族不喜俗务，但道友若有要事，但说无妨。」",
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "yuan_feng",
+          "value": 5
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p1_phoenix_alliance",
+          "text": "提议与凤族结盟",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "yuan_feng",
+              "value": 15
+            },
+            {
+              "type": "relationship_change",
+              "target": "zu_long",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "choice_p1_phoenix_warn",
+          "text": "暗示凤族谨慎行事",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "yuan_feng",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "choice_p1_phoenix_leave",
+          "text": "简单寒暄后告辞",
+          "nextNodeId": "node_phase1_sense_demon"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_secluded",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "闭关修炼",
+      "content": "你寻得一处灵气充沛的洞府，开始闭关修炼。\n\n岁月如梭，转眼间数百年过去。你的道行大有精进，但外面的世界也在悄然变化。\n\n一日，你从入定中惊醒，感受到天地间涌动的杀气。三族之间的矛盾，似乎已经到了不可调和的地步……",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 15
+        }
+      ],
+      "autoNextId": "node_phase1_sense_demon",
+      "choices": [
+        {
+          "id": "secluded_continue",
+          "text": "继续闭关修炼",
+          "description": "道行+15",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "secluded_event",
+          "text": "感应到异常波动，前去查看",
+          "description": "触发随机事件",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "event_heavenly_treasure"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_demon_investigation",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "魔影重重",
+      "content": "你悄然潜入须弥山深处，那股魔气愈发浓郁。\n\n在一处隐秘的洞府中，你发现了一个惊人的秘密——有人在暗中挑拨三族关系！\n\n这些流言如毒蛇般在三族间传播，而源头，正是这位自称「魔祖」的存在——罗睺！\n\n你正欲离开，却感到一道冰冷的目光落在身上……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_found_luohuo",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p1_escape",
+          "text": "施展遁术，迅速逃离",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "probability": {
+            "base": 0.7,
+            "modifiedBy": "daohang"
+          },
+          "nextNodeId": "node_phase1_escape_success"
+        },
+        {
+          "id": "choice_p1_face_luohuo",
+          "text": "现身与罗睺对峙",
+          "description": "极其危险的选择",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 85
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "luohuo",
+              "value": -50
+            }
+          ],
+          "nextNodeId": "node_phase1_luohuo_confrontation"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_hongjun_response",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "道祖之谋",
+      "content": "你找到鸿钧道人，将发现魔气之事告知。\n\n鸿钧神色平静，似乎早已知晓。「罗睺……」他轻声道，「魔道与吾道，终有一战。」\n\n「你既已察觉，便是有缘。此乃造化玉碟碎片，可助你修行。」\n\n鸿钧递给你一块玉碟碎片，你感受到其中蕴含的大道至理。",
+      "effects": [
+        {
+          "type": "add_item",
+          "target": "item_jade_disc_fragment"
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "relationship_change",
+          "target": "hongjun",
+          "value": 20
+        }
+      ],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_escape_success",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "惊险逃脱",
+      "content": "你施展全力遁术，化作一道流光逃离须弥山。\n\n身后传来罗睺冰冷的声音：「有趣……洪荒中竟有能察觉吾存在之人。罢了，且让你多活些时日。」\n\n你心有余悸，但也获得了重要的情报。罗睺的存在，以及他在暗中挑拨三族的阴谋，必须告知其他人。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 5
+        }
+      ],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_luohuo_confrontation",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "battle",
+      "title": "道魔对峙",
+      "content": "你与罗睺对峙，感受到他身上恐怖的魔气。\n\n「哦？区区先天神魔，竟敢主动找上吾？」罗睺饶有兴致地看着你，「你是想死，还是想活？」\n\n他的眼中闪烁着危险的光芒，杀意若隐若现。",
+      "choices": [
+        {
+          "id": "choice_p1_fight_luohuo",
+          "text": "与罗睺一战",
+          "description": "九死一生",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 90
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -20
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 30
+            }
+          ],
+          "probability": {
+            "base": 0.3,
+            "modifiedBy": "daohang"
+          },
+          "nextNodeId": "node_phase1_luohuo_battle"
+        },
+        {
+          "id": "choice_p1_stall_luohuo",
+          "text": "拖延时间，等待援军",
+          "description": "鸿钧可能察觉",
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_stalled_luohuo",
+              "value": true
+            }
+          ],
+          "probability": {
+            "base": 0.5,
+            "modifiedBy": "qiyun"
+          },
+          "nextNodeId": "node_phase1_hongjun_arrives"
+        }
+      ],
+      "combatThreshold": 80,
+      "combatDescription": "与魔祖对峙需要至少80战力",
+      "effects": [
+        {
+          "type": "add_buff",
+          "buffId": "debuff_demon_corruption",
+          "duration": 3
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_luohuo_battle",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "battle",
+      "title": "与魔祖之战",
+      "content": "你与罗睺展开了一场惊天动地的大战！\n\n魔气与道气在空中碰撞，引发无数爆炸。你拼尽全力，但罗睺的实力远超你的想象。\n\n最终，你身受重伤，但也让罗睺付出了一些代价。\n\n「哼，有些意思。」罗睺冷冷地看着你，「吾会记住你的。」\n\n他放过了你，转身离去。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -15
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        }
+      ],
+      "autoNextId": "node_phase1_war_begins",
+      "combatThreshold": 90,
+      "combatDescription": "与魔祖战斗需要至少90战力"
+    },
+    {
+      "id": "node_danger_close_call",
+      "chapter": "特殊事件",
+      "phase": "danger",
+      "type": "story",
+      "title": "命悬一线",
+      "content": "你的实力不足以应对眼前的危机！\n\n在生死边缘，你拼尽全力挣扎求生。鲜血染红了你的衣袍，元神几近溃散。\n\n但就在这千钧一发之际，你找到了一线生机——\n\n或许是一次险之又险的闪避，或许是敌人的轻敌，又或许是冥冥中的天意...\n\n你勉强活了下来，但代价惨重。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -20
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": -15
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_close_call",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "养精蓄锐，暂避锋芒",
+          "nextNodeId": "node_phase1_rest"
+        },
+        {
+          "text": "不甘心，继续前行",
+          "nextNodeId": "node_phase1_war_begins"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_rest",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "休养生息",
+      "content": "你找了一处隐蔽之地，开始疗伤。\n\n经过一段时间的调养，你的伤势渐渐好转。虽然元气大伤，但至少保住了性命。\n\n「留得青山在，不怕没柴烧。」你暗自告诫自己。\n\n待伤势恢复后，你再次踏上了洪荒的征途。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 5
+        }
+      ],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_hongjun_arrives",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "道祖降临",
+      "content": "就在你快要支撑不住时，一道金光从天而降。\n\n鸿钧道人出现在你身前，与罗睺对峙。\n\n「罗睺，你太急了。」鸿钧平静地说。\n\n「哼，鸿钧，你吾之道，终有一战。今日不过是试探。」罗睺冷笑，身影渐渐消散。\n\n鸿钧转身看向你：「你做得很好。此因果，吾记下了。」",
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "hongjun",
+          "value": 30
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 15
+        },
+        {
+          "type": "add_item",
+          "target": "item_hongjun_protection"
+        },
+        {
+          "type": "add_buff",
+          "buffId": "buff_hongjun_blessing",
+          "duration": 5
+        }
+      ],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_war_begins",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "三族开战",
+      "milestone": "milestone_three_clan_war_start",
+      "content": "终于，三族全面开战了。\n\n祖龙率领龙族大军，从四海而出，欲一统洪荒。\n\n元凤带领凤族精锐，从不死火山腾空而起，与龙族在空中激战。\n\n始麒麟统帅麒麟族与走兽一族，从中央大地杀出，意图坐收渔翁之利。\n\n洪荒大地，血流成河。三族精锐尽出，杀得天昏地暗。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_war_started",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p1_join_battle",
+          "text": "加入战场",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 15
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase1_battle_result"
+        },
+        {
+          "id": "choice_p1_rescue",
+          "text": "救助无辜生灵",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase1_rescue_result"
+        },
+        {
+          "id": "choice_p1_retreat",
+          "text": "退守洞府，静观其变",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_wait_result"
+        },
+        {
+          "id": "choice_risk_death",
+          "text": "冒险冲击战场中心",
+          "description": "高风险，可能触发死亡警告",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "qiyun",
+              "operator": "<=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -15
+            },
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_death_warning"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_battle_result",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "战场洗礼",
+      "content": "你加入了战场，在血与火中磨砺自己。\n\n三族之战的惨烈超乎想象。无数生灵陨落，洪荒大地血流成河。\n\n最终，三族都元气大伤，各自退回领地。这场战争没有赢家，只有无尽的伤亡。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_phase1_rescue_result",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "功德无量",
+      "content": "你选择救助无辜的生灵，而非参与战争。\n\n在战火纷飞的洪荒大地上，你四处奔走，救下了无数生灵。虽然你无法阻止战争，但你的善举被许多人铭记。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 20
+        }
+      ],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_phase1_wait_result",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "静观其变",
+      "content": "你选择退守洞府，静观其变。\n\n战争持续了数百年，三族都损失惨重。你虽然避开了战火，但也错过了许多机会。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 15
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": -10
+        }
+      ],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_phase1_end",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "龙汉初劫终",
+      "milestone": "milestone_phase1_end",
+      "content": "三族之战终于落下帷幕。\n\n龙族退守四海，元气大伤；凤族隐居不死火山，凤族凋零；麒麟族几乎灭绝，退隐中央。\n\n三族的霸主时代结束了，但洪荒的纷争并未停止。\n\n西方须弥山上，罗睺的身影若隐若现。而鸿钧道人也在暗中积蓄力量，准备与魔祖的最终决战。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_phase1_complete",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p1_follow_hongjun",
+          "text": "追随鸿钧，准备对抗罗睺",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "ending_phase1_hongjun"
+        },
+        {
+          "id": "choice_p1_continue_solo",
+          "text": "继续独自修炼",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "ending_phase1_solo"
+        },
+        {
+          "id": "choice_p1_seek_power",
+          "text": "趁乱扩张势力",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "shengwang",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            },
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "ending_phase1_power"
+        }
+      ]
+    },
+    {
+      "id": "ending_phase1_hongjun",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "ending",
+      "title": "道门之路",
+      "content": "你选择追随鸿钧道人，准备对抗魔祖罗睺。\n\n「善。」鸿钧点头，「道魔之战，非一人之力可成。汝既有此心，吾便收汝为记名弟子。」\n\n你拜入鸿钧门下，开始了新的修行之路。",
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "hongjun",
+          "value": 30
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_hongjun_disciple",
+          "value": true
+        }
+      ],
+      "endingId": "ending_phase1_hongjun",
+      "autoNextId": "node_phase2_start"
+    },
+    {
+      "id": "ending_phase1_solo",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "ending",
+      "title": "独行之道",
+      "content": "你选择继续独自修炼，不依附任何势力。\n\n龙汉初劫让你看清了洪荒的残酷，也让你明白了一个道理——只有自身强大，才能在这乱世中立足。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_solo_path",
+          "value": true
+        }
+      ],
+      "endingId": "ending_phase1_solo",
+      "autoNextId": "node_phase2_start"
+    },
+    {
+      "id": "ending_phase1_power",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "ending",
+      "title": "野心之路",
+      "content": "你选择趁乱扩张势力，在这乱世中建立自己的根基。\n\n三族元气大伤，正是崛起的好时机。你招揽了一批散修，在洪荒中建立了一方势力。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": -15
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_power_path",
+          "value": true
+        }
+      ],
+      "endingId": "ending_phase1_power",
+      "autoNextId": "node_phase2_start"
+    },
+    {
+      "id": "node_phase2_start",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "风云再起",
+      "content": "龙汉初劫后，洪荒暂时恢复了平静。\n\n然而，这平静只是表象。西方须弥山上，罗睺正在积蓄力量，准备发动最后的攻势。\n\n鸿钧道人也感应到了危机，开始召集志同道合之士，准备与魔祖决战。",
+      "autoNextId": "node_phase2_choice"
+    },
+    {
+      "id": "node_phase2_choice",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "choice",
+      "title": "抉择时刻",
+      "content": "道魔之战即将来临，你必须做出选择。\n\n鸿钧道人正在召集人手，而罗睺也在暗中拉拢势力。你将站在哪一边？",
+      "choices": [
+        {
+          "id": "choice_p2_join_hongjun",
+          "text": "追随鸿钧，对抗魔道",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": 20
+            },
+            {
+              "type": "relationship_change",
+              "target": "luohuo",
+              "value": -30
+            }
+          ],
+          "nextNodeId": "node_phase2_hongjun_camp"
+        },
+        {
+          "id": "choice_p2_join_luohuo",
+          "text": "投靠罗睺，加入魔道",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": "<=",
+              "value": 50
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "luohuo",
+              "value": 30
+            },
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": -50
+            }
+          ],
+          "nextNodeId": "node_phase2_luohuo_camp"
+        },
+        {
+          "id": "choice_p2_neutral",
+          "text": "保持中立，观望局势",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase2_neutral_path"
+        },
+        {
+          "id": "choice_p2_seek_own",
+          "text": "趁乱谋取私利",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": "<=",
+              "value": 40
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -15
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase2_opportunist"
+        }
+      ]
+    },
+    {
+      "id": "node_phase2_hongjun_camp",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "道门阵营",
+      "content": "你加入了鸿钧的阵营。\n\n在这里，你见到了许多志同道合之士：三清、女娲、接引、准提……\n\n「道魔之战，关乎洪荒存亡。」鸿钧说道，「罗睺欲毁洪荒，吾等必须阻止。」",
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "laozi",
+          "value": 10
+        },
+        {
+          "type": "relationship_change",
+          "target": "nuwa",
+          "value": 10
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p2_train",
+          "text": "专心修炼，提升实力",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase2_final_battle"
+        },
+        {
+          "id": "choice_p2_strategy",
+          "text": "参与战略讨论",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase2_final_battle"
+        }
+      ]
+    },
+    {
+      "id": "node_phase2_luohuo_camp",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "魔道阵营",
+      "content": "你选择投靠罗睺，加入魔道。\n\n罗睺的领地充满了魔气，无数魔修在此聚集。\n\n「很好。」罗睺看着你，「吾欣赏你的选择。待吾毁灭洪荒，你便是吾座下第一魔将。」",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": -20
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p2_serve_luohuo",
+          "text": "忠心耿耿，为魔祖效力",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "luohuo",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase2_final_battle"
+        },
+        {
+          "id": "choice_p2_spy",
+          "text": "暗中收集情报，准备背叛",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_spy_for_hongjun",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase2_final_battle"
+        }
+      ]
+    },
+    {
+      "id": "node_phase2_neutral_path",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "中立之道",
+      "content": "你选择保持中立，不参与道魔之争。\n\n你在一旁静静观望，积蓄力量。虽然双方都曾派人拉拢你，但你始终保持着距离。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase2_final_battle"
+    },
+    {
+      "id": "node_phase2_opportunist",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "投机取巧",
+      "content": "你选择趁乱谋取私利。\n\n在道魔双方交战之际，你四处搜刮资源，壮大自己。虽然这种行为被许多人鄙视，但你并不在乎。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": -20
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -10
+        }
+      ],
+      "autoNextId": "node_phase2_final_battle"
+    },
+    {
+      "id": "node_phase2_final_battle",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "battle",
+      "title": "道魔决战",
+      "milestone": "milestone_luohuo_battle",
+      "content": "道魔决战终于爆发！\n\n鸿钧率领道门众人，与罗睺在须弥山展开决战。\n\n天地变色，日月无光。道气与魔气在空中碰撞，引发无数爆炸。\n\n罗睺祭出诛仙四剑，欲以杀伐之力毁灭洪荒。鸿钧则以造化玉碟镇压，与罗睺展开殊死搏斗。",
+      "choices": [
+        {
+          "id": "choice_p2_fight_luohuo_side",
+          "text": "与罗睺并肩作战",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "luohuo",
+              "operator": ">=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -30
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase2_luohuo_fall"
+        },
+        {
+          "id": "choice_p2_fight_hongjun_side",
+          "text": "与鸿钧并肩作战",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "hongjun",
+              "operator": ">=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 20
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase2_luohuo_fall"
+        },
+        {
+          "id": "choice_p2_watch",
+          "text": "在一旁观望",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase2_luohuo_fall"
+        }
+      ],
+      "combatThreshold": 85,
+      "combatDescription": "道魔决战需要至少85战力"
+    },
+    {
+      "id": "node_phase2_luohuo_fall",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "milestone",
+      "title": "魔祖陨落",
+      "milestone": "milestone_phase2_end",
+      "content": "最终，鸿钧以造化玉碟镇压了罗睺。\n\n「鸿钧！吾不甘心！」罗睺发出最后的怒吼，身影渐渐消散。\n\n魔祖陨落，道门获胜。但洪荒也付出了惨重的代价。\n\n西方二圣接引、准提因助战有功，得以在西方立教。三清也因此战崭露头角。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_luohuo_dead",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase2_end"
+    },
+    {
+      "id": "node_phase2_end",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "ending",
+      "title": "新时代开启",
+      "content": "道魔之战结束后，鸿钧宣布将在紫霄宫讲道。\n\n「吾将开坛讲道，有缘者皆可来听。」鸿钧的声音传遍洪荒。\n\n一个新的时代即将开启……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_phase2_complete",
+          "value": true
+        }
+      ],
+      "endingId": "ending_phase2",
+      "autoNextId": "node_phase3_start"
+    },
+    {
+      "id": "node_phase3_start",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "紫霄宫开",
+      "content": "鸿钧道祖在混沌中开辟紫霄宫，准备讲道。\n\n消息传遍洪荒，无数先天神魔纷纷前往。你也踏上了前往紫霄宫的旅程。\n\n紫霄宫悬浮于混沌之中，金光万丈，瑞气千条。",
+      "autoNextId": "node_phase3_arrival"
+    },
+    {
+      "id": "node_phase3_arrival",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "choice",
+      "title": "紫霄宫前",
+      "content": "你来到紫霄宫前，只见三千红尘客已经聚集于此。\n\n紫霄宫内有六个蒲团，据说坐上蒲团者可得大机缘。此刻，蒲团尚未有人坐定。",
+      "choices": [
+        {
+          "id": "choice_p3_rush_cushion",
+          "text": "抢先占据蒲团",
+          "description": "需要极高的根脚和气运",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 90
+            },
+            {
+              "type": "attribute",
+              "target": "qiyun",
+              "operator": ">=",
+              "value": 70
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 30
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_got_cushion",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase3_cushion_success"
+        },
+        {
+          "id": "choice_p3_wait",
+          "text": "静静等待，不争不抢",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase3_lecture_start"
+        },
+        {
+          "id": "choice_p3_observe",
+          "text": "观察其他人，寻找机会",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "event_star_mystery"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_cushion_success",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "蒲团之缘",
+      "content": "你成功占据了一个蒲团！\n\n三清、女娲、接引、准提也各自占据了蒲团。六人并排而坐，等待鸿钧讲道。\n\n红云老祖见你没有蒲团，主动让出了自己的位置。你心中感激，但也隐隐担忧——这番让座，不知会结下何种因果。",
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "hongyun",
+          "value": 20
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_hongyun_seat",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_lecture_start"
+    },
+    {
+      "id": "node_phase3_lecture_start",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "milestone",
+      "title": "鸿钧讲道",
+      "milestone": "milestone_first_lecture",
+      "content": "鸿钧道祖登上高台，开始讲道。\n\n「道可道，非常道。名可名，非常名……」\n\n鸿钧的声音如同天籁，每一个字都蕴含着无尽的大道至理。你沉浸其中，道行飞速提升。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "add_buff",
+          "buffId": "buff_dao_enlightenment",
+          "duration": 4
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p3_focus",
+          "text": "专心听讲，领悟大道",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase3_second_lecture"
+        },
+        {
+          "id": "choice_p3_observe_others",
+          "text": "观察其他听道者",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase3_second_lecture"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_second_lecture",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "二次讲道",
+      "content": "鸿钧讲道三次，你每次都认真聆听。\n\n第二次讲道后，鸿钧取出分宝岩，开始分发先天灵宝。无数宝物从天而降，众人纷纷争抢。",
+      "choices": [
+        {
+          "id": "choice_p3_grab_treasure",
+          "text": "参与争夺宝物",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "qiyun",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase3_treasure_result"
+        },
+        {
+          "id": "choice_p3_no_fight",
+          "text": "不参与争夺",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase3_third_lecture"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_treasure_result",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "宝物争夺",
+      "content": "你参与争夺，虽然未能得到顶级灵宝，但也获得了一些不错的宝物。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 5
+        }
+      ],
+      "autoNextId": "node_phase3_third_lecture"
+    },
+    {
+      "id": "node_phase3_third_lecture",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "milestone",
+      "title": "三次讲道",
+      "milestone": "milestone_third_lecture",
+      "content": "第三次讲道结束后，鸿钧宣布收徒。\n\n「老子、元始、通天、女娲、接引、准提，汝六人有缘，吾收汝等为徒。」\n\n六人拜入鸿钧门下，成为亲传弟子。鸿钧又赐予鸿蒙紫气，助其成圣。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_hongjun_disciples",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p3_congratulate",
+          "text": "上前祝贺新晋弟子",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "laozi",
+              "value": 5
+            },
+            {
+              "type": "relationship_change",
+              "target": "nuwa",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase3_end"
+        },
+        {
+          "id": "choice_p3_retreat",
+          "text": "默默离开",
+          "nextNodeId": "node_phase3_end"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_end",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "ending",
+      "title": "讲道结束",
+      "content": "紫霄宫讲道结束，众人各自离去。\n\n三清立人、阐、截三教，女娲造人成圣，西方二圣立西方教。\n\n洪荒的格局正在发生巨变，巫妖二族也在悄然崛起……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_phase3_complete",
+          "value": true
+        }
+      ],
+      "endingId": "ending_phase3",
+      "autoNextId": "node_phase4_start"
+    },
+    {
+      "id": "node_phase4_start",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "巫妖初现",
+      "content": "紫霄宫讲道后，洪荒格局大变。\n\n帝俊、东皇太一建立天庭，统御妖族，欲成为天地主角。\n\n十二祖巫聚首巫城，以盘古血脉为傲，不敬天地，只尊盘古。\n\n巫妖二族的矛盾，正在悄然酝酿……",
+      "autoNextId": "node_phase4_choice"
+    },
+    {
+      "id": "node_phase4_choice",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "choice",
+      "title": "巫妖之争",
+      "content": "巫妖二族日益壮大，冲突不断。你必须选择立场。",
+      "choices": [
+        {
+          "id": "choice_p4_join_yao",
+          "text": "加入天庭，辅佐妖族",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 20
+            },
+            {
+              "type": "relationship_change",
+              "target": "taiyi",
+              "value": 15
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_joined_yao",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase4_yao_camp"
+        },
+        {
+          "id": "choice_p4_join_wu",
+          "text": "加入巫族，与祖巫并肩",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hou_tu",
+              "value": 20
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_joined_wu",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase4_wu_camp"
+        },
+        {
+          "id": "choice_p4_neutral",
+          "text": "保持中立，不参与纷争",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase4_neutral_path"
+        },
+        {
+          "id": "choice_p4_human",
+          "text": "关注人族发展",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "nuwa",
+              "operator": ">=",
+              "value": 50
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase4_human_path"
+        },
+        {
+          "id": "choice_human_sidequest",
+          "text": "前往人族聚居地",
+          "description": "开启\"人道初火\"支线",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "sidequest_human_start"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_yao_camp",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "天庭之臣",
+      "content": "你加入天庭，成为帝俊的臣属。\n\n帝俊对你颇为赏识，赐予你妖族宝物。\n\n「道友既来，吾心甚慰。」帝俊说道，「天庭初立，正需人才。道友可愿助吾一臂之力？」",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 15
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p4_serve_dijun",
+          "text": "忠心辅佐帝俊",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase4_conflict"
+        },
+        {
+          "id": "choice_p4_secret_plan",
+          "text": "暗中积蓄力量",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": "<=",
+              "value": 50
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase4_conflict"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_wu_camp",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "巫族之友",
+      "content": "你加入巫族，与祖巫们并肩。\n\n后土对你表示欢迎，带你参观巫城。\n\n「道友既然选择巫族，吾等便是朋友。」后土说道，「巫族虽不修元神，但肉身成圣，亦有独到之处。」",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 15
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p4_learn_wu",
+          "text": "学习巫族功法",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase4_conflict"
+        },
+        {
+          "id": "choice_p4_befriend_houtu",
+          "text": "与后土深入交流",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hou_tu",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase4_conflict"
+        },
+        {
+          "id": "choice_reincarnation_sidequest",
+          "text": "感应后土祖巫的气息",
+          "description": "开启\"轮回之悟\"支线",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 75
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "sidequest_reincarnation_start"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_neutral_path",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "中立之道",
+      "content": "你选择保持中立，不参与巫妖之争。\n\n你在一旁静静观察，积蓄力量。虽然巫妖双方都曾派人拉拢你，但你始终保持着距离。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase4_conflict",
+      "choices": [
+        {
+          "id": "choice_neutral_continue",
+          "text": "继续中立之道",
+          "description": "保持观望",
+          "nextNodeId": "node_phase4_conflict"
+        },
+        {
+          "id": "choice_neutral_spirit",
+          "text": "在荒野中游历",
+          "description": "可能遇到需要帮助的生灵",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "event_injured_spirit"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_human_path",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "人族守护",
+      "content": "你选择关注人族的发展。\n\n女娲造人后，人族在洪荒中艰难生存。巫妖二族都视人族为草芥，随意屠戮。\n\n你暗中保护人族，帮助他们躲避灾难。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 20
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_protect_human",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_phase4_conflict",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "milestone",
+      "title": "矛盾激化",
+      "milestone": "milestone_wu_yao_conflict",
+      "content": "巫妖矛盾日益激化。\n\n妖族以天庭为尊，欲统御天地；巫族以盘古血脉为傲，不敬天地。\n\n双方冲突不断，小规模战争时有发生。洪荒大地，再次笼罩在战争的阴影之下。",
+      "choices": [
+        {
+          "id": "choice_p4_mediate",
+          "text": "尝试调解矛盾",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "shengwang",
+              "operator": ">=",
+              "value": 70
+            },
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": ">=",
+              "value": 70
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase4_mediation_fail"
+        },
+        {
+          "id": "choice_p4_prepare",
+          "text": "为即将到来的大战做准备",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase4_end"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_mediation_fail",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "调解失败",
+      "content": "你尝试调解巫妖矛盾，但双方积怨已深，无法调和。\n\n帝俊冷冷地说：「人族乃吾等食物，巫族何必多管闲事？」\n\n后土则叹息道：「妖族视人族为草芥，吾巫族岂能坐视？」\n\n你的调解失败了，战争不可避免。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase4_end"
+    },
+    {
+      "id": "node_phase4_end",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "ending",
+      "title": "风雨欲来",
+      "content": "巫妖大战一触即发。\n\n后土化身轮回，功德成圣。但这也意味着巫族失去了一位祖巫。\n\n共工怒触不周山，天柱折，天倾西北。女娲炼石补天，暂时平息了灾难。\n\n但更大的风暴，即将来临……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_phase4_complete",
+          "value": true
+        }
+      ],
+      "endingId": "ending_phase4",
+      "autoNextId": "node_phase5_start"
+    },
+    {
+      "id": "node_phase5_start",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "决战前夕",
+      "content": "巫妖决战即将来临。\n\n帝俊集结妖族大军，准备与巫族决一死战。\n\n十二祖巫也聚集在一起，准备召唤盘古真身，与天庭决一死战。\n\n洪荒的命运，即将在这一战中决定……",
+      "autoNextId": "node_phase5_final_choice"
+    },
+    {
+      "id": "node_phase5_final_choice",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "choice",
+      "title": "最终抉择",
+      "content": "巫妖决战在即，你必须做出最终的选择。",
+      "choices": [
+        {
+          "id": "choice_p5_fight_yao",
+          "text": "为妖族而战",
+          "conditions": [
+            {
+              "type": "flag",
+              "target": "flag_joined_yao",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -20
+            }
+          ],
+          "nextNodeId": "node_phase5_yao_ending"
+        },
+        {
+          "id": "choice_p5_fight_wu",
+          "text": "为巫族而战",
+          "conditions": [
+            {
+              "type": "flag",
+              "target": "flag_joined_wu",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -20
+            }
+          ],
+          "nextNodeId": "node_phase5_wu_ending"
+        },
+        {
+          "id": "choice_p5_protect_human",
+          "text": "保护人族撤离",
+          "conditions": [
+            {
+              "type": "flag",
+              "target": "flag_protect_human",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 30
+            }
+          ],
+          "nextNodeId": "node_phase5_human_ending"
+        },
+        {
+          "id": "choice_p5_retreat",
+          "text": "远离战场，保全自己",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase5_survivor_ending"
+        }
+      ]
+    },
+    {
+      "id": "node_phase5_yao_ending",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "battle",
+      "title": "妖族之战",
+      "content": "你与妖族并肩作战，在战场上大显神威。\n\n帝俊以身祭周天星斗大阵，与巫族同归于尽。\n\n东皇太一也在战斗中陨落，混沌钟失落。\n\n妖族虽然失败，但你的英勇被后人铭记。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -30
+        }
+      ],
+      "autoNextId": "node_phase5_final_end",
+      "combatThreshold": 75,
+      "combatDescription": "妖族之战需要至少75战力"
+    },
+    {
+      "id": "node_phase5_wu_ending",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "battle",
+      "title": "巫族之战",
+      "content": "你与巫族并肩作战，在战场上大显神威。\n\n十二祖巫召唤盘古真身，与妖族展开殊死搏斗。\n\n最终，祖巫们几乎全部陨落，巫族元气大伤。\n\n但你的英勇被后人铭记。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -30
+        }
+      ],
+      "autoNextId": "node_phase5_final_end",
+      "combatThreshold": 75,
+      "combatDescription": "巫族之战需要至少75战力"
+    },
+    {
+      "id": "node_phase5_human_ending",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "人族守护者",
+      "content": "你选择保护人族撤离，而非参与战争。\n\n在巫妖大战的混乱中，你带领人族躲避灾难，保存了人族的火种。\n\n巫妖二族同归于尽后，人族成为了天地主角。你的功德，被后人永远铭记。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 50
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 40
+        }
+      ],
+      "autoNextId": "node_phase5_final_end"
+    },
+    {
+      "id": "node_phase5_survivor_ending",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "幸存者",
+      "content": "你选择远离战场，保全自己。\n\n巫妖大战惨烈无比，双方几乎同归于尽。\n\n你虽然活了下来，但也错过了许多机会。人族崛起，成为了新的天地主角。\n\n你隐居世外，成为了一个传说……",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": -20
+        }
+      ],
+      "autoNextId": "node_phase5_final_end"
+    },
+    {
+      "id": "node_phase5_final_end",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "milestone",
+      "title": "巫妖终战",
+      "milestone": "milestone_game_end",
+      "content": "巫妖大战终于落下帷幕。\n\n妖族天庭覆灭，帝俊、东皇太一陨落。\n\n巫族祖巫几乎全灭，巫族退隐洪荒。\n\n人族崛起，成为天地主角。三皇五帝治世，开启了新的纪元。\n\n而你，在这场浩劫中，走出了属于自己的道路……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_game_complete",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_p5_ascend",
+          "text": "追求更高的境界",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 90
+            },
+            {
+              "type": "attribute",
+              "target": "qiyun",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "ending_ascend"
+        },
+        {
+          "id": "choice_p5_retire",
+          "text": "隐居世外，享受平静",
+          "nextNodeId": "ending_retire"
+        },
+        {
+          "id": "choice_p5_rule",
+          "text": "建立自己的势力",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "shengwang",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "ending_dominate"
+        }
+      ]
+    },
+    {
+      "id": "ending_ascend",
+      "chapter": "终章",
+      "phase": "wu_yao_final",
+      "type": "ending",
+      "title": "飞升成圣",
+      "content": "你历经无数磨难，终于证得混元道果。\n\n在众人的注视下，你飞升而去，超脱洪荒，成为了一位圣人。\n\n你的传说，将永远流传在洪荒大地上……",
+      "endingId": "ending_ascend"
+    },
+    {
+      "id": "ending_retire",
+      "chapter": "终章",
+      "phase": "wu_yao_final",
+      "type": "ending",
+      "title": "隐退",
+      "content": "你看破了红尘，选择隐居世外。\n\n在洪荒的某个角落，你建立了自己的洞府，过着平静的生活。\n\n虽然你不再参与世事，但你的传说，依然流传在洪荒……",
+      "endingId": "ending_retire"
+    },
+    {
+      "id": "ending_dominate",
+      "chapter": "终章",
+      "phase": "wu_yao_final",
+      "type": "ending",
+      "title": "称霸洪荒",
+      "content": "你趁巫妖大战后的混乱，建立了自己的势力。\n\n在你的统治下，一方势力崛起，成为洪荒的新霸主。\n\n你的名字，将永远铭刻在洪荒的历史上……",
+      "endingId": "ending_dominate"
+    },
+    {
+      "id": "node_dijun_tianqing",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "天庭立基",
+      "content": "作为帝俊，你决定建立天庭，统御妖族。\n\n你与东皇太一商议，决定以太阳星为根基，建立天庭。\n\n「兄长，天庭既立，吾等当以何为号？」太一问道。\n\n你沉思片刻，说道：「吾为妖皇，汝为东皇。天庭之上，唯吾二人独尊。」",
+      "characterRestrictions": [
+        "dijun"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_tianqing_established",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_dijun_sacrifice",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "以身祭阵",
+      "content": "作为帝俊，在巫妖决战的最后关头，你做出了一个决定。\n\n「太一，吾以身为祭，启动周天星斗大阵。」\n\n太一惊呼：「兄长不可！」\n\n你微微一笑：「妖族存亡，在此一举。吾去后，汝当保全妖族血脉。」\n\n你以身祭阵，周天星斗大阵全力运转，与巫族的十二都天神煞大阵碰撞……",
+      "characterRestrictions": [
+        "dijun"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -50
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 50
+        }
+      ],
+      "autoNextId": "node_phase5_final_end"
+    },
+    {
+      "id": "node_dijun_sun_star",
+      "chapter": "专属剧情",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "太阳星化形",
+      "content": "作为帝俊，你于太阳星上化形而出。\n\n太阳真火环绕周身，你感受到体内蕴含的无穷力量。\n\n身旁，你的兄弟东皇太一也刚刚化形。\n\n「兄长，吾等当如何？」太一问道。\n\n你望向洪荒大地，眼中闪烁着野心的光芒：「吾等当建立天庭，统御洪荒！」",
+      "characterRestrictions": [
+        "dijun"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "relationship_change",
+          "target": "taiyi",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase1_choice"
+    },
+    {
+      "id": "node_taiyi_brotherhood",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "兄弟情深",
+      "content": "作为东皇太一，你与帝俊并肩作战，建立了深厚的兄弟情谊。\n\n「太一，吾等兄弟二人，当共创霸业。」帝俊说道。\n\n你点头：「兄长放心，有吾在，定保兄长无虞。」\n\n混沌钟在你手中嗡鸣，仿佛在回应你的决心。",
+      "characterRestrictions": [
+        "taiyi"
+      ],
+      "effects": [
+        {
+          "type": "relationship_change",
+          "target": "dijun",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_taiyi_final_stand",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "东皇最后一战",
+      "content": "作为东皇太一，在帝俊牺牲后，你独自面对巫族大军。\n\n「兄长已去，吾当追随！」你怒吼一声，混沌钟全力运转。\n\n你以一己之力，对抗无数巫族。最终，你力竭而亡，但你的英勇，被后人永远铭记。",
+      "characterRestrictions": [
+        "taiyi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 50
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -40
+        }
+      ],
+      "autoNextId": "node_phase5_final_end"
+    },
+    {
+      "id": "node_laozi_wuwei",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "无为之道",
+      "content": "作为老子，你深谙无为之道。\n\n在紫霄宫听道时，你并不急于争夺蒲团，而是静静聆听鸿钧讲道。\n\n「道法自然，无为而无不为。」鸿钧的话语深深印入你的心中。\n\n你决定以清静无为之心，面对洪荒的纷争。",
+      "characterRestrictions": [
+        "laozi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 15
+        }
+      ],
+      "autoNextId": "node_phase3_third_lecture"
+    },
+    {
+      "id": "node_laozi_scripture",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "道德经成",
+      "content": "作为老子，你在人族中传道，写下了《道德经》。\n\n「道可道，非常道。名可名，非常名……」\n\n你的教诲被人族铭记，人族开始有了自己的修行之道。\n\n你以人教教主的身份，在洪荒中占据了一席之地。",
+      "characterRestrictions": [
+        "laozi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 20
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_yuanshi_disciple",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "阐教立派",
+      "content": "作为元始天尊，你讲究根脚出身，决定立阐教。\n\n「阐者，阐明天道也。吾门下弟子，当根脚清白，修行有道。」\n\n你收下了十二金仙为徒，阐教在洪荒中声名鹊起。",
+      "characterRestrictions": [
+        "yuan_shi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 25
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_chanjiao_established",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_end"
+    },
+    {
+      "id": "node_yuanshi_jade_palace",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "玉虚宫",
+      "content": "作为元始天尊，你在昆仑山建立玉虚宫，作为阐教道场。\n\n玉虚宫金碧辉煌，仙气缭绕。你的弟子们在此修行，阐教势力日益壮大。",
+      "characterRestrictions": [
+        "yuan_shi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 15
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 15
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_tongtian_disciples",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "截教万仙",
+      "content": "作为通天教主，你主张有教无类，广收门徒。\n\n「截者，截取一线生机也。众生皆可修行，吾不问出身。」\n\n你的门徒众多，号称万仙来朝。截教成为洪荒第一大教。",
+      "characterRestrictions": [
+        "tongtian"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_jiejiao_established",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_end"
+    },
+    {
+      "id": "node_tongtian_sword",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "诛仙剑阵",
+      "content": "作为通天教主，你炼制了诛仙四剑，布下诛仙剑阵。\n\n「非四圣不可破此阵！」你自信地说道。\n\n诛仙剑阵成为截教的护教大阵，威震洪荒。",
+      "characterRestrictions": [
+        "tongtian"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_kunpeng_escape",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "鲲鹏遁逃",
+      "content": "作为鲲鹏，在巫妖决战的关键时刻，你选择了逃离。\n\n「天庭已不可为，吾当自保。」\n\n你化作鲲鹏真身，扶摇九万里，逃离了战场。\n\n虽然你保住了性命，但也背上了临阵脱逃的骂名。",
+      "characterRestrictions": [
+        "kunpeng"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -20
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": -15
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase5_final_end"
+    },
+    {
+      "id": "node_kunpeng_opportunity",
+      "chapter": "专属剧情",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "北海机遇",
+      "content": "作为鲲鹏，你在北海修炼，感悟天地大道。\n\n北海辽阔无边，灵气充沛。你在此地修炼，道行突飞猛进。\n\n「北海虽远，却是吾之福地。」你暗自思忖。",
+      "characterRestrictions": [
+        "kunpeng"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase1_choice"
+    },
+    {
+      "id": "node_hongyun_seat",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "让座之恩",
+      "content": "作为红云，你在紫霄宫中主动让出了蒲团。\n\n「道友请坐。」你微笑着说道。\n\n这一让，结下了因果。虽然你失去了蒲团之位，但你的善心被许多人铭记。",
+      "characterRestrictions": [
+        "hongyun"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_gave_seat",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_lecture_start"
+    },
+    {
+      "id": "node_hongyun_tribulation",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "红云之劫",
+      "content": "作为红云，你因让座之恩，结下了因果。\n\n鲲鹏、冥河等人觊觎你的鸿蒙紫气，对你展开了围杀。\n\n「吾一生行善，竟落得如此下场！」你悲愤地喊道。\n\n最终，你陨落了。但你的善心，被后人永远铭记。",
+      "characterRestrictions": [
+        "hongyun"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -50
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        }
+      ],
+      "autoNextId": "ending_fall"
+    },
+    {
+      "id": "node_minghe_asura",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "阿修罗族",
+      "content": "作为冥河，你在血海中感悟，创立了阿修罗族。\n\n「血海不枯，冥河不死。」你傲然说道。\n\n阿修罗族以杀伐为道，成为洪荒中一股不可忽视的力量。",
+      "characterRestrictions": [
+        "minghe"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 20
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_asura_established",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_end"
+    },
+    {
+      "id": "node_minghe_blood_sea",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "血海之主",
+      "content": "作为冥河，你坐镇血海，不参与巫妖之争。\n\n血海中无数冤魂哀嚎，但你心如止水。\n\n「吾只待机缘。」你暗自思忖，「后土化轮回，吾当与之合作。」",
+      "characterRestrictions": [
+        "minghe"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 15
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": -10
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_xiwangmu_yaochi",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "瑶池仙境",
+      "content": "作为西王母，你在昆仑山建立了瑶池仙境。\n\n瑶池中仙气缭绕，蟠桃树结满了仙果。\n\n「吾当在此修行，不问世事。」你决定远离纷争，专心修炼。",
+      "characterRestrictions": [
+        "xiwangmu"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase3_end"
+    },
+    {
+      "id": "node_xiwangmu_peach",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "蟠桃盛会",
+      "content": "作为西王母，你举办了蟠桃盛会，邀请各方大能。\n\n蟠桃会上，仙乐飘飘，仙果飘香。\n\n「诸位道友，请品尝蟠桃。」你微笑着说道。\n\n蟠桃盛会成为了洪荒中的一大盛事，你的声望也因此大增。",
+      "characterRestrictions": [
+        "xiwangmu"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_changxi_moon",
+      "chapter": "专属剧情",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "太阴星",
+      "content": "作为常羲，你与羲和一同在太阴星上化形。\n\n太阴真气环绕周身，你感受到月之精华的滋养。\n\n「姐姐，吾等当如何？」羲和问道。\n\n你微微一笑：「吾等当寻得良人，共度此生。」",
+      "characterRestrictions": [
+        "changxi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "relationship_change",
+          "target": "xihe",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase1_choice"
+    },
+    {
+      "id": "node_changxi_children",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "十二月",
+      "content": "作为常羲，你与帝俊结为道侣，生下了十二月。\n\n十二月环绕在你身边，天真烂漫。\n\n「母亲，父亲何时归来？」孩子们问道。\n\n你望着远方，心中隐隐不安。巫妖之战即将来临，你担心帝俊的安危……",
+      "characterRestrictions": [
+        "changxi"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 15
+        },
+        {
+          "type": "relationship_change",
+          "target": "dijun",
+          "value": 20
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_nuwa_create_human",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "抟土造人",
+      "content": "作为女娲，你感悟天地，决定创造一个新的种族。\n\n你以黄土为材，以神力为引，捏出了一个个小人。\n\n「此族名为人族。」你说道，「愿人族生生不息，繁荣昌盛。」\n\n人族诞生，你因此功德成圣，成为洪荒第一位圣人。",
+      "characterRestrictions": [
+        "nuwa"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 50
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 50
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_created_human",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_end"
+    },
+    {
+      "id": "node_nuwa_patch_sky",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "炼石补天",
+      "content": "作为女娲，在共工怒触不周山后，你决定炼石补天。\n\n「天倾西北，地陷东南。吾当补天，救万民于水火。」\n\n你炼制五色石，修补苍天。洪荒因此得以保全，你的功德再次增加。",
+      "characterRestrictions": [
+        "nuwa"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 40
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        },
+        {
+          "type": "add_buff",
+          "buffId": "buff_celestial_favor",
+          "duration": 6
+        }
+      ],
+      "autoNextId": "node_phase4_end"
+    },
+    {
+      "id": "node_houtu_reincarnation",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "化身轮回",
+      "content": "作为后土，你感悟天地，发现生灵死后无处可去。\n\n「吾当化身轮回，让生灵有归处。」\n\n你以身化轮回，功德成圣。六道轮回由此诞生，生灵死后有了归宿。\n\n「吾虽死，但吾之功德，永存天地。」",
+      "characterRestrictions": [
+        "hou_tu"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 50
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 50
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_reincarnation_established",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase4_end"
+    },
+    {
+      "id": "node_houtu_sacrifice",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "后土之念",
+      "content": "作为后土，你虽然化身轮回，但你的意志依然存在。\n\n在巫妖决战中，你以轮回之力，帮助巫族保存了最后的血脉。\n\n「巫族虽败，但血脉不绝。」你的声音在轮回中回荡。",
+      "characterRestrictions": [
+        "hou_tu"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 30
+        }
+      ],
+      "autoNextId": "node_phase5_final_end"
+    },
+    {
+      "id": "node_yuanfeng_nirvana",
+      "chapter": "专属剧情",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "涅槃重生",
+      "content": "作为元凤，在龙汉初劫中，你身受重伤。\n\n「吾当涅槃，以求重生。」\n\n你投入不死火山，以涅槃之火重铸肉身。虽然你失去了大部分力量，但你的生命得以延续。",
+      "characterRestrictions": [
+        "yuan_feng"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -20
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_yuanfeng_egg",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "凤凰之卵",
+      "content": "作为元凤，你留下了一枚凤凰卵，寄托着凤族的希望。\n\n「吾族虽衰，但血脉不绝。」\n\n你将凤凰卵藏于不死火山深处，等待它孵化的一天。",
+      "characterRestrictions": [
+        "yuan_feng"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_phoenix_egg",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_zulong_sea",
+      "chapter": "专属剧情",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "四海之主",
+      "content": "作为祖龙，在龙汉初劫后，你退守四海。\n\n「四海虽小，却是龙族根基。」\n\n你以龙族之力，镇守四海。虽然龙族元气大伤，但根基未失。",
+      "characterRestrictions": [
+        "zu_long"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 15
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -10
+        }
+      ],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_zulong_tribute",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "龙族朝贡",
+      "content": "作为祖龙，你决定向天庭朝贡，以保全龙族。\n\n「龙族已无力争霸，当以退为进。」\n\n你派遣龙族使者前往天庭，表示臣服。龙族因此得以保全。",
+      "characterRestrictions": [
+        "zu_long"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": -10
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 10
+        },
+        {
+          "type": "relationship_change",
+          "target": "dijun",
+          "value": 10
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "node_qilin_central",
+      "chapter": "专属剧情",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "中央大地",
+      "content": "作为始麒麟，在龙汉初劫后，你退隐中央大地。\n\n「麒麟族几乎灭绝，吾当隐世修行。」\n\n你带领残存的麒麟族，隐居在中央大地的深处。",
+      "characterRestrictions": [
+        "shi_qi_lin"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -15
+        }
+      ],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_qilin_omen",
+      "chapter": "专属剧情",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "麒麟祥瑞",
+      "content": "作为始麒麟，你感应到洪荒的动荡，决定出山。\n\n「麒麟虽衰，但祥瑞之姿犹在。」\n\n你以麒麟之姿，行走于洪荒，为生灵带来祥瑞。",
+      "characterRestrictions": [
+        "shi_qi_lin"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 15
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "ending_fall",
+      "chapter": "终章",
+      "phase": "wu_yao_final",
+      "type": "ending",
+      "title": "陨落",
+      "content": "你在这场浩劫中陨落了。\n\n你的身躯化为天地的一部分，你的灵魂归于混沌。\n\n虽然你已不在，但你的传说，将永远流传在洪荒大地上……",
+      "endingId": "ending_fall"
+    },
+    {
+      "id": "node_intervention_choice",
+      "chapter": "历史干预",
+      "phase": "dragon_phoenix_war",
+      "type": "choice",
+      "title": "命运的抉择",
+      "content": "你感知到历史的洪流正在涌动。罗睺的阴谋正在暗中酝酿，三族大战即将爆发。\n\n你可以选择顺应历史，或者尝试改变它...",
+      "choices": [
+        {
+          "id": "choice_intervention_help_luohuo",
+          "text": "暗中协助罗睺，加速三族大战",
+          "description": "帮助魔祖，获得力量但背负因果",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -20
+            },
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -10
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_helped_luohuo",
+              "value": true
+            },
+            {
+              "type": "historical_intervention",
+              "eventId": "luohuo_plot",
+              "action": "help",
+              "consequence": "你成为罗睺的暗中盟友，三族大战更加惨烈"
+            }
+          ],
+          "nextNodeId": "node_intervention_luohuo_result"
+        },
+        {
+          "id": "choice_intervention_oppose_luohuo",
+          "text": "尝试阻止罗睺的阴谋",
+          "description": "逆天而行，可能付出代价",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_defied_history",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_intervention_oppose_result"
+        },
+        {
+          "id": "choice_intervention_neutral",
+          "text": "顺应历史，不干预",
+          "description": "保持中立，静观其变",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        }
+      ]
+    },
+    {
+      "id": "node_intervention_luohuo_result",
+      "chapter": "历史干预",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "魔道盟约",
+      "content": "你选择与罗睺暗中合作。魔祖的力量涌入你的体内，你感到道行大增。\n\n但你也感知到，天道的因果正在你身上积累。这份因果，终将需要偿还...",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_luohuo_ally",
+          "value": true
+        },
+        {
+          "type": "add_buff",
+          "buffId": "debuff_demon_corruption",
+          "duration": 5
+        },
+        {
+          "type": "add_buff",
+          "buffId": "debuff_karma_burden",
+          "duration": 3
+        }
+      ],
+      "autoNextId": "node_phase1_sense_demon"
+    },
+    {
+      "id": "node_intervention_oppose_result",
+      "chapter": "历史干预",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "逆天之举",
+      "content": "你试图阻止罗睺的阴谋，但天道的力量远超你的想象。\n\n历史的车轮滚滚向前，你的努力如同螳臂当车。虽然未能改变大局，但你的勇气被某些存在看在眼里...",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -15
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_tried_oppose",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase1_sense_demon"
+    },
+    {
+      "id": "node_cultivation_event",
+      "chapter": "修炼",
+      "phase": "dragon_phoenix_war",
+      "type": "random_event",
+      "title": "顿悟",
+      "content": "在修炼中，你突然有所感悟。天地法则在你眼前展开一角...",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 8
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_had_enlightenment",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase1_choice"
+    },
+    {
+      "id": "node_death_warning",
+      "chapter": "危机",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "命悬一线",
+      "content": "你感到气运正在流逝，道行也开始不稳。如果继续这样下去，恐怕会有陨落之危...",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_death_warning",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase1_choice"
+    },
+    {
+      "id": "event_ancient_ruins",
+      "chapter": "随机事件",
+      "phase": "dragon_phoenix_war",
+      "type": "random_event",
+      "title": "上古遗迹",
+      "content": "你在游历中发现了一处被岁月掩埋的上古遗迹。\n\n残垣断壁间，隐约可见混沌初开时的痕迹。这里曾发生过什么？为何会被遗忘在时光的长河中？\n\n你小心翼翼地探索着，忽然，一道微光从废墟深处闪过……",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 8
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_found_ruins",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "ruins_explore",
+          "text": "深入探索遗迹",
+          "description": "可能发现宝物，也可能遭遇危险",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            },
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "event_ruins_treasure"
+        },
+        {
+          "id": "ruins_leave",
+          "text": "标记位置后离开",
+          "description": "稳妥起见，日后再来",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        }
+      ]
+    },
+    {
+      "id": "event_ruins_treasure",
+      "chapter": "随机事件",
+      "phase": "dragon_phoenix_war",
+      "type": "random_event",
+      "title": "遗迹宝藏",
+      "content": "你深入遗迹，在核心处发现了一块混沌时代遗留的灵石！\n\n这块灵石蕴含着天地初开时的本源之力，对你的修行大有裨益。\n\n但就在你伸手之际，遗迹开始震动——你触动了某种禁制！",
+      "effects": [
+        {
+          "type": "add_item",
+          "target": "item_chaos_stone"
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_got_chaos_stone",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase1_sense_demon"
+    },
+    {
+      "id": "event_heavenly_treasure",
+      "chapter": "随机事件",
+      "phase": "dragon_phoenix_war",
+      "type": "random_event",
+      "title": "天材地宝",
+      "content": "你在修炼中感应到一股奇异的波动。循着波动，你来到一处隐秘的山谷。\n\n谷中灵气浓郁得几乎凝成实质，而在谷心，一株散发着七彩光芒的灵草正在风中摇曳。\n\n这是传说中的七彩仙草！服用后可大幅提升根脚！",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "genjiao",
+          "value": 5
+        }
+      ],
+      "choices": [
+        {
+          "id": "treasure_eat",
+          "text": "直接服用仙草",
+          "description": "根脚+10，但有风险",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 70
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "genjiao",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "treasure_save",
+          "text": "小心采摘，留待后用",
+          "description": "获得物品，更稳妥",
+          "effects": [
+            {
+              "type": "add_item",
+              "target": "item_rainbow_herb"
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        },
+        {
+          "id": "treasure_leave",
+          "text": "不贪此物，转身离去",
+          "description": "心性提升",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 10
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_rejected_treasure",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase1_sense_demon"
+        }
+      ]
+    },
+    {
+      "id": "event_injured_spirit",
+      "chapter": "随机事件",
+      "phase": "wu_yao_rise",
+      "type": "random_event",
+      "title": "受伤的先天生灵",
+      "content": "你在游历时发现了一位受伤的先天生灵。他倒在路边，气息奄奄。\n\n从他的服饰来看，似乎并非巫妖两族之人，而是更早诞生的先天神魔后裔。\n\n救还是不救？在这个乱世之中，善行未必有善报……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_found_injured",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "spirit_save",
+          "text": "出手相救",
+          "description": "消耗自身灵力，可能获得因果",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": -5
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 5
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_saved_spirit",
+              "value": true
+            }
+          ],
+          "nextNodeId": "event_spirit_gratitude"
+        },
+        {
+          "id": "spirit_ignore",
+          "text": "视而不见",
+          "description": "明哲保身",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase4_conflict"
+        }
+      ]
+    },
+    {
+      "id": "event_spirit_gratitude",
+      "chapter": "随机事件",
+      "phase": "wu_yao_rise",
+      "type": "random_event",
+      "title": "因果之报",
+      "content": "你救治的先天生灵苏醒后，向你深深一拜。\n\n「道友大恩，在下没齿难忘。在下乃先天神魔后裔，虽无大能，却知晓一些隐秘……」\n\n他告诉你一个关于周天星斗的秘密，以及一处未被发现的宝库位置。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_got_secret",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "event_star_mystery",
+      "chapter": "随机事件",
+      "phase": "hongjun_lecture",
+      "type": "random_event",
+      "title": "星辰异象",
+      "content": "夜观星象时，你发现周天星斗的运转出现了一丝异常。\n\n某几颗星辰的光芒突然增强，又迅速黯淡，仿佛在传递某种信息。\n\n这是天机？还是某种预兆？",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 5
+        }
+      ],
+      "choices": [
+        {
+          "id": "star_study",
+          "text": "深入研究星象",
+          "description": "开启支线\"星辰之秘\"",
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_started_star_quest",
+              "value": true
+            }
+          ],
+          "nextNodeId": "sidequest_star_start"
+        },
+        {
+          "id": "star_ignore",
+          "text": "不以为意",
+          "description": "继续你的旅程",
+          "nextNodeId": "node_phase3_lecture_start"
+        }
+      ]
+    },
+    {
+      "id": "sidequest_star_start",
+      "chapter": "支线·星辰之秘",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "星辰之秘",
+      "content": "你开始研究那异常的星象。\n\n通过推演，你发现这些星辰的异动似乎与帝俊、东皇太一有关——他们正在布置周天星斗大阵！\n\n这是一个足以改变洪荒格局的阵法，而你，似乎窥见了其中的奥秘。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 5
+        }
+      ],
+      "choices": [
+        {
+          "id": "star_continue",
+          "text": "继续深入研究",
+          "description": "道行+15，但消耗大量时间",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "sidequest_star_discovery"
+        },
+        {
+          "id": "star_report",
+          "text": "将发现告知帝俊",
+          "description": "可能获得妖族好感",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 85
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 20
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_helped_dijun",
+              "value": true
+            }
+          ],
+          "nextNodeId": "sidequest_star_reward"
+        },
+        {
+          "id": "star_abandon",
+          "text": "放弃研究",
+          "description": "这不是你该涉足的领域",
+          "nextNodeId": "node_phase3_lecture_start"
+        }
+      ]
+    },
+    {
+      "id": "sidequest_star_discovery",
+      "chapter": "支线·星辰之秘",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "星斗奥秘",
+      "content": "经过数年的研究，你终于参悟了周天星斗大阵的核心奥秘！\n\n这个阵法以三百六十五颗主星为阵眼，辅以八万四千群星，可借星辰之力，威力无穷。\n\n虽然你无法布置此阵，但其中的星辰运转之理，对你的修行大有裨益。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_mastered_star",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_lecture_start"
+    },
+    {
+      "id": "sidequest_star_reward",
+      "chapter": "支线·星辰之秘",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "帝俊的赏赐",
+      "content": "帝俊听闻你的发现，龙颜大悦。\n\n「道友竟能窥破我周天星斗大阵的奥秘，实在难得。此等才华，不可埋没。」\n\n他赐予你一件先天灵宝，并许诺日后必有重用。",
+      "effects": [
+        {
+          "type": "add_item",
+          "target": "item_star_essence"
+        },
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 15
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_dijun_favor",
+          "value": true
+        }
+      ],
+      "autoNextId": "node_phase3_lecture_start"
+    },
+    {
+      "id": "sidequest_reincarnation_start",
+      "chapter": "支线·轮回之悟",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "轮回之悟",
+      "content": "你在巫族领地附近，感受到了一股奇异的波动。\n\n那波动中带着无尽的悲悯与慈悲，仿佛有什么大事即将发生。\n\n循着波动，你来到了后土祖巫所在之处……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_sensed_reincarnation",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "reincarnation_observe",
+          "text": "暗中观察",
+          "description": "见证历史，但不干涉",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "sidequest_reincarnation_witness"
+        },
+        {
+          "id": "reincarnation_approach",
+          "text": "主动上前",
+          "description": "与后土交流",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hou_tu",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "sidequest_reincarnation_talk"
+        },
+        {
+          "id": "reincarnation_leave",
+          "text": "悄然离去",
+          "description": "这不是你该涉足的因果",
+          "nextNodeId": "node_phase4_conflict"
+        }
+      ]
+    },
+    {
+      "id": "sidequest_reincarnation_witness",
+      "chapter": "支线·轮回之悟",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "见证轮回",
+      "content": "你躲在暗处，亲眼见证了后土祖巫以身化轮回的壮举！\n\n她的身躯逐渐消散，化作六道轮回，为洪荒众生开辟了一条死后归处。\n\n这是何等的大慈大悲！你的道心在这一刻受到了极大的震撼。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 15
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 20
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_reincarnation",
+          "value": true
+        },
+        {
+          "type": "add_buff",
+          "buffId": "buff_hongjun_blessing",
+          "duration": 4
+        }
+      ],
+      "autoNextId": "node_phase4_conflict"
+    },
+    {
+      "id": "sidequest_reincarnation_talk",
+      "chapter": "支线·轮回之悟",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "后土之语",
+      "content": "后土祖巫看到你，并未惊讶。\n\n「道友能感知到此处的波动，想必也是有大机缘之人。」她的声音平静而悲悯，「吾即将以身化轮回，为众生开辟归处。道友若有疑问，不妨直言。」\n\n你与她长谈，对生死轮回有了更深的理解。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "xinxing",
+          "value": 15
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_talked_houtu",
+          "value": true
+        }
+      ],
+      "autoNextId": "sidequest_reincarnation_witness"
+    },
+    {
+      "id": "sidequest_human_start",
+      "chapter": "支线·人道初火",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "人族困境",
+      "content": "你在洪荒游历时，发现了一群弱小的生灵——人族。\n\n他们没有强大的力量，没有先天的神通，在这巫妖横行的洪荒中，如同蝼蚁般艰难求生。\n\n看着他们饥寒交迫、在野兽面前瑟瑟发抖的样子，你心中涌起一股异样的情绪。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_found_humans",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "human_help",
+          "text": "传授他们生存之道",
+          "description": "开启\"人道初火\"支线",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "sidequest_human_fire"
+        },
+        {
+          "id": "human_ignore",
+          "text": "这不是你的责任",
+          "description": "继续你的旅程",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase4_conflict"
+        }
+      ]
+    },
+    {
+      "id": "sidequest_human_fire",
+      "chapter": "支线·人道初火",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "钻木取火",
+      "content": "你决定帮助人族。\n\n经过观察，你发现他们最大的困境是无法抵御寒冷和野兽。于是，你教会了他们钻木取火之法。\n\n当第一簇火焰在人族手中燃起时，他们的眼中闪烁着希望的光芒。\n\n「这是……火？」他们颤抖着问道。\n\n「这是文明的开端。」你回答。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 20
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 15
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_taught_fire",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "human_stay",
+          "text": "继续守护人族",
+          "description": "声望+30，气运+20，但可能卷入巫妖之争",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 30
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 20
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_protect_human",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase4_human_path"
+        },
+        {
+          "id": "human_leave",
+          "text": "功成身退",
+          "description": "你已经做了该做的",
+          "nextNodeId": "node_phase4_conflict"
+        }
+      ]
+    },
+    {
+      "id": "node_combat_failure",
+      "chapter": "战斗失败",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "战力不足",
+      "content": "你的战力不足以应对这场战斗！\n\n敌人的力量远超你的想象，你勉强支撑，却节节败退。\n\n就在你即将陨落之际，一股力量从体内涌出——那是你积累的因果与气运在最后的挣扎。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -20
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": -15
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_combat_near_death",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "combat_flee",
+          "text": "施展遁术逃离",
+          "description": "保命要紧",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "ending_retire"
+        },
+        {
+          "id": "combat_desperate",
+          "text": "拼死一搏",
+          "description": "置之死地而后生",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "qiyun",
+              "operator": ">=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -30
+            },
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "ending_retire"
+        }
+      ]
+    }
+  ],
+  "buffTypes": {
+    "buff_hongjun_blessing": {
+      "name": "鸿钧祝福",
+      "description": "气运+15",
+      "attribute": "qiyun",
+      "value": 15,
+      "isDebuff": false
+    },
+    "buff_dao_enlightenment": {
+      "name": "道心通明",
+      "description": "道行+10",
+      "attribute": "daohang",
+      "value": 10,
+      "isDebuff": false
+    },
+    "buff_celestial_favor": {
+      "name": "天眷",
+      "description": "根脚+5",
+      "attribute": "genjiao",
+      "value": 5,
+      "isDebuff": false
+    },
+    "buff_reputation_boost": {
+      "name": "名扬洪荒",
+      "description": "声望+20",
+      "attribute": "shengwang",
+      "value": 20,
+      "isDebuff": false
+    },
+    "debuff_demon_corruption": {
+      "name": "魔气侵蚀",
+      "description": "道行-10",
+      "attribute": "daohang",
+      "value": -10,
+      "isDebuff": true
+    },
+    "debuff_karma_burden": {
+      "name": "因果缠身",
+      "description": "气运-15",
+      "attribute": "qiyun",
+      "value": -15,
+      "isDebuff": true
+    },
+    "debuff_curse_weakness": {
+      "name": "衰弱诅咒",
+      "description": "根脚-5",
+      "attribute": "genjiao",
+      "value": -5,
+      "isDebuff": true
+    },
+    "debuff_bad_reputation": {
+      "name": "恶名昭彰",
+      "description": "声望-20",
+      "attribute": "shengwang",
+      "value": -20,
+      "isDebuff": true
+    }
+  }
+}
