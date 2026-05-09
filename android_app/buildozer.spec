@@ -22,7 +22,7 @@ version = 3.5.0
 version.code = 350
 
 # (list) Application requirements
-requirements = python3,kivy,sdl2,pyjnius,android
+requirements = python3,kivy,sdl2,pyjnius
 
 # (str) Presplash image (loading screen)
 presplash.filename = assets/images/presplash.png
@@ -79,7 +79,7 @@ android.gradle_dependencies =
 android.log = True
 
 # (str) The Android archs to build
-android.archs = arm64-v8a,armeabi-v7a
+android.archs = arm64-v8a
 
 # (bool) enables Android auto backup feature
 android.allow_backup = False
