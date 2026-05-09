@@ -20,8 +20,13 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential git openjdk-17-jdk
+        sudo apt-get install -y build-essential git openjdk-17-jdk unzip
         pip install buildozer cython
+
+    - name: Accept Android SDK licenses
+      run: |
+        mkdir -p ~/.android
+        touch ~/.android/repositories.cfg
 
     - name: Build APK
       run: |

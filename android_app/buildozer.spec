@@ -51,6 +51,12 @@ android.minapi = 21
 # (str) Android NDK version
 android.ndk = 25b
 
+# (bool) Auto accept SDK license
+android.accept_sdk_license = True
+
+# (str) Android SDK build tools version
+android.sdk_build_tools = 33.0.2
+
 # (bool) Use private storage
 android.private_storage = True
 
