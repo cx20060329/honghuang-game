@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>洪荒神话 - 文字冒险游戏</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-card: #151520;
+            --bg-panel: #1a1a28;
+            --text-primary: #e8e6e3;
+            --text-secondary: #9a9a9a;
+            --accent-gold: #d4af37;
+            --accent-red: #8b0000;
+            --accent-green: #2e8b57;
+            --accent-purple: #6b4c9a;
+            --border-light: #2a2a3a;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', 'SimSun', serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 祥云背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(107, 76, 154, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.02' d='M30 50c0-11 9-20 20-20s20 9 20 20-9 20-20 20-20-9-20-20zm30 0c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10-10-4.5-10-10z'/%3E%3C/svg%3E");
+            background-size: 100% 100%, 100% 100%, 200px 200px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        #game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* 主菜单 */
+        #main-menu {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        #main-menu h1 {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--accent-gold);
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            margin-bottom: 20px;
+            letter-spacing: 0.2em;
+        }
+
+        #main-menu .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .menu-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 15px auto;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            background: linear-gradient(135deg, var(--bg-panel), var(--bg-card));
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .menu-btn:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 游戏界面 */
+        #game-screen {
+            display: none;
+        }
+
+        /* 状态栏 */
+        #status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        #chapter-title {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        #menu-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 5px 15px;
+            cursor: pointer;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+
+        #menu-btn:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* 属性面板 */
+        #attributes-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .attr-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .attr-name {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .attr-bar {
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 5px;
+        }
+
+        .attr-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 4px;
+        }
+
+        .attr-value {
+            font-size: 0.9rem;
+            text-align: right;
+        }
+
+        .attr-change {
+            animation: flash 0.5s ease;
+        }
+
+        @keyframes flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .attr-positive { color: var(--accent-green); }
+        .attr-negative { color: var(--accent-red); }
+
+        /* 剧情区域 */
+        #story-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 15px;
+            min-height: 200px;
+        }
+
+        #story-title {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        #story-title.milestone {
+            border-color: var(--accent-gold);
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.1);
+        }
+
+        #story-title.battle {
+            border-color: var(--accent-red);
+            color: #ff6b6b;
+        }
+
+        #story-title.ending {
+            border-color: var(--accent-purple);
+            color: #b19cd9;
+        }
+
+        #story-content {
+            font-size: 1rem;
+            line-height: 2;
+            white-space: pre-wrap;
+        }
+
+        /* 选项区域 */
+        #choices-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-btn {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            padding: 15px 20px;
+            text-align: left;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .choice-btn:hover:not(:disabled) {
+            border-color: var(--accent-gold);
+            transform: translateX(5px);
+            box-shadow: -5px 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        .choice-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .choice-desc {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .choice-condition {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent-red);
+            margin-top: 5px;
+        }
+
+        /* 弹窗 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 25px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 角色卡 */
+        #character-card {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #character-card h2 {
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        #character-card .title {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        #character-card .faction {
+            display: inline-block;
+            padding: 3px 15px;
+            background: var(--bg-panel);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        #character-card .background {
+            text-align: left;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-panel);
+            border-radius: 4px;
+        }
+
+        /* 成就面板 */
+        .achievement-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px;
+            background: var(--bg-panel);
+            border-radius: 4px;
+        }
+
+        .achievement-item.locked {
+            opacity: 0.5;
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+        }
+
+        .achievement-info h4 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .achievement-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* 存档列表 */
+        .save-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .save-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--bg-panel);
+            border-radius: 4px;
+        }
+
+        .save-info {
+            flex: 1;
+        }
+
+        .save-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .save-info p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .save-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .save-actions button {
+            padding: 8px 15px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-family: inherit;
+            border-radius: 4px;
+        }
+
+        .save-actions button:hover {
+            border-color: var(--accent-gold);
+        }
+
+        /* 死亡/结局画面 */
+        #death-screen, #ending-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        #death-screen h2, #ending-screen h2 {
+            color: var(--accent-red);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #ending-screen h2 {
+            color: var(--accent-gold);
+        }
+
+        .death-reason, .ending-desc {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            #game-container {
+                padding: 10px;
+            }
+
+            #status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #attributes-panel {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .attr-item {
+                padding: 8px;
+            }
+
+            #story-panel {
+                padding: 15px;
+            }
+
+            .choice-btn {
+                padding: 12px 15px;
+            }
+        }
+
+        /* 打字机光标 */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background: var(--accent-gold);
+            animation: blink 0.7s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 隐藏 */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <!-- 主菜单 -->
+        <div id="main-menu">
+            <h1>洪荒神话</h1>
+            <p class="subtitle">从龙汉初劫到巫妖大战的史诗之旅</p>
+            <button class="menu-btn" onclick="startNewGame()">开始新游戏</button>
+            <button class="menu-btn" onclick="showLoadModal()">读取存档</button>
+            <button class="menu-btn" onclick="showAchievements()">成就列表</button>
+        </div>
+
+        <!-- 游戏界面 -->
+        <div id="game-screen">
+            <div id="status-bar">
+                <span id="chapter-title">第一章·龙汉初劫</span>
+                <button id="menu-btn" onclick="showGameMenu()">菜单</button>
+            </div>
+
+            <div id="attributes-panel"></div>
+
+            <div id="story-panel">
+                <h2 id="story-title"></h2>
+                <div id="story-content"></div>
+            </div>
+
+            <div id="choices-panel"></div>
+        </div>
+    </div>
+
+    <!-- 游戏菜单弹窗 -->
+    <div id="game-menu-modal" class="modal">
+        <div class="modal-content">
+            <h3 class="modal-title">游戏菜单</h3>
+            <button class="menu-btn" onclick="saveGame()">保存游戏</button>
+            <button class="menu-btn" onclick="showLoadModal()">读取存档</button>
+            <button class="menu-btn" onclick="showAttributes()">查看属性</button>
+            <button class="menu-btn" onclick="showAchievements()">成就列表</button>
+            <button class="menu-btn" onclick="closeModal()">返回游戏</button>
+            <button class="menu-btn" onclick="returnToMenu()">返回主菜单</button>
+        </div>
+    </div>
+
+    <!-- 属性详情弹窗 -->
+    <div id="attributes-modal" class="modal">
+        <div class="modal-content">
+            <h3 class="modal-title">角色属性</h3>
+            <div id="attributes-detail"></div>
+            <button class="menu-btn" onclick="closeModal()">关闭</button>
+        </div>
+    </div>
+
+    <!-- 成就弹窗 -->
+    <div id="achievements-modal" class="modal">
+        <div class="modal-content">
+            <h3 class="modal-title">成就列表</h3>
+            <div id="achievements-list" class="achievement-list"></div>
+            <button class="menu-btn" onclick="closeModal()">关闭</button>
+        </div>
+    </div>
+
+    <!-- 存档弹窗 -->
+    <div id="load-modal" class="modal">
+        <div class="modal-content">
+            <h3 class="modal-title">读取存档</h3>
+            <div id="save-list" class="save-list"></div>
+            <button class="menu-btn" onclick="closeModal()">关闭</button>
+        </div>
+    </div>
+
+    <!-- 角色卡弹窗 -->
+    <div id="character-modal" class="modal">
+        <div class="modal-content">
+            <div id="character-card"></div>
+            <button class="menu-btn" onclick="startJourney()">开始旅程</button>
+        </div>
+    </div>
+
+    <!-- 死亡画面 -->
+    <div id="death-screen" class="hidden">
+        <h2>💀 陨落 💀</h2>
+        <p class="death-reason" id="death-reason"></p>
+        <button class="menu-btn" onclick="startNewGame()">重新开始</button>
+        <button class="menu-btn" onclick="returnToMenu()">返回主菜单</button>
+    </div>
+
+    <!-- 结局画面 -->
+    <div id="ending-screen" class="hidden">
+        <h2 id="ending-title">🏆 结局 🏆</h2>
+        <p class="ending-desc" id="ending-desc"></p>
+        <button class="menu-btn" onclick="startNewGame()">重新开始</button>
+        <button class="menu-btn" onclick="returnToMenu()">返回主菜单</button>
+    </div>
+
+<script>
+// ==================== 游戏数据 ====================
+const GAME_DATA = {
+  "meta": {
+    "version": "3.3.0",
+    "totalNodes": 109,
+    "totalCharacters": 15
+  },
+  "achievements": [
+    {"id": "ach_first_demon", "name": "洞察魔踪", "description": "第一个发现罗睺的魔气踪迹", "condition": {"type": "flag", "target": "flag_sensed_demon"}},
+    {"id": "ach_found_luohuo", "name": "直面魔祖", "description": "亲眼见到罗睺并存活", "condition": {"type": "flag", "target": "flag_found_luohuo"}},
+    {"id": "ach_hongjun_disciple", "name": "道门弟子", "description": "成为鸿钧的记名弟子", "condition": {"type": "flag", "target": "flag_hongjun_disciple"}},
+    {"id": "ach_cushion", "name": "紫霄蒲团", "description": "在紫霄宫占据蒲团", "condition": {"type": "flag", "target": "flag_got_cushion"}},
+    {"id": "ach_rescue_civilians", "name": "功德无量", "description": "在三族之战中救助无辜生灵", "condition": {"type": "flag", "target": "flag_rescued_civilians"}},
+    {"id": "ach_houtu_reincarnation", "name": "见证轮回", "description": "亲眼见证后土化身轮回", "condition": {"type": "flag", "target": "flag_witnessed_reincarnation"}},
+    {"id": "ach_patch_sky", "name": "补天见证", "description": "见证女娲炼石补天", "condition": {"type": "flag", "target": "flag_witnessed_patch_sky"}},
+    {"id": "ach_protect_human", "name": "人族守护", "description": "在巫妖之战中保护人族", "condition": {"type": "flag", "target": "flag_protect_human"}},
+    {"id": "ach_luohuo_helper", "name": "魔道盟友", "description": "帮助罗睺挑拨三族", "condition": {"type": "flag", "target": "flag_helped_luohuo"}},
+    {"id": "ach_survivor", "name": "洪荒幸存者", "description": "在所有大劫中存活到结局", "condition": {"type": "flag", "target": "flag_game_complete"}}
+  ],
+  "characters": [
+    {"id": "dijun", "name": "帝俊", "title": "妖皇", "faction": "妖族", "background": "先天三足金乌化形，与东皇太一并为妖族双皇。立天庭，欲统御洪荒。心机深沉，志在霸业。", "attributes": {"genjiao": 95, "qiyun": 75, "daohang": 85, "shengwang": 70, "xinxing": 50}},
+    {"id": "taiyi", "name": "东皇太一", "title": "东皇", "faction": "妖族", "background": "先天三足金乌化形，帝俊之弟。执掌混沌钟，战力冠绝妖族。性情刚烈，重情重义。", "attributes": {"genjiao": 92, "qiyun": 80, "daohang": 88, "shengwang": 65, "xinxing": 60}},
+    {"id": "laozi", "name": "老子", "title": "太清道德天尊", "faction": "先天神魔", "background": "盘古元神所化，三清之首。清静无为，深谙大道。鸿钧首徒，执掌太极图。", "attributes": {"genjiao": 98, "qiyun": 85, "daohang": 95, "shengwang": 80, "xinxing": 90}},
+    {"id": "yuan_shi", "name": "元始天尊", "title": "玉清元始天尊", "faction": "先天神魔", "background": "盘古元神所化，阐教之主。讲究根脚出身，门规森严。执掌盘古幡，攻伐第一。", "attributes": {"genjiao": 96, "qiyun": 82, "daohang": 90, "shengwang": 75, "xinxing": 65}},
+    {"id": "tongtian", "name": "通天教主", "title": "上清灵宝天尊", "faction": "先天神魔", "background": "盘古元神所化，截教之主。有教无类，门徒众多。执掌诛仙四剑，杀伐之力无双。", "attributes": {"genjiao": 94, "qiyun": 78, "daohang": 88, "shengwang": 70, "xinxing": 55}},
+    {"id": "kunpeng", "name": "鲲鹏", "title": "妖师", "faction": "妖族", "background": "北海巨兽，扶摇九万里。性贪婪，善变化。妖族军师，却心怀鬼胎。", "attributes": {"genjiao": 90, "qiyun": 70, "daohang": 82, "shengwang": 60, "xinxing": 40}},
+    {"id": "hongyun", "name": "红云", "title": "红云老祖", "faction": "先天神魔", "background": "先天云气化形，性情憨厚善良。紫霄宫让座，结善缘亦结恶果。", "attributes": {"genjiao": 85, "qiyun": 90, "daohang": 78, "shengwang": 65, "xinxing": 95}},
+    {"id": "minghe", "name": "冥河", "title": "冥河老祖", "faction": "先天神魔", "background": "幽冥血海孕育，杀伐之道。造阿修罗族，欲以杀证道。", "attributes": {"genjiao": 88, "qiyun": 65, "daohang": 85, "shengwang": 55, "xinxing": 35}},
+    {"id": "xiwangmu", "name": "西王母", "title": "女仙之首", "faction": "先天神魔", "background": "先天阴气所化，女仙之首。居昆仑，掌瑶池。性情清冷，不喜俗务。", "attributes": {"genjiao": 92, "qiyun": 88, "daohang": 86, "shengwang": 75, "xinxing": 70}},
+    {"id": "changxi", "name": "常羲", "title": "太阴女神", "faction": "妖族", "background": "太阴星化形，帝俊道侣。生十二月，温婉贤淑。", "attributes": {"genjiao": 88, "qiyun": 82, "daohang": 80, "shengwang": 60, "xinxing": 75}},
+    {"id": "nuwa", "name": "女娲", "title": "娲皇", "faction": "先天神魔", "background": "盘古元神所化，造人补天。圣人中唯一女性，慈悲为怀。", "attributes": {"genjiao": 97, "qiyun": 95, "daohang": 92, "shengwang": 85, "xinxing": 90}},
+    {"id": "houtu", "name": "后土", "title": "后土皇地祇", "faction": "巫族", "background": "十二祖巫之一，盘古精血所化。慈悲心肠，化身轮回。", "attributes": {"genjiao": 93, "qiyun": 85, "daohang": 88, "shengwang": 70, "xinxing": 85}},
+    {"id": "yuan_feng", "name": "元凤", "title": "凤凰始祖", "faction": "凤族", "background": "凤凰一族始祖，不死火山之主。高傲孤绝，涅槃不灭。", "attributes": {"genjiao": 94, "qiyun": 78, "daohang": 86, "shengwang": 72, "xinxing": 55}},
+    {"id": "zu_long", "name": "祖龙", "title": "龙族始祖", "faction": "龙族", "background": "龙族始祖，四海之主。威严霸道，欲一统洪荒。", "attributes": {"genjiao": 95, "qiyun": 75, "daohang": 88, "shengwang": 78, "xinxing": 45}},
+    {"id": "qilin", "name": "麒麟老祖", "title": "麒麟始祖", "faction": "麒麟族", "background": "麒麟一族始祖，中央大地之主。稳重持重，欲调和三族。", "attributes": {"genjiao": 92, "qiyun": 80, "daohang": 84, "shengwang": 75, "xinxing": 65}}
+  ],
+  "timeline": [
+    {"phase": "dragon_phoenix_war", "name": "龙汉初劫", "description": "三族争霸，洪荒染血"},
+    {"phase": "luohuo_fall", "name": "道魔之战", "description": "鸿钧与罗睺决战"},
+    {"phase": "hongjun_lecture", "name": "紫霄宫讲道", "description": "鸿钧成圣，紫霄宫讲道"},
+    {"phase": "wu_yao_rise", "name": "巫妖崛起", "description": "巫妖二族崛起"},
+    {"phase": "wu_yao_final", "name": "巫妖决战", "description": "巫妖二族决战"}
+  ],
+  "storyNodes": [
+    {
+      "id": "node_phase1_start",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "天地初开",
+      "content": "混沌初分，盘古开天。清气上升为天，浊气下沉为地。\n\n你于混沌中孕育千万载，今日终于化形而出。放眼洪荒，龙族霸四海，凤族据不死火山，麒麟族统中央大地。\n\n三族鼎立，表面相安无事，暗地里却暗流涌动……",
+      "autoNextId": "node_phase1_choice"
+    },
+    {
+      "id": "node_phase1_choice",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "choice",
+      "title": "初入洪荒",
+      "content": "你初次行走于洪荒大地，感受到天地间充沛的灵气。远处传来阵阵龙吟凤鸣，三族的势力范围清晰可见。\n\n你该如何抉择？",
+      "choices": [
+        {"id": "choice_p1_explore", "text": "独自游历，观察局势", "description": "保持中立，积蓄实力", "effects": [{"type": "attribute_change", "target": "daohang", "value": 5}], "nextNodeId": "node_phase1_sense_demon"},
+        {"id": "choice_p1_dragon", "text": "前往东海，拜访龙族", "description": "与龙族建立联系", "conditions": [{"type": "attribute", "target": "genjiao", "operator": ">=", "value": 85}], "effects": [{"type": "relationship_change", "target": "zu_long", "value": 10}], "nextNodeId": "node_phase1_dragon_palace"},
+        {"id": "choice_p1_phoenix", "text": "前往不死火山，拜访凤族", "description": "与凤族建立联系", "conditions": [{"type": "attribute", "target": "genjiao", "operator": ">=", "value": 85}], "effects": [{"type": "relationship_change", "target": "yuan_feng", "value": 10}], "nextNodeId": "node_phase1_phoenix_mountain"},
+        {"id": "choice_p1_secluded", "text": "寻一处洞府，闭关修炼", "description": "远离纷争，专注修行", "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}, {"type": "attribute_change", "target": "shengwang", "value": -5}], "nextNodeId": "node_phase1_secluded"}
+      ]
+    },
+    {
+      "id": "node_phase1_sense_demon",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "察觉魔踪",
+      "content": "你行走于洪荒，渐渐察觉到一丝异样。\n\n天地间的灵气似乎被某种力量搅动，三族之间的关系也在悄然变化。原本只是小规模的摩擦，如今却愈演愈烈。\n\n一日，你在西方须弥山附近，感受到一股极其隐晦却邪恶的气息。那气息一闪而逝，却让你心中警铃大作。\n\n「这是……魔气？」",
+      "effects": [{"type": "set_flag", "target": "flag_sensed_demon", "value": true}],
+      "choices": [
+        {"id": "choice_p1_investigate", "text": "深入调查这股魔气", "description": "风险与机遇并存", "conditions": [{"type": "attribute", "target": "daohang", "operator": ">=", "value": 75}], "effects": [{"type": "attribute_change", "target": "qiyun", "value": -5}], "nextNodeId": "node_phase1_demon_investigation"},
+        {"id": "choice_p1_report", "text": "将此事告知鸿钧道人", "description": "寻求强者帮助", "conditions": [{"type": "relationship", "target": "hongjun", "operator": ">=", "value": 30}], "effects": [{"type": "relationship_change", "target": "hongjun", "value": 15}], "nextNodeId": "node_phase1_hongjun_response"},
+        {"id": "choice_p1_ignore", "text": "装作不知，继续观察", "description": "明哲保身", "effects": [{"type": "attribute_change", "target": "xinxing", "value": -5}], "nextNodeId": "node_phase1_war_begins"}
+      ]
+    },
+    {
+      "id": "node_phase1_dragon_palace",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "东海龙宫",
+      "content": "你来到东海，只见波涛汹涌，一座宏伟的水晶宫殿矗立海底。\n\n祖龙亲自接见了你。这位龙族始祖威严无比，周身龙气缭绕。\n\n「道友远道而来，有失远迎。」祖龙的声音如雷鸣般回荡，「不知道友此来，有何贵干？」",
+      "effects": [{"type": "relationship_change", "target": "zu_long", "value": 5}],
+      "choices": [
+        {"id": "choice_p1_dragon_alliance", "text": "提议与龙族结盟", "effects": [{"type": "relationship_change", "target": "zu_long", "value": 15}, {"type": "relationship_change", "target": "yuan_feng", "value": -10}], "nextNodeId": "node_phase1_sense_demon"},
+        {"id": "choice_p1_dragon_warn", "text": "暗示龙族谨慎行事", "conditions": [{"type": "attribute", "target": "xinxing", "operator": ">=", "value": 60}], "effects": [{"type": "relationship_change", "target": "zu_long", "value": 5}], "nextNodeId": "node_phase1_sense_demon"},
+        {"id": "choice_p1_dragon_leave", "text": "简单寒暄后告辞", "nextNodeId": "node_phase1_sense_demon"}
+      ]
+    },
+    {
+      "id": "node_phase1_phoenix_mountain",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "不死火山",
+      "content": "你来到不死火山，炽热的火焰气息扑面而来。这里是凤族的圣地，涅槃之火永不熄灭。\n\n元凤在火山深处接见了你。她的身姿优雅而威严，周身环绕着五彩神光。\n\n「道友能来到此地，想必也是非凡之辈。」元凤的声音清冷，「凤族不喜俗务，但道友若有要事，但说无妨。」",
+      "effects": [{"type": "relationship_change", "target": "yuan_feng", "value": 5}],
+      "choices": [
+        {"id": "choice_p1_phoenix_alliance", "text": "提议与凤族结盟", "effects": [{"type": "relationship_change", "target": "yuan_feng", "value": 15}, {"type": "relationship_change", "target": "zu_long", "value": -10}], "nextNodeId": "node_phase1_sense_demon"},
+        {"id": "choice_p1_phoenix_warn", "text": "暗示凤族谨慎行事", "conditions": [{"type": "attribute", "target": "xinxing", "operator": ">=", "value": 60}], "effects": [{"type": "relationship_change", "target": "yuan_feng", "value": 5}], "nextNodeId": "node_phase1_sense_demon"},
+        {"id": "choice_p1_phoenix_leave", "text": "简单寒暄后告辞", "nextNodeId": "node_phase1_sense_demon"}
+      ]
+    },
+    {
+      "id": "node_phase1_secluded",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "闭关修炼",
+      "content": "你寻得一处灵气充沛的洞府，开始闭关修炼。\n\n岁月如梭，转眼间数百年过去。你的道行大有精进，但外面的世界也在悄然变化。\n\n一日，你从入定中惊醒，感受到天地间涌动的杀气。三族之间的矛盾，似乎已经到了不可调和的地步……",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 15}],
+      "autoNextId": "node_phase1_sense_demon"
+    },
+    {
+      "id": "node_phase1_demon_investigation",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "魔影重重",
+      "content": "你悄然潜入须弥山深处，那股魔气愈发浓郁。\n\n在一处隐秘的洞府中，你发现了一个惊人的秘密——有人在暗中挑拨三族关系！\n\n这些流言如毒蛇般在三族间传播，而源头，正是这位自称「魔祖」的存在——罗睺！\n\n你正欲离开，却感到一道冰冷的目光落在身上……",
+      "effects": [{"type": "set_flag", "target": "flag_found_luohuo", "value": true}],
+      "choices": [
+        {"id": "choice_p1_escape", "text": "施展遁术，迅速逃离", "effects": [{"type": "attribute_change", "target": "qiyun", "value": -10}], "nextNodeId": "node_phase1_escape_success"},
+        {"id": "choice_p1_face_luohuo", "text": "现身与罗睺对峙", "description": "极其危险的选择", "conditions": [{"type": "attribute", "target": "daohang", "operator": ">=", "value": 85}], "effects": [{"type": "relationship_change", "target": "luohuo", "value": -50}], "nextNodeId": "node_phase1_luohuo_confrontation"}
+      ]
+    },
+    {
+      "id": "node_phase1_hongjun_response",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "道祖之谋",
+      "content": "你找到鸿钧道人，将发现魔气之事告知。\n\n鸿钧神色平静，似乎早已知晓。「罗睺……」他轻声道，「魔道与吾道，终有一战。」\n\n「你既已察觉，便是有缘。此乃造化玉碟碎片，可助你修行。」\n\n鸿钧递给你一块玉碟碎片，你感受到其中蕴含的大道至理。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}, {"type": "relationship_change", "target": "hongjun", "value": 20}],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_escape_success",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "惊险逃脱",
+      "content": "你施展全力遁术，化作一道流光逃离须弥山。\n\n身后传来罗睺冰冷的声音：「有趣……洪荒中竟有能察觉吾存在之人。罢了，且让你多活些时日。」\n\n你心有余悸，但也获得了重要的情报。罗睺的存在，以及他在暗中挑拨三族的阴谋，必须告知其他人。",
+      "effects": [{"type": "attribute_change", "target": "qiyun", "value": 5}],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_luohuo_confrontation",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "battle",
+      "title": "道魔对峙",
+      "content": "你与罗睺对峙，感受到他身上恐怖的魔气。\n\n「哦？区区先天神魔，竟敢主动找上吾？」罗睺饶有兴致地看着你，「你是想死，还是想活？」\n\n他的眼中闪烁着危险的光芒，杀意若隐若现。",
+      "choices": [
+        {"id": "choice_p1_fight_luohuo", "text": "与罗睺一战", "description": "九死一生", "conditions": [{"type": "attribute", "target": "daohang", "operator": ">=", "value": 90}], "effects": [{"type": "attribute_change", "target": "qiyun", "value": -20}, {"type": "attribute_change", "target": "shengwang", "value": 30}], "nextNodeId": "node_phase1_luohuo_battle"},
+        {"id": "choice_p1_stall_luohuo", "text": "拖延时间，等待援军", "description": "鸿钧可能察觉", "effects": [{"type": "set_flag", "target": "flag_stalled_luohuo", "value": true}], "nextNodeId": "node_phase1_hongjun_arrives"}
+      ]
+    },
+    {
+      "id": "node_phase1_luohuo_battle",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "battle",
+      "title": "与魔祖之战",
+      "content": "你与罗睺展开了一场惊天动地的大战！\n\n魔气与道气在空中碰撞，引发无数爆炸。你拼尽全力，但罗睺的实力远超你的想象。\n\n最终，你身受重伤，但也让罗睺付出了一些代价。\n\n「哼，有些意思。」罗睺冷冷地看着你，「吾会记住你的。」\n\n他放过了你，转身离去。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 20}, {"type": "attribute_change", "target": "qiyun", "value": -15}, {"type": "attribute_change", "target": "shengwang", "value": 30}],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_hongjun_arrives",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "道祖降临",
+      "content": "就在你快要支撑不住时，一道金光从天而降。\n\n鸿钧道人出现在你身前，与罗睺对峙。\n\n「罗睺，你太急了。」鸿钧平静地说。\n\n「哼，鸿钧，你吾之道，终有一战。今日不过是试探。」罗睺冷笑，身影渐渐消散。\n\n鸿钧转身看向你：「你做得很好。此因果，吾记下了。」",
+      "effects": [{"type": "relationship_change", "target": "hongjun", "value": 30}, {"type": "attribute_change", "target": "qiyun", "value": 15}],
+      "autoNextId": "node_phase1_war_begins"
+    },
+    {
+      "id": "node_phase1_war_begins",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "三族开战",
+      "content": "终于，三族全面开战了。\n\n祖龙率领龙族大军，从四海而出，欲一统洪荒。\n\n元凤带领凤族精锐，从不死火山腾空而起，与龙族在空中激战。\n\n始麒麟统帅麒麟族与走兽一族，从中央大地杀出，意图坐收渔翁之利。\n\n洪荒大地，血流成河。三族精锐尽出，杀得天昏地暗。",
+      "effects": [{"type": "set_flag", "target": "flag_war_started", "value": true}],
+      "choices": [
+        {"id": "choice_p1_join_battle", "text": "加入战场", "effects": [{"type": "attribute_change", "target": "shengwang", "value": 15}, {"type": "attribute_change", "target": "qiyun", "value": -10}], "nextNodeId": "node_phase1_battle_result"},
+        {"id": "choice_p1_rescue", "text": "救助无辜生灵", "effects": [{"type": "attribute_change", "target": "qiyun", "value": 10}, {"type": "attribute_change", "target": "shengwang", "value": 10}, {"type": "set_flag", "target": "flag_rescued_civilians", "value": true}], "nextNodeId": "node_phase1_rescue_result"},
+        {"id": "choice_p1_retreat", "text": "退守洞府，静观其变", "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}, {"type": "attribute_change", "target": "xinxing", "value": -5}], "nextNodeId": "node_phase1_wait_result"}
+      ]
+    },
+    {
+      "id": "node_phase1_battle_result",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "战场洗礼",
+      "content": "你加入了战场，在血与火中磨砺自己。\n\n三族之战的惨烈超乎想象。无数生灵陨落，洪荒大地血流成河。\n\n最终，三族都元气大伤，各自退回领地。这场战争没有赢家，只有无尽的伤亡。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_phase1_rescue_result",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "功德无量",
+      "content": "你选择救助无辜的生灵，而非参与战争。\n\n在战火纷飞的洪荒大地上，你四处奔走，救下了无数生灵。虽然你无法阻止战争，但你的善举被许多人铭记。",
+      "effects": [{"type": "attribute_change", "target": "qiyun", "value": 20}, {"type": "attribute_change", "target": "shengwang", "value": 20}],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_phase1_wait_result",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "静观其变",
+      "content": "你选择退守洞府，静观其变。\n\n三族之战持续了数百年，洪荒大地满目疮痍。你虽未参与其中，但也感受到了战争的残酷。\n\n最终，三族都元气大伤，各自退回领地。这场战争没有赢家，只有无尽的伤亡。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 15}],
+      "autoNextId": "node_phase1_end"
+    },
+    {
+      "id": "node_phase1_end",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "龙汉初劫终",
+      "content": "三族之战终于落下帷幕。\n\n龙族退守四海，元气大伤；凤族隐居不死火山，几乎灭族；麒麟族更是损失惨重，几乎从洪荒消失。\n\n而这一切的幕后黑手——罗睺，却在暗中积蓄力量，准备更大的阴谋。\n\n你感受到，真正的风暴，才刚刚开始……",
+      "milestone": "milestone_phase1_end",
+      "autoNextId": "node_phase2_start"
+    },
+    {
+      "id": "node_phase2_start",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "风云再起",
+      "content": "三族之战后，洪荒进入短暂的平静。\n\n但你知道，这只是暴风雨前的宁静。罗睺的阴谋远未结束，而鸿钧道人也在暗中布局。\n\n你感受到命运的齿轮正在转动，接下来，将是决定洪荒命运的关键时刻。",
+      "autoNextId": "node_phase2_choice"
+    },
+    {
+      "id": "node_phase2_choice",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "choice",
+      "title": "抉择时刻",
+      "content": "道魔之战即将爆发，你必须做出选择。\n\n鸿钧道人正在召集洪荒强者，准备围剿罗睺。而罗睺也在暗中联络各方势力，准备最后一搏。\n\n你将站在哪一边？",
+      "choices": [
+        {"id": "choice_p2_hongjun", "text": "追随鸿钧，讨伐魔道", "effects": [{"type": "relationship_change", "target": "hongjun", "value": 20}], "nextNodeId": "node_phase2_hongjun_camp"},
+        {"id": "choice_p2_luohuo", "text": "投靠罗睺，以魔证道", "conditions": [{"type": "attribute", "target": "xinxing", "operator": "<=", "value": 40}], "effects": [{"type": "relationship_change", "target": "luohuo", "value": 30}, {"type": "set_flag", "target": "flag_helped_luohuo", "value": true}], "nextNodeId": "node_phase2_luohuo_camp"},
+        {"id": "choice_p2_neutral", "text": "保持中立，观望局势", "effects": [{"type": "attribute_change", "target": "xinxing", "value": 5}], "nextNodeId": "node_phase2_neutral_path"}
+      ]
+    },
+    {
+      "id": "node_phase2_hongjun_camp",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "正道联盟",
+      "content": "你选择追随鸿钧，加入讨伐魔道的联盟。\n\n鸿钧道人召集了杨眉大仙、乾坤老祖、阴阳老祖等强者，组成正道联盟。\n\n「罗睺以杀证道，欲毁洪荒。今日，吾等当联手除魔！」\n\n你感受到鸿钧身上那股浩然正气，心中也燃起了战意。",
+      "effects": [{"type": "attribute_change", "target": "shengwang", "value": 10}],
+      "choices": [
+        {"id": "choice_p2_frontline", "text": "请缨出战，担任先锋", "conditions": [{"type": "attribute", "target": "daohang", "operator": ">=", "value": 80}], "effects": [{"type": "attribute_change", "target": "shengwang", "value": 20}, {"type": "attribute_change", "target": "qiyun", "value": -10}], "nextNodeId": "node_phase2_final_battle"},
+        {"id": "choice_p2_support", "text": "担任后勤，支援前线", "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}], "nextNodeId": "node_phase2_final_battle"}
+      ]
+    },
+    {
+      "id": "node_phase2_luohuo_camp",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "魔道同盟",
+      "content": "你选择投靠罗睺，加入魔道阵营。\n\n罗睺的魔宫中，杀气弥漫。无数魔修聚集于此，等待着最后的决战。\n\n「哼，鸿钧那老道，自诩正道。今日，吾便让他知道，何为真正的道！」\n\n罗睺的眼中闪烁着疯狂的光芒，你感受到他身上那股毁天灭地的力量。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 15}, {"type": "attribute_change", "target": "qiyun", "value": -20}],
+      "choices": [
+        {"id": "choice_p2_ambush", "text": "设下埋伏，偷袭正道", "effects": [{"type": "attribute_change", "target": "shengwang", "value": 15}], "nextNodeId": "node_phase2_final_battle"},
+        {"id": "choice_p2_defend", "text": "镇守魔宫，以防后路被断", "effects": [{"type": "attribute_change", "target": "qiyun", "value": 5}], "nextNodeId": "node_phase2_final_battle"}
+      ]
+    },
+    {
+      "id": "node_phase2_neutral_path",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "story",
+      "title": "中立之道",
+      "content": "你选择保持中立，不参与这场正邪之战。\n\n你退居洪荒一隅，静静观察着局势的发展。无论是鸿钧的正道，还是罗睺的魔道，都与你无关。\n\n但你知道，这场战争的结果，将深刻影响洪荒的未来。",
+      "effects": [{"type": "attribute_change", "target": "xinxing", "value": 10}],
+      "autoNextId": "node_phase2_final_battle"
+    },
+    {
+      "id": "node_phase2_final_battle",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "battle",
+      "title": "道魔决战",
+      "content": "决战之日终于到来！\n\n鸿钧道人率领正道联盟，与罗睺的魔道大军在西方须弥山展开决战。\n\n天地变色，日月无光。两股至高无上的力量在空中碰撞，整个洪荒都在颤抖。\n\n罗睺祭出诛仙四剑，组成诛仙剑阵，杀气冲天。鸿钧则以造化玉碟对抗，清气弥漫。",
+      "choices": [
+        {"id": "choice_p2_fight", "text": "全力参战", "effects": [{"type": "attribute_change", "target": "shengwang", "value": 20}, {"type": "attribute_change", "target": "qiyun", "value": -15}], "nextNodeId": "node_phase2_luohuo_fall"},
+        {"id": "choice_p2_watch", "text": "在一旁观战", "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}], "nextNodeId": "node_phase2_luohuo_fall"}
+      ]
+    },
+    {
+      "id": "node_phase2_luohuo_fall",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "milestone",
+      "title": "魔祖陨落",
+      "content": "激战持续了七七四十九天！\n\n最终，鸿钧道人以造化玉碟击溃了罗睺的诛仙剑阵，将这位魔祖彻底镇压。\n\n「不——！吾不甘心！」\n\n罗睺发出最后的怒吼，身躯化为齑粉。但他临死前，却引爆了西方地脉，导致西方灵气大损。\n\n鸿钧道人立于废墟之上，周身清气缭绕。这一战，让他证得混元道果，成为洪荒第一位圣人！",
+      "effects": [{"type": "set_flag", "target": "flag_luohuo_dead", "value": true}, {"type": "set_flag", "target": "flag_hongjun_saint", "value": true}],
+      "autoNextId": "node_phase2_end"
+    },
+    {
+      "id": "node_phase2_end",
+      "chapter": "第二章·道魔之战",
+      "phase": "luohuo_fall",
+      "type": "milestone",
+      "title": "圣人时代",
+      "content": "罗睺陨落，鸿钧成圣。\n\n洪荒进入了新的时代。鸿钧道人在紫霄宫开坛讲道，三千红尘客齐聚一堂，聆听圣人教诲。\n\n你也在其中，感受着大道的奥妙。但你知道，这只是新的开始……\n\n巫妖二族正在崛起，更大的风暴即将到来。",
+      "milestone": "milestone_phase2_end",
+      "autoNextId": "node_phase3_start"
+    },
+    {
+      "id": "node_phase3_start",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "紫霄宫",
+      "content": "紫霄宫，位于三十三天外，是鸿钧道人的道场。\n\n你随着三千红尘客，来到这座神圣的宫殿。宫殿金碧辉煌，仙气缭绕。\n\n鸿钧道人高坐蒲团之上，开始讲道。他的声音如同天籁，每一个字都蕴含着大道至理。",
+      "autoNextId": "node_phase3_choice"
+    },
+    {
+      "id": "node_phase3_choice",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "choice",
+      "title": "听道抉择",
+      "content": "鸿钧讲道，机缘难得。你该如何把握这次机会？",
+      "choices": [
+        {"id": "choice_p3_cushion", "text": "抢占蒲团，争取圣位", "conditions": [{"type": "attribute", "target": "qiyun", "operator": ">=", "value": 80}], "effects": [{"type": "set_flag", "target": "flag_got_cushion", "value": true}, {"type": "attribute_change", "target": "qiyun", "value": 30}], "nextNodeId": "node_phase3_cushion_result"},
+        {"id": "choice_p3_listen", "text": "专心听道，领悟大道", "effects": [{"type": "attribute_change", "target": "daohang", "value": 20}], "nextNodeId": "node_phase3_lecture_end"},
+        {"id": "choice_p3_social", "text": "结交同道，拓展人脉", "effects": [{"type": "attribute_change", "target": "shengwang", "value": 15}], "nextNodeId": "node_phase3_lecture_end"}
+      ]
+    },
+    {
+      "id": "node_phase3_cushion_result",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "milestone",
+      "title": "紫霄蒲团",
+      "content": "你凭借过人的气运，成功抢到了一个蒲团！\n\n鸿钧道人看了你一眼，微微点头。讲道结束后，他赐予你一道鸿蒙紫气。\n\n「此乃成圣之基，好自为之。」\n\n你感受到鸿蒙紫气融入元神，大道的门槛，已经向你敞开。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 30}, {"type": "set_flag", "target": "flag_hongjun_disciple", "value": true}],
+      "autoNextId": "node_phase3_lecture_end"
+    },
+    {
+      "id": "node_phase3_lecture_end",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "讲道结束",
+      "content": "紫霄宫讲道结束，三千红尘客各自散去。\n\n你收获颇丰，道行大有精进。但你也注意到，帝俊、东皇太一等妖族强者，眼中闪烁着野心勃勃的光芒。\n\n巫妖二族的矛盾，正在悄然酝酿……",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 10}],
+      "autoNextId": "node_phase4_start"
+    },
+    {
+      "id": "node_phase4_start",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "巫妖时代",
+      "content": "紫霄宫讲道后，洪荒进入了巫妖时代。\n\n帝俊、东皇太一建立上古天庭，统御妖族，自号妖皇、东皇。\n\n十二祖巫则在大地之上集结，建立巫族，以盘古血脉为傲。\n\n两族矛盾日益激化，大战一触即发。",
+      "autoNextId": "node_phase4_choice"
+    },
+    {
+      "id": "node_phase4_choice",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "choice",
+      "title": "阵营抉择",
+      "content": "巫妖两族势同水火，你必须做出选择。",
+      "choices": [
+        {"id": "choice_p4_tianqing", "text": "加入天庭，追随妖族", "effects": [{"type": "relationship_change", "target": "dijun", "value": 20}], "nextNodeId": "node_phase4_tianqing"},
+        {"id": "choice_p4_wu", "text": "投靠巫族", "effects": [{"type": "relationship_change", "target": "houtu", "value": 20}], "nextNodeId": "node_phase4_wu"},
+        {"id": "choice_p4_independent", "text": "保持独立", "effects": [{"type": "attribute_change", "target": "xinxing", "value": 10}], "nextNodeId": "node_phase4_independent"}
+      ]
+    },
+    {
+      "id": "node_phase4_tianqing",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "天庭之臣",
+      "content": "你加入天庭，成为妖族的一员。\n\n帝俊对你颇为赏识，赐予你妖族秘法。你在天庭中地位日隆，但也引来了其他妖族的嫉妒。\n\n巫妖矛盾日益激化，你知道，大战即将到来。",
+      "effects": [{"type": "attribute_change", "target": "shengwang", "value": 15}],
+      "autoNextId": "node_phase4_tension"
+    },
+    {
+      "id": "node_phase4_wu",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "巫族之友",
+      "content": "你选择投靠巫族，与十二祖巫为伍。\n\n后土祖巫对你颇为友善，向你传授巫族秘法。你感受到盘古血脉的力量，道行大有精进。\n\n但你也知道，巫妖之战不可避免，你必须做好准备。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 15}],
+      "autoNextId": "node_phase4_tension"
+    },
+    {
+      "id": "node_phase4_independent",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "story",
+      "title": "独立之路",
+      "content": "你选择保持独立，不卷入巫妖之争。\n\n你在洪荒中寻找一处灵地，专心修炼。虽然远离纷争，但你也感受到了天地间日益紧张的气氛。\n\n巫妖之战，即将爆发。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 20}],
+      "autoNextId": "node_phase4_tension"
+    },
+    {
+      "id": "node_phase4_tension",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "milestone",
+      "title": "矛盾激化",
+      "content": "巫妖矛盾终于激化！\n\n起因是后土祖巫化身轮回，为巫族赢得大功德。帝俊心生嫉妒，决定发动战争。\n\n天庭大军压境，巫族十二都天神煞大阵蓄势待发。\n\n洪荒，即将迎来最大的浩劫。",
+      "effects": [{"type": "set_flag", "target": "flag_wu_yao_war", "value": true}],
+      "autoNextId": "node_phase5_start"
+    },
+    {
+      "id": "node_phase5_start",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "浩劫降临",
+      "content": "巫妖决战终于爆发！\n\n帝俊率领妖族大军，与十二祖巫在不周山展开决战。天地崩塌，日月无光。\n\n你站在战场边缘，目睹这场洪荒最大的浩劫。无数生灵陨落，不周山被撞断，天河倒灌。",
+      "autoNextId": "node_phase5_choice"
+    },
+    {
+      "id": "node_phase5_choice",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "choice",
+      "title": "最后抉择",
+      "content": "巫妖决战进入白热化，你必须做出最后的选择。",
+      "choices": [
+        {"id": "choice_p5_fight", "text": "加入战斗，决定胜负", "conditions": [{"type": "attribute", "target": "daohang", "operator": ">=", "value": 85}], "effects": [{"type": "attribute_change", "target": "shengwang", "value": 30}, {"type": "attribute_change", "target": "qiyun", "value": -20}], "nextNodeId": "node_phase5_battle"},
+        {"id": "choice_p5_protect", "text": "保护人族", "effects": [{"type": "set_flag", "target": "flag_protect_human", "value": true}, {"type": "attribute_change", "target": "qiyun", "value": 20}], "nextNodeId": "node_phase5_protect"},
+        {"id": "choice_p5_flee", "text": "逃离战场", "effects": [{"type": "attribute_change", "target": "xinxing", "value": -10}], "nextNodeId": "node_phase5_end"}
+      ]
+    },
+    {
+      "id": "node_phase5_battle",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "battle",
+      "title": "决战沙场",
+      "content": "你加入了这场惊天大战！\n\n你的力量在战场上得到了充分的展现，无数敌人在你面前倒下。但你也付出了惨重的代价，身受重伤。\n\n最终，巫妖两族同归于尽。帝俊以身祭阵，十二祖巫尽数陨落。\n\n你在这场浩劫中存活了下来，但洪荒已经面目全非。",
+      "effects": [{"type": "attribute_change", "target": "daohang", "value": 30}],
+      "autoNextId": "node_phase5_end"
+    },
+    {
+      "id": "node_phase5_protect",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "story",
+      "title": "人族守护者",
+      "content": "你选择保护人族，而非参与巫妖之战。\n\n在这场浩劫中，无数人族在战火中丧生。你四处奔走，救下了许多人族。\n\n虽然你无法阻止巫妖之战，但你的善举被人族铭记。他们称你为「守护者」，世代传颂你的事迹。",
+      "effects": [{"type": "attribute_change", "target": "qiyun", "value": 30}, {"type": "attribute_change", "target": "shengwang", "value": 30}],
+      "autoNextId": "node_phase5_end"
+    },
+    {
+      "id": "node_phase5_end",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_final",
+      "type": "ending",
+      "title": "浩劫之后",
+      "content": "巫妖之战终于落下帷幕。\n\n两族同归于尽，洪荒满目疮痍。女娲娘娘炼石补天，修复了破碎的天穹。\n\n人族崛起，成为天地主角。三皇五帝治世，开启了新的时代。\n\n你在这场浩劫中存活了下来，见证了洪荒的变迁。你的旅程，也即将迎来终点……",
+      "effects": [{"type": "set_flag", "target": "flag_game_complete", "value": true}],
+      "choices": [
+        {"id": "choice_ending_ascend", "text": "飞升成圣", "conditions": [{"type": "attribute", "target": "daohang", "operator": ">=", "value": 95}], "nextNodeId": "ending_ascend"},
+        {"id": "choice_ending_dominate", "text": "称霸洪荒", "conditions": [{"type": "attribute", "target": "shengwang", "operator": ">=", "value": 90}], "nextNodeId": "ending_dominate"},
+        {"id": "choice_ending_retire", "text": "隐居世外", "nextNodeId": "ending_retire"}
+      ]
+    },
+    {
+      "id": "ending_ascend",
+      "chapter": "结局",
+      "phase": "ending",
+      "type": "ending",
+      "title": "飞升成圣",
+      "content": "你凭借过人的道行，终于证得混元道果！\n\n天地间降下无量功德，你的元神与大道合一，超脱了洪荒的束缚。\n\n从此，你成为洪荒又一位圣人，与鸿钧、女娲并列。你的名字，将被永远铭记在洪荒的历史中。\n\n【恭喜你达成「飞升成圣」结局！】",
+      "endingType": "ascend"
+    },
+    {
+      "id": "ending_dominate",
+      "chapter": "结局",
+      "phase": "ending",
+      "type": "ending",
+      "title": "称霸洪荒",
+      "content": "你凭借过人的声望和实力，在巫妖之战后崛起！\n\n你收拢了巫妖两族的残部，建立了自己的势力。洪荒万族，皆向你臣服。\n\n你成为了洪荒新的霸主，开创了一个全新的时代。\n\n【恭喜你达成「称霸洪荒」结局！】",
+      "endingType": "dominate"
+    },
+    {
+      "id": "ending_retire",
+      "chapter": "结局",
+      "phase": "ending",
+      "type": "ending",
+      "title": "隐退洪荒",
+      "content": "你看破了红尘，选择隐居世外。\n\n在洪荒的一隅，你找到了一处灵地，专心修炼。虽然不再参与世间纷争，但你的道行却在稳步提升。\n\n或许有一天，你会再次出山。但那是另一个故事了。\n\n【恭喜你达成「隐退洪荒」结局！】",
+      "endingType": "retire"
+    }
+  ]
+};
+
+// ==================== 游戏状态 ====================
+let gameState = {
+    character: null,
+    currentNodeId: null,
+    attributes: {},
+    items: [],
+    relationships: {},
+    flags: {},
+    history: [],
+    achievements: [],
+    gameComplete: false,
+    isDead: false,
+    deathReason: null
+};
+
+// ==================== 工具函数 ====================
+function $(id) {
+    return document.getElementById(id);
+}
+
+function attrName(id) {
+    const names = {
+        genjiao: '根脚',
+        qiyun: '气运',
+        daohang: '道行',
+        shengwang: '声望',
+        xinxing: '心性'
+    };
+    return names[id] || id;
+}
+
+function attrColor(value) {
+    if (value >= 80) return '#d4af37';
+    if (value >= 60) return '#2e8b57';
+    if (value >= 40) return '#4a90d9';
+    if (value >= 20) return '#cd853f';
+    return '#8b0000';
+}
+
+// ==================== 存档系统 ====================
+function saveGame() {
+    const timestamp = new Date().toISOString();
+    const saveData = {
+        ...gameState,
+        savedAt: timestamp
+    };
+    localStorage.setItem('honghuang_save_' + Date.now(), JSON.stringify(saveData));
+    alert('游戏已保存！');
+}
+
+function loadGame(saveKey) {
+    const saveData = localStorage.getItem(saveKey);
+    if (saveData) {
+        gameState = JSON.parse(saveData);
+        closeModal();
+        showGameScreen();
+        showNode(gameState.currentNodeId);
+    }
+}
+
+function getSaveList() {
+    const saves = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('honghuang_save_')) {
+            const data = JSON.parse(localStorage.getItem(key));
+            saves.push({
+                key: key,
+                character: data.character ? data.character.name : '未知',
+                savedAt: data.savedAt
+            });
+        }
+    }
+    return saves.sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+}
+
+// ==================== UI 函数 ====================
+function showGameScreen() {
+    $('main-menu').classList.add('hidden');
+    $('game-screen').classList.remove('hidden');
+    $('death-screen').classList.add('hidden');
+    $('ending-screen').classList.add('hidden');
+}
+
+function returnToMenu() {
+    $('main-menu').classList.remove('hidden');
+    $('game-screen').classList.add('hidden');
+    $('death-screen').classList.add('hidden');
+    $('ending-screen').classList.add('hidden');
+    closeModal();
+}
+
+function closeModal() {
+    document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+}
+
+function showGameMenu() {
+    $('game-menu-modal').classList.add('active');
+}
+
+function showAttributes() {
+    closeModal();
+    const detail = $('attributes-detail');
+    detail.innerHTML = Object.entries(gameState.attributes)
+        .map(([key, value]) => `
+            <div class="attr-item">
+                <div class="attr-name">${attrName(key)}</div>
+                <div class="attr-bar">
+                    <div class="attr-fill" style="width: ${value}%; background: ${attrColor(value)};"></div>
+                </div>
+                <div class="attr-value">${value}</div>
+            </div>
+        `).join('');
+    $('attributes-modal').classList.add('active');
+}
+
+function showAchievements() {
+    closeModal();
+    const list = $('achievements-list');
+    list.innerHTML = GAME_DATA.achievements.map(ach => {
+        const unlocked = gameState.achievements.includes(ach.id);
+        return `
+            <div class="achievement-item ${unlocked ? '' : 'locked'}">
+                <span class="achievement-icon">${unlocked ? '🏆' : '🔒'}</span>
+                <div class="achievement-info">
+                    <h4>${ach.name}</h4>
+                    <p>${ach.description}</p>
+                </div>
+            </div>
+        `;
+    }).join('');
+    $('achievements-modal').classList.add('active');
+}
+
+function showLoadModal() {
+    closeModal();
+    const list = $('save-list');
+    const saves = getSaveList();
+
+    if (saves.length === 0) {
+        list.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">暂无存档</p>';
+    } else {
+        list.innerHTML = saves.map(save => `
+            <div class="save-item">
+                <div class="save-info">
+                    <h4>${save.character}</h4>
+                    <p>${new Date(save.savedAt).toLocaleString()}</p>
+                </div>
+                <div class="save-actions">
+                    <button onclick="loadGame('${save.key}')">读取</button>
+                    <button onclick="deleteSave('${save.key}')">删除</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    $('load-modal').classList.add('active');
+}
+
+function deleteSave(key) {
+    if (confirm('确定删除此存档？')) {
+        localStorage.removeItem(key);
+        showLoadModal();
+    }
+}
+
+// ==================== 游戏逻辑 ====================
+function startNewGame() {
+    // 重置状态
+    gameState = {
+        character: null,
+        currentNodeId: null,
+        attributes: {},
+        items: [],
+        relationships: {},
+        flags: {},
+        history: [],
+        achievements: [],
+        gameComplete: false,
+        isDead: false,
+        deathReason: null
+    };
+
+    // 随机选择角色
+    const charIndex = Math.floor(Math.random() * GAME_DATA.characters.length);
+    gameState.character = GAME_DATA.characters[charIndex];
+
+    // 初始化属性
+    for (const [key, value] of Object.entries(gameState.character.attributes)) {
+        gameState.attributes[key] = typeof value === 'object' ? value.default : value;
+    }
+
+    // 显示角色卡
+    showCharacterCard();
+}
+
+function showCharacterCard() {
+    const card = $('character-card');
+    const char = gameState.character;
+
+    card.innerHTML = `
+        <h2>${char.name}</h2>
+        <p class="title">${char.title}</p>
+        <span class="faction">${char.faction}</span>
+        <div class="background">${char.background}</div>
+        <div id="attributes-panel">
+            ${Object.entries(char.attributes).map(([key, value]) => `
+                <div class="attr-item">
+                    <div class="attr-name">${attrName(key)}</div>
+                    <div class="attr-bar">
+                        <div class="attr-fill" style="width: ${typeof value === 'object' ? value.default : value}%; background: ${attrColor(typeof value === 'object' ? value.default : value)};"></div>
+                    </div>
+                    <div class="attr-value">${typeof value === 'object' ? value.default : value}</div>
+                </div>
+            `).join('')}
+        </div>
+    `;
+
+    $('character-modal').classList.add('active');
+}
+
+function startJourney() {
+    closeModal();
+    showGameScreen();
+    gameState.currentNodeId = 'node_phase1_start';
+    showNode(gameState.currentNodeId);
+}
+
+function updateAttributesPanel() {
+    const panel = $('attributes-panel');
+    panel.innerHTML = Object.entries(gameState.attributes)
+        .map(([key, value]) => `
+            <div class="attr-item">
+                <div class="attr-name">${attrName(key)}</div>
+                <div class="attr-bar">
+                    <div class="attr-fill" style="width: ${value}%; background: ${attrColor(value)};"></div>
+                </div>
+                <div class="attr-value">${value}</div>
+            </div>
+        `).join('');
+}
+
+function showNode(nodeId) {
+    const node = GAME_DATA.storyNodes.find(n => n.id === nodeId);
+    if (!node) {
+        console.error('Node not found:', nodeId);
+        return;
+    }
+
+    // 更新章节标题
+    $('chapter-title').textContent = node.chapter;
+
+    // 更新故事标题
+    const titleEl = $('story-title');
+    titleEl.textContent = node.title;
+    titleEl.className = node.type;
+
+    // 打字机效果显示内容
+    const contentEl = $('story-content');
+    typeWriter(node.content, contentEl, () => {
+        // 应用效果
+        if (node.effects) {
+            applyEffects(node.effects);
+        }
+
+        // 显示选项或自动跳转
+        if (node.autoNextId) {
+            setTimeout(() => {
+                gameState.history.push(nodeId);
+                gameState.currentNodeId = node.autoNextId;
+                showNode(gameState.currentNodeId);
+            }, 1500);
+        } else if (node.choices) {
+            showChoices(node.choices);
+        }
+
+        // 检查结局
+        if (node.type === 'ending') {
+            setTimeout(() => showEnding(node), 2000);
+        }
+    });
+
+    // 更新属性面板
+    updateAttributesPanel();
+
+    // 检查成就
+    checkAchievements();
+}
+
+function typeWriter(text, element, callback) {
+    element.innerHTML = '';
+    let i = 0;
+    const speed = 30;
+
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            if (callback) callback();
+        }
+    }
+
+    type();
+}
+
+function showChoices(choices) {
+    const panel = $('choices-panel');
+    panel.innerHTML = '';
+
+    choices.forEach((choice, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'choice-btn';
+
+        const canChoose = !choice.conditions || checkConditions(choice.conditions);
+
+        let html = `<span>${index + 1}. ${choice.text}</span>`;
+        if (choice.description) {
+            html += `<span class="choice-desc">${choice.description}</span>`;
+        }
+        if (!canChoose && choice.conditions) {
+            html += `<span class="choice-condition">条件不满足</span>`;
+        }
+
+        btn.innerHTML = html;
+        btn.disabled = !canChoose;
+
+        if (canChoose) {
+            btn.onclick = () => makeChoice(choice);
+        }
+
+        panel.appendChild(btn);
+    });
+}
+
+function checkConditions(conditions) {
+    for (const cond of conditions) {
+        if (cond.type === 'attribute') {
+            const value = gameState.attributes[cond.target] || 0;
+            if (cond.operator === '>=' && value < cond.value) return false;
+            if (cond.operator === '<=' && value > cond.value) return false;
+            if (cond.operator === '==' && value !== cond.value) return false;
+        } else if (cond.type === 'flag') {
+            if (!gameState.flags[cond.target]) return false;
+        } else if (cond.type === 'relationship') {
+            const value = gameState.relationships[cond.target] || 0;
+            if (cond.operator === '>=' && value < cond.value) return false;
+        } else if (cond.type === 'character') {
+            if (gameState.character.id !== cond.target) return false;
+        }
+    }
+    return true;
+}
+
+function makeChoice(choice) {
+    // 应用效果
+    if (choice.effects) {
+        applyEffects(choice.effects);
+    }
+
+    // 记录历史
+    gameState.history.push(gameState.currentNodeId);
+
+    // 跳转
+    gameState.currentNodeId = choice.nextNodeId;
+    showNode(gameState.currentNodeId);
+}
+
+function applyEffects(effects) {
+    effects.forEach(effect => {
+        if (effect.type === 'attribute_change') {
+            const oldValue = gameState.attributes[effect.target] || 0;
+            gameState.attributes[effect.target] = Math.max(0, Math.min(100, oldValue + effect.value));
+
+            // 检查死亡
+            if ((effect.target === 'qiyun' || effect.target === 'daohang') && gameState.attributes[effect.target] <= 0) {
+                gameState.isDead = true;
+                gameState.deathReason = effect.target === 'qiyun' ? '气运耗尽，天命已绝' : '道行尽毁，元神消散';
+            }
+        } else if (effect.type === 'set_flag') {
+            gameState.flags[effect.target] = effect.value;
+        } else if (effect.type === 'relationship_change') {
+            const oldValue = gameState.relationships[effect.target] || 0;
+            gameState.relationships[effect.target] = Math.max(-100, Math.min(100, oldValue + effect.value));
+        } else if (effect.type === 'add_item') {
+            if (!gameState.items.includes(effect.target)) {
+                gameState.items.push(effect.target);
+            }
+        }
+    });
+
+    // 检查死亡
+    if (gameState.isDead) {
+        showDeath();
+    }
+}
+
+function checkAchievements() {
+    GAME_DATA.achievements.forEach(ach => {
+        if (gameState.achievements.includes(ach.id)) return;
+
+        const cond = ach.condition;
+        let unlocked = false;
+
+        if (cond.type === 'flag' && gameState.flags[cond.target]) {
+            unlocked = true;
+        } else if (cond.type === 'attribute') {
+            const value = gameState.attributes[cond.target] || 0;
+            if (value >= cond.value) unlocked = true;
+        }
+
+        if (unlocked) {
+            gameState.achievements.push(ach.id);
+        }
+    });
+}
+
+function showDeath() {
+    $('game-screen').classList.add('hidden');
+    $('death-screen').classList.remove('hidden');
+    $('death-reason').textContent = gameState.deathReason;
+}
+
+function showEnding(node) {
+    $('game-screen').classList.add('hidden');
+    $('ending-screen').classList.remove('hidden');
+    $('ending-title').textContent = node.title;
+    $('ending-desc').textContent = node.content;
+}
+
+// ==================== 初始化 ====================
+document.addEventListener('DOMContentLoaded', () => {
+    // 点击弹窗外部关闭
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    });
+});
+</script>
+</body>
+</html>

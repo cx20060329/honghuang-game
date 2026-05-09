@@ -1,0 +1,833 @@
+{
+  "newNodes": [
+    {
+      "id": "node_phase1_luohuo_appears",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "魔祖现身",
+      "milestone": "milestone_luohuo_appears",
+      "content": "你追踪那股魔气，来到西方须弥山深处。\n\n只见一道黑袍身影立于山巅，周身魔气翻涌，却收敛得极好。那人转过身来，露出一张俊美却阴鸷的面容。\n\n「有趣，竟然有人能察觉到本座的存在。」他嘴角勾起一抹邪笑，「道友既然来了，不如帮本座一个忙？」\n\n你心中一凛——此人正是魔祖罗睺！传说中西方魔教的创始人，曾以一己之力搅动洪荒风云的绝世魔头。\n\n罗睺随手一挥，三道影像浮现：祖龙、元凤、麒麟老祖。\n\n「三族积怨已深，只差一点火星……」他眼中闪过狡诈的光芒，「道友若能助我，事成之后，必有重谢。」",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_found_luohuo",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_luohuo_help",
+          "text": "答应协助罗睺",
+          "description": "成为魔道盟友",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "xinxing",
+              "operator": "<=",
+              "value": 40
+            }
+          ],
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_helped_luohuo",
+              "value": true
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -15
+            },
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase1_luohuo_spy"
+        },
+        {
+          "id": "choice_luohuo_refuse",
+          "text": "严词拒绝",
+          "description": "坚守正道",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_luohuo_escape"
+        },
+        {
+          "id": "choice_luohuo_pretend",
+          "text": "假意应允，实则观望",
+          "description": "两面三刀",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_luohuo_double_agent"
+        },
+        {
+          "id": "choice_luohuo_flee",
+          "text": "转身逃离",
+          "description": "三十六计走为上",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_hongjun_response"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_luohuo_spy",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "story",
+      "title": "魔道密谋",
+      "content": "你成为罗睺的暗子，开始在洪荒各处散播流言。\n\n「龙族欲独占四海，镇压天下气运……」\n「凤凰一族图谋不轨，欲焚烧万界……」\n「麒麟老祖野心勃勃，欲一统洪荒……」\n\n流言如野火般蔓延，三族之间的猜忌日益加深。你亲眼见证祖龙与元凤在东海之滨的第一次大规模冲突，天地为之变色。\n\n罗睺站在远处观看，眼中满是得意：「很好，很好……让他们的血流得更多一些吧。」",
+      "effects": [],
+      "choices": [
+        {
+          "id": "choice_continue_spy",
+          "text": "继续执行任务",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_three_clan_war"
+        },
+        {
+          "id": "choice_betray_luohuo",
+          "text": "暗中向鸿钧透露消息",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "hongjun",
+              "operator": ">=",
+              "value": 50
+            }
+          ],
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_betrayed_luohuo",
+              "value": true
+            },
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase1_hongjun_response"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_three_clan_war",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "三族血战",
+      "milestone": "milestone_three_clan_war",
+      "content": "洪荒历·龙汉元年\n\n三族大战全面爆发！\n\n东海之上，祖龙率领亿万龙族，与元凤的凤凰一族在云端激战。龙吟凤鸣之声震彻天地，四海沸腾，山河崩塌。\n\n麒麟一族从陆地杀出，欲坐收渔翁之利，却被龙凤联手反噬。\n\n你站在战场边缘，目睹这场旷世大战。无数先天大能陨落，他们的精血染红了大地，汇聚成一条条血河。\n\n西方须弥山上，罗睺仰天狂笑：「哈哈哈！杀吧！死得越多越好！本座以杀证道，需要足够的煞气！」\n\n他的诛仙四剑在虚空中若隐若现，贪婪地吸收着战场上的血煞之气。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_war",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_join_war",
+          "text": "加入战斗",
+          "description": "在乱世中建功立业",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 15
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase1_war_combat"
+        },
+        {
+          "id": "choice_rescue_civilians",
+          "text": "救助无辜生灵",
+          "description": "功德无量",
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_rescued_civilians",
+              "value": true
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase1_rescue_result"
+        },
+        {
+          "id": "choice_watch_war",
+          "text": "冷眼旁观",
+          "description": "明哲保身",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase1_hongjun_arrives"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_hongjun_siege",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "围攻罗睺",
+      "milestone": "milestone_siege_luohuo",
+      "content": "三族血战惨烈至极，天地几乎崩塌。\n\n就在此时，一道清气从东方而来，鸿钧道人现身！\n\n「罗睺！你以杀证道，搅乱洪荒，今日便是你的死期！」\n\n鸿钧身后，杨眉大仙、乾坤老祖、阴阳老祖纷纷现身。四人联手，将罗睺围在中央。\n\n罗睺冷笑：「就凭你们？本座早已布下诛仙剑阵，谁敢踏入，必死无疑！」\n\n四把杀气腾腾的巨剑悬浮在罗睺身后，组成一座绝世凶阵。\n\n鸿钧沉声道：「诛仙阵需四人方可破之。杨眉、乾坤、阴阳，你三人各攻一门，本座攻中门！」",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_siege",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_join_siege",
+          "text": "加入围攻",
+          "description": "助鸿钧一臂之力",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "daohang",
+              "operator": ">=",
+              "value": 85
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": 25
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_phase1_luohuo_fall"
+        },
+        {
+          "id": "choice_help_luohuo",
+          "text": "暗中助罗睺",
+          "description": "魔道盟友",
+          "conditions": [
+            {
+              "type": "flag",
+              "target": "flag_helped_luohuo",
+              "operator": "==",
+              "value": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -20
+            },
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase1_luohuo_escape_battle"
+        },
+        {
+          "id": "choice_watch_siege",
+          "text": "在一旁观战",
+          "description": "见证历史",
+          "effects": [],
+          "nextNodeId": "node_phase1_luohuo_fall"
+        }
+      ]
+    },
+    {
+      "id": "node_phase1_luohuo_fall",
+      "chapter": "第一章·龙汉初劫",
+      "phase": "dragon_phoenix_war",
+      "type": "milestone",
+      "title": "魔祖陨落",
+      "milestone": "milestone_luohuo_fall",
+      "content": "激战持续了整整七七四十九天！\n\n鸿钧道人手持造化玉碟，与罗睺的诛仙剑阵硬撼。天地在两人的力量下不断崩塌又重组。\n\n终于，鸿钧找到破绽，一击击碎罗睺的护体魔气！\n\n「不——！」\n\n罗睺发出凄厉的惨叫，身躯在造化玉碟的力量下化为齑粉。但他临死前，却露出诡异的笑容：\n\n「鸿钧……你以为杀了我，就结束了吗？本座以杀证道……早已将魔念散布洪荒……总有一天……总有一天……」\n\n罗睺陨落，但他临死前引爆了西方地脉，导致西方灵气大损。这便是后世西方佛教必须东传的因果之一。\n\n鸿钧道人立于废墟之上，周身清气缭绕。这一战，让他证得混元道果，成为洪荒第一位圣人！",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_luohuo_dead",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_hongjun_saint",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_congratulate",
+          "text": "上前恭贺鸿钧成圣",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "hongjun",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase1_end"
+        },
+        {
+          "id": "choice_retreat",
+          "text": "悄然离去",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase1_end"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_dongwang_gong",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "milestone",
+      "title": "册封东王公",
+      "milestone": "milestone_dongwang_gong",
+      "content": "紫霄宫中，鸿钧道人高坐蒲团，为众仙讲道。\n\n三千红尘客齐聚一堂，你也在其中聆听圣人教诲。\n\n讲道结束，鸿钧忽然开口：「今日，本座要册封一人。」\n\n众仙哗然，只见一名身着青袍的男子从人群中走出。此人面如冠玉，气质不凡，正是东王公。\n\n「东王公，你乃先天阳气所化，本座今日册封你为男仙之首，统领天下男仙。」\n\n鸿钧一指点出，一道金光落在东王公身上。东王公顿时气势大涨，周身仙光缭绕。\n\n「多谢老师！」东王公跪拜谢恩。\n\n与此同时，鸿钧又道：「西王母，你乃先天阴气所化，本座册封你为女仙之首，统领天下女仙。」\n\n西王母同样上前领命，获得册封。\n\n你注意到，帝俊和东皇太一的脸色有些阴沉。他们身为先天三足金乌，又是妖族之皇，却未被册封，心中显然不满。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_dongwang",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_congratulate_dongwang",
+          "text": "上前恭贺东王公",
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dongwang_gong",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase3_cushion"
+        },
+        {
+          "id": "choice_approach_dijun",
+          "text": "靠近帝俊和太一",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "dijun"
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "taiyi",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase3_dijun_discontent"
+        },
+        {
+          "id": "choice_stay_silent",
+          "text": "保持沉默",
+          "effects": [],
+          "nextNodeId": "node_phase3_cushion"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_dijun_discontent",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "妖皇的不满",
+      "content": "你悄悄靠近帝俊和东皇太一。\n\n帝俊压低声音道：「东王公不过是个先天阳气化形的小人，凭什么做男仙之首？我兄弟二人立天庭，统御万妖，才是真正的霸主！」\n\n东皇太一冷哼：「大哥说得对。等紫霄宫讲道结束，我们就去找他的麻烦。蓬莱岛？哼，迟早是我们的！」\n\n两人眼中闪烁着杀意。你意识到，一场针对东王公的阴谋正在酝酿。",
+      "effects": [],
+      "choices": [
+        {
+          "id": "choice_warn_dongwang",
+          "text": "暗中警告东王公",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "dongwang_gong",
+              "operator": ">=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dongwang_gong",
+              "value": 15
+            },
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": -20
+            }
+          ],
+          "nextNodeId": "node_phase3_cushion"
+        },
+        {
+          "id": "choice_join_plot",
+          "text": "表示愿意相助",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "dijun"
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 15
+            },
+            {
+              "type": "relationship_change",
+              "target": "taiyi",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase3_cushion"
+        },
+        {
+          "id": "choice_ignore_plot",
+          "text": "假装没听见",
+          "effects": [],
+          "nextNodeId": "node_phase3_cushion"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_kill_dongwang",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "milestone",
+      "title": "斩杀东王公",
+      "milestone": "milestone_kill_dongwang",
+      "content": "紫霄宫讲道结束不久，洪荒便传来惊天消息——\n\n东王公陨落了！\n\n据说，帝俊、东皇太一联手鲲鹏老祖，趁东王公在蓬莱岛闭关时，发动了突袭。\n\n三打一，东王公虽奋力抵抗，却终究不敌。他的元神被帝俊以混沌钟镇压，肉身被东皇太一以东皇钟轰碎。\n\n「东王公，你做你的男仙之首，我兄弟二人做妖族之皇，本无冲突。可惜你不知进退，妄图染指天庭……」\n\n帝俊冷笑着，将东王公的先天灵宝收入囊中。\n\n与此同时，鲲鹏老祖在一旁观望，眼中闪过一丝贪婪。他早已觊觎东王公的河图洛书……不，是帝俊手中的河图洛书。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_dongwang_dead",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_seek_justice",
+          "text": "为东王公讨回公道",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "dongwang_gong",
+              "operator": ">=",
+              "value": 50
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            },
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": -30
+            }
+          ],
+          "nextNodeId": "node_phase4_confront_dijun"
+        },
+        {
+          "id": "choice_stay_neutral",
+          "text": "保持中立",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -5
+            }
+          ],
+          "nextNodeId": "node_phase4_tianqing_establish"
+        },
+        {
+          "id": "choice_congratulate_dijun",
+          "text": "向帝俊道贺",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "dijun",
+              "operator": ">=",
+              "value": 30
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase4_tianqing_establish"
+        }
+      ]
+    },
+    {
+      "id": "node_phase4_tianqing_establish",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "milestone",
+      "title": "上古天庭建立",
+      "milestone": "milestone_tianqing",
+      "content": "东王公陨落后，帝俊正式建立上古天庭！\n\n他自号「妖皇」，以东皇太一为「东皇」，统御天下妖族。天庭立于三十三天外，金碧辉煌，气象万千。\n\n「自今日起，我妖族当为洪荒霸主！」\n\n帝俊的声音响彻天地，无数妖族跪拜称臣。\n\n与此同时，十二祖巫也在大地之上集结。后土、共工、祝融、烛九阴……十二位拥有盘古血脉的大巫，建立了巫族。\n\n「天庭？妖族？哼！」\n\n共工怒喝：「我巫族乃盘古正宗，岂容妖族嚣张！」\n\n巫妖两族的矛盾，就此埋下。而你，将在这场即将到来的浩劫中，扮演怎样的角色？",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_tianqing_established",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_join_tianqing",
+          "text": "加入天庭",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "shengwang",
+              "operator": ">=",
+              "value": 60
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 15
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_phase4_wu_yao_tension"
+        },
+        {
+          "id": "choice_join_wu",
+          "text": "投靠巫族",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "genjiao",
+              "operator": ">=",
+              "value": 80
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "houtu",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_phase4_wu_yao_tension"
+        },
+        {
+          "id": "choice_stay_independent",
+          "text": "保持独立",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase4_wu_yao_tension"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_treasure_distribution",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "milestone",
+      "title": "不周山分宝",
+      "milestone": "milestone_treasure_distribution",
+      "content": "紫霄宫讲道三千年，鸿钧道人终于宣布结束。\n\n「今日，本座有一件大事宣布。」\n\n鸿钧一挥手，一座巨大的岩石从虚空中落下，正是传说中的「分宝岩」。岩上插满了先天灵宝，宝光四射，令众仙眼花缭乱。\n\n「这些宝物，本座今日分予尔等。」\n\n众仙沸腾了！先天灵宝，每一件都是可遇不可求的至宝！\n\n鸿钧开始分发：\n\n「老子，此太极图予你。」\n\n「元始，此盘古幡予你。」\n\n「通天，此诛仙四剑予你。」\n\n三清各自领宝，喜形于色。\n\n「女娲，此招妖幡予你，日后自有大用。」\n\n「红云，此九九散魂葫芦予你。」\n\n「帝俊、太一，此河图洛书予你二人。」\n\n你站在人群中，看着这一幕。鸿钧道人的目光扫过众人，最后落在你身上……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_treasure",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_seek_treasure",
+          "text": "上前求宝",
+          "conditions": [
+            {
+              "type": "attribute",
+              "target": "qiyun",
+              "operator": ">=",
+              "value": 70
+            }
+          ],
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_phase3_receive_treasure"
+        },
+        {
+          "id": "choice_wait_patiently",
+          "text": "耐心等待",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_phase3_after_treasure"
+        }
+      ]
+    },
+    {
+      "id": "node_phase3_receive_treasure",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "获得至宝",
+      "content": "你鼓起勇气，上前跪拜：「弟子斗胆，恳请老师赐宝。」\n\n鸿钧道人看着你，眼中闪过一丝深意。\n\n「你与这宝物有缘。」\n\n他一指点出，一件先天灵宝落入你手中。你感受到其中蕴含的无上威能，心中狂喜。\n\n「多谢老师！」\n\n周围众仙投来羡慕嫉妒的目光。但你知道，获得至宝的同时，也意味着更多的因果和责任。",
+      "effects": [
+        {
+          "type": "add_item",
+          "target": "item_innate_treasure"
+        },
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_thank_and_leave",
+          "text": "谢恩离去",
+          "effects": [],
+          "nextNodeId": "node_phase3_after_treasure"
+        }
+      ]
+    },
+    {
+      "id": "node_kunpeng_steal_hetuluo",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "milestone",
+      "title": "鲲鹏盗宝",
+      "milestone": "milestone_kunpeng_steal",
+      "content": "你正在闭关修炼，忽然感应到一股强大的妖气波动。\n\n追踪而去，你发现竟是鲲鹏老祖！\n\n他正潜伏在天庭外围，目光贪婪地盯着帝俊的寝宫。那里，河图洛书正散发着淡淡的宝光。\n\n「嘿嘿，帝俊那小子，拿着河图洛书也是浪费……」\n\n鲲鹏老祖喃喃自语，身形化作一只巨大的鲲鱼，悄无声息地潜入天庭。\n\n你意识到，他打算窃取河图洛书！这可是妖族的镇族之宝，一旦失窃，必将引发滔天大祸！",
+      "effects": [],
+      "choices": [
+        {
+          "id": "choice_warn_dijun",
+          "text": "警告帝俊",
+          "conditions": [
+            {
+              "type": "relationship",
+              "target": "dijun",
+              "operator": ">=",
+              "value": 40
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": 20
+            },
+            {
+              "type": "relationship_change",
+              "target": "kunpeng",
+              "value": -30
+            }
+          ],
+          "nextNodeId": "node_kunpeng_caught"
+        },
+        {
+          "id": "choice_help_kunpeng",
+          "text": "协助鲲鹏",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "kunpeng"
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "kunpeng",
+              "value": 25
+            },
+            {
+              "type": "relationship_change",
+              "target": "dijun",
+              "value": -40
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -15
+            }
+          ],
+          "nextNodeId": "node_kunpeng_success"
+        },
+        {
+          "id": "choice_watch_steal",
+          "text": "冷眼旁观",
+          "effects": [],
+          "nextNodeId": "node_kunpeng_result"
+        }
+      ]
+    },
+    {
+      "id": "node_minghe_asura",
+      "chapter": "第四章·巫妖崛起",
+      "phase": "wu_yao_rise",
+      "type": "milestone",
+      "title": "冥河造族",
+      "milestone": "milestone_asura",
+      "content": "你来到幽冥血海，只见血浪滔天，煞气冲天。\n\n冥河老祖立于血海之上，周身血光缭绕。他的目光狂热而执着。\n\n「洪荒以功德成圣，我冥河也要成圣！」\n\n他一指点出，血海翻涌，无数血影从中凝聚成型。这些血影渐渐化为实体，生有四臂，面容狰狞。\n\n「今日，我冥河以血海为本，造阿修罗一族！」\n\n天地轰鸣，天道降下功德金光。但那金光却远远不够让冥河成圣。\n\n「为何？为何我不能成圣？！」\n\n冥河仰天怒吼，却无法改变天道的判定。阿修罗族虽然诞生，却未能让他证得圣位。\n\n「既然如此，我阿修罗族便以杀伐证道！」\n\n冥河眼中闪过疯狂的光芒。他看向洪荒的方向，嘴角勾起一抹邪笑。\n\n「巫妖两族……正好是我阿修罗族的养料……」",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_asura",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "choice_join_asura",
+          "text": "加入阿修罗族",
+          "conditions": [
+            {
+              "type": "character",
+              "target": "minghe"
+            }
+          ],
+          "effects": [
+            {
+              "type": "relationship_change",
+              "target": "minghe",
+              "value": 30
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -10
+            }
+          ],
+          "nextNodeId": "node_minghe_alliance"
+        },
+        {
+          "id": "choice_warn_honghuang",
+          "text": "将此事告知洪荒众仙",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            },
+            {
+              "type": "relationship_change",
+              "target": "minghe",
+              "value": -20
+            }
+          ],
+          "nextNodeId": "node_phase4_wu_yao_tension"
+        },
+        {
+          "id": "choice_leave_blood_sea",
+          "text": "悄然离去",
+          "effects": [],
+          "nextNodeId": "node_phase4_wu_yao_tension"
+        }
+      ]
+    }
+  ]
+}

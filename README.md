@@ -1,6 +1,8 @@
 # 洪荒神话 - 文字冒险游戏
 
-一款基于洪荒神话背景的命令行文字冒险游戏，从龙汉初劫到巫妖大战，体验洪荒世界的史诗之旅。
+一款基于洪荒神话背景的文字冒险游戏，从龙汉初劫到巫妖大战，体验洪荒世界的史诗之旅。
+
+**提供两个版本：命令行版（Node.js）和网页版（纯HTML）**
 
 ## 游戏简介
 
@@ -21,18 +23,67 @@
 
 ```
 hh/
-├── game_engine.js          # 游戏引擎主程序
-├── game_data_full.json     # 完整剧本数据（94节点、15角色、12成就）
-├── game_engine.test.js     # Jest单元测试（60个测试用例）
+├── index.html              # 网页版游戏（单文件，推荐）
+├── game_engine.js          # 命令行版游戏引擎
+├── game_data_full.json     # 完整剧本数据
+├── game_engine.test.js     # Jest单元测试
 ├── validate_game_data.js   # 数据验证脚本
 ├── package.json            # 项目配置
 ├── README.md               # 本文档
-└── saves/                  # 存档目录（自动创建）
-    ├── autosave.json       # 自动存档
-    └── save_*.json         # 手动存档
+├── android_app/            # Android APK 源码
+└── saves/                  # 存档目录
 ```
 
-## 环境要求
+---
+
+## 网页版（推荐）
+
+### 快速开始
+
+1. 双击打开 `index.html` 即可游玩
+2. 无需安装任何依赖
+
+### 部署到网站
+
+#### GitHub Pages
+
+1. Fork 本仓库到你的 GitHub
+2. 进入 Settings → Pages
+3. Source 选择 `main` 分支
+4. 访问 `https://你的用户名.github.io/仓库名/`
+
+#### Vercel / Netlify
+
+- 连接 GitHub 仓库，自动部署
+- 或直接拖拽 `index.html` 上传
+
+#### 传统服务器
+
+将 `index.html` 上传到任意 Web 服务器根目录即可。
+
+### 网页版特性
+
+| 特性 | 说明 |
+|------|------|
+| 打字机效果 | 沉浸式文字呈现 |
+| 属性面板 | 实时显示角色状态 |
+| 存档系统 | localStorage 本地存储 |
+| 成就系统 | 解锁多种成就 |
+| 响应式设计 | 支持桌面和移动端 |
+| 暗黑古风 | 云纹背景、金色点缀 |
+
+### 浏览器兼容性
+
+- Chrome 60+
+- Firefox 55+
+- Safari 11+
+- Edge 79+
+
+---
+
+## 命令行版
+
+### 环境要求
 
 - Node.js 14.0 或更高版本
 - npm 6.0 或更高版本
@@ -50,24 +101,6 @@ npm install
 
 ```bash
 node game_engine.js
-```
-
-### 3. 从存档启动
-
-```bash
-node game_engine.js saves/save_dijun_2026-05-08.json
-```
-
-### 4. 运行测试
-
-```bash
-npm test
-```
-
-### 5. 验证数据
-
-```bash
-node validate_game_data.js
 ```
 
 ## 操作指南
@@ -146,10 +179,11 @@ node validate_game_data.js
 
 ## 技术实现
 
-- **引擎**：Node.js + readline（命令行交互）
+- **网页版**：纯 HTML + CSS + JavaScript，单文件，无依赖
+- **命令行版**：Node.js + readline
 - **数据**：JSON格式剧本数据
 - **测试**：Jest单元测试框架
-- **存档**：JSON序列化，支持自动存档
+- **存档**：localStorage（网页）/ JSON文件（命令行）
 
 ## 数据验证
 
@@ -202,11 +236,11 @@ CONFIG.typeSpeed = 25; // 毫秒/字符
 
 ## 开发者信息
 
-- **版本**：3.4.0
+- **版本**：3.5.0
 - **节点数**：111
 - **角色数**：15
 - **成就数**：12
-- **测试覆盖**：73个测试用例
+- **平台**：Web / Node.js / Android
 
 ---
 
