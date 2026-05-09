@@ -51,12 +51,6 @@ android.minapi = 21
 # (str) Android NDK version
 android.ndk = 25b
 
-# (str) Android NDK path (use local)
-android.ndk_path = /mnt/d/ClaudeCode/cc-smith/hh/android_app/.buildozer/android/platform/android-ndk-r25b
-
-# (str) Android SDK path (use local)
-android.sdk_path = /mnt/d/ClaudeCode/cc-smith/hh/android_app/.buildozer/android/platform/android-sdk
-
 # (bool) Use private storage
 android.private_storage = True
 
