@@ -947,6 +947,22 @@ class GameEngine {
             }
           }
           break;
+
+        case 'dynamic_content':
+          // 动态内心独白 - 根据当前角色显示不同内容
+          if (effect.contents && this.state.character) {
+            const characterId = this.state.character.id;
+            const content = effect.contents[characterId];
+            if (content) {
+              console.log('');
+              console.log(colorText('  ┌──────────────────────────────────────┐', 'magenta'));
+              console.log(colorText('  │ ', 'magenta') + colorText('【内心独白】', 'yellow').padEnd(36) + colorText('│', 'magenta'));
+              console.log(colorText('  │ ', 'magenta') + '  ' + colorText(content, 'cyan').substring(0, 34).padEnd(34) + colorText('│', 'magenta'));
+              console.log(colorText('  └──────────────────────────────────────┘', 'magenta'));
+              console.log('');
+            }
+          }
+          break;
       }
     }
   }

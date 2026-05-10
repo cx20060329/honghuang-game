@@ -1,17 +1,22 @@
 {
   "meta": {
-    "version": "3.3.0",
-    "lastUpdated": "2026-05-08",
+    "version": "4.16.2",
+    "lastUpdated": "2026-05-10",
     "author": "Claude",
-    "description": "洪荒神话文字游戏完整剧本 - 从龙汉初劫到巫妖大战 - 增强版（死亡机制、悟道系统、成就系统）",
-    "totalNodes": 109,
+    "description": "洪荒神话 - P1节点内容扩充版（6短节点+3讲道全面扩充，环境描写/对话/心理活动）",
+    "totalNodes": 119,
     "totalCharacters": 15,
     "features": [
       "death_mechanism",
       "cultivation_system",
       "achievement_system",
       "historical_intervention",
-      "buff_system"
+      "buff_system",
+      "lore_verified",
+      "zu_wu_complete",
+      "dao_mo_lore_fixed",
+      "yangmei_yinyang_qiankun",
+      "content_expanded_p1"
     ]
   },
   "achievements": [
@@ -238,8 +243,7 @@
         }
       },
       "startingItems": [
-        "item_hetuluo",
-        "item_hundun_bell"
+        "item_hetuluo"
       ],
       "startingRelationships": [
         {
@@ -891,7 +895,7 @@
         }
       },
       "startingItems": [
-        "item_hou_tu_flag"
+        "item_houtu_flag"
       ],
       "startingRelationships": [
         {
@@ -1143,7 +1147,7 @@
       "name": "诛仙四剑",
       "type": "先天灵宝",
       "rarity": "先天灵宝",
-      "description": "诛仙、戮仙、陷仙、绝仙四剑，非四圣不可破。"
+      "description": "诛仙、戮仙、陷仙、绝仙四剑。盘古开天封印于须弥山，罗睺以三族精血解封，道魔战后由鸿钧收取，分宝岩上传予通天教主。天道第一杀器，非四圣不可破。"
     },
     {
       "id": "item_nuwa_stone",
@@ -1182,10 +1186,10 @@
     },
     {
       "id": "item_houtu_flag",
-      "name": "后土旗",
+      "name": "后土令旗",
       "type": "法宝",
       "rarity": "仙品",
-      "description": "后土祖巫信物，可号令部分巫族。"
+      "description": "后土祖巫信物，可号令部分巫族，蕴含大地之力。"
     },
     {
       "id": "item_kun_lun_mirror",
@@ -1242,6 +1246,86 @@
       "type": "material",
       "rarity": "epic",
       "description": "帝俊赐予的星辰之力精华"
+    },
+    {
+      "id": "item_red_gourd",
+      "name": "九九散魂葫芦",
+      "description": "先天葫芦藤所结赤色葫芦，红云老祖炼化。内含红砂，可散人魂魄。"
+    },
+    {
+      "id": "item_orange_gourd",
+      "name": "招妖葫芦",
+      "description": "先天葫芦藤所结橙色葫芦，女娲炼为招妖幡。可召天下万妖。"
+    },
+    {
+      "id": "item_yellow_gourd",
+      "name": "斩仙飞刀",
+      "description": "先天葫芦藤所结黄色葫芦，东皇太一炼化后传陆压。\"请宝贝转身\"。"
+    },
+    {
+      "id": "item_green_gourd",
+      "name": "混沌葫芦",
+      "description": "先天葫芦藤所结绿色葫芦，元始天尊所得。内含一片混沌，可孕育万物。"
+    },
+    {
+      "id": "item_cyan_gourd",
+      "name": "水火葫芦",
+      "description": "先天葫芦藤所结青色葫芦，通天教主所得。内含两只水火麒麟。"
+    },
+    {
+      "id": "item_blue_gourd",
+      "name": "天帝葫芦",
+      "description": "先天葫芦藤所结蓝色葫芦，鸿钧所得后传昊天。可孕育天下宝物。"
+    },
+    {
+      "id": "item_purple_gourd",
+      "name": "紫金红葫芦",
+      "description": "先天葫芦藤所结紫色葫芦，老子所得。盛丹之宝，\"叫你一声你敢答应吗\"。"
+    },
+    {
+      "id": "item_houyi_bow",
+      "name": "彤弓素矰",
+      "description": "帝俊赐予后羿的神弓。射日之用，蕴含天帝威能。"
+    },
+    {
+      "id": "item_jiuxiao_qiang",
+      "name": "九霄弑神枪",
+      "description": "罗睺执掌的杀伐至宝，可弑杀先天神魔。"
+    },
+    {
+      "id": "item_xuanhuang_tower",
+      "name": "天地玄黄玲珑塔",
+      "description": "后天功德至宝，盘古开天时天地玄黄气所化。万法不侵，防御无双。"
+    },
+    {
+      "id": "item_zhu_xian_array",
+      "name": "诛仙阵图",
+      "description": "诛仙四剑的阵图，四剑合一非四圣不可破。盘古封印，罗睺解封，后归通天教主。"
+    },
+    {
+      "id": "item_north_ming",
+      "name": "北冥令",
+      "description": "鲲鹏炼制的信物，蕴含北冥之海的极寒之力。"
+    },
+    {
+      "id": "item_xue_he",
+      "name": "血海之源",
+      "description": "冥河老祖从血海中提炼的本源之力，可污人法宝元神。"
+    },
+    {
+      "id": "item_yuan_tu_a_bei",
+      "name": "元屠阿鼻",
+      "description": "冥河老祖的杀伐双剑。元屠杀生，阿鼻戮魂，位列先天灵宝。"
+    },
+    {
+      "id": "item_maple_flag",
+      "name": "山河社稷图",
+      "description": "极品先天灵宝，女娲执掌。自成天地，可演化万物。"
+    },
+    {
+      "id": "item_qiankun_ding",
+      "name": "乾坤鼎",
+      "description": "混沌所生先天至宝，可返后天为先天，炼化万物。原为乾坤老祖执掌，道魔战后由鸿钧收取，后于分宝岩传予女娲。"
     }
   ],
   "npcs": [
@@ -1267,7 +1351,8 @@
       "title": "祖巫",
       "faction": "巫族",
       "importance": "major",
-      "defaultRelationship": 50
+      "defaultRelationship": 50,
+      "description": "兽头人身，身披红鳞，耳穿火蛇，脚踏火龙。火焰主宰，所到之处烈焰滔天。"
     },
     {
       "id": "gonggong",
@@ -1275,7 +1360,8 @@
       "title": "祖巫",
       "faction": "巫族",
       "importance": "major",
-      "defaultRelationship": 50
+      "defaultRelationship": 50,
+      "description": "蟒头人身，身披黑鳞，脚踏黑龙，手缠青蟒。水神，一怒引发洪水，撞断不周山。"
     },
     {
       "id": "houyi",
@@ -1324,43 +1410,116 @@
       "faction": "先天神魔",
       "importance": "major",
       "defaultRelationship": 50
+    },
+    {
+      "id": "dijiang",
+      "name": "帝江",
+      "title": "空间祖巫",
+      "description": "如黄囊，赤如丹火，六足四翼，浑敦无面目。空间速度之祖巫，四翅一扇二十八万里。"
+    },
+    {
+      "id": "jumang",
+      "name": "句芒",
+      "title": "木之祖巫",
+      "description": "青若翠竹，鸟身人面，足乘两龙。东方春神，挥手催生万木。"
+    },
+    {
+      "id": "rushou",
+      "name": "蓐收",
+      "title": "金之祖巫",
+      "description": "人面虎身，身披金鳞，胛生双翼。西方秋神，掌控天下金属之力。"
+    },
+    {
+      "id": "xuanming",
+      "name": "玄冥",
+      "title": "雨冰祖巫",
+      "description": "人面鸟身，耳悬青蛇，脚踏青蛇。呼风唤雨，冻结天地。"
+    },
+    {
+      "id": "qiangliang",
+      "name": "强良",
+      "title": "雷之祖巫",
+      "description": "虎头人身，四蹄足，长手肘，嘴里衔蛇手中握蛇。怒吼引发惊雷。"
+    },
+    {
+      "id": "zhujiuyin",
+      "name": "烛九阴",
+      "title": "时间祖巫",
+      "description": "人首龙身，全身赤红。睁眼为白天，闭眼为黑夜，可操控时间流转。"
+    },
+    {
+      "id": "tianwu",
+      "name": "天吴",
+      "title": "风之祖巫",
+      "description": "八首人面，虎身八尾，全身青黄。跑动掀起狂风席卷一切。"
+    },
+    {
+      "id": "xizi",
+      "name": "翕兹",
+      "title": "电之祖巫",
+      "description": "人面鸟身，耳挂青蛇，手拿红蛇。挥手引出万丈闪电。"
+    },
+    {
+      "id": "shebishi",
+      "name": "奢比尸",
+      "title": "天气祖巫",
+      "description": "人面兽身，双耳似犬，耳挂青蛇。精准掌控阴晴冷暖，调节天象。"
+    },
+    {
+      "id": "yangmei",
+      "name": "杨眉大仙",
+      "title": "空间之主",
+      "description": "混沌魔神残魂转世，执掌空间法则。修为与鸿钧比肩，曾以空间神通将罗睺魔宝收入虚空。战后重伤隐退，云游混沌。"
+    },
+    {
+      "id": "yinyang",
+      "name": "阴阳老祖",
+      "title": "阴阳之主",
+      "description": "先天阴阳二气化形，执掌太极图（后传老子）。在道魔决战中以身定住诛仙阵阴阳变化，自爆牺牲换取破阵之机。"
+    },
+    {
+      "id": "qiankun",
+      "name": "乾坤老祖",
+      "title": "乾坤之主",
+      "description": "混沌乾坤之气化形，执掌乾坤鼎（后传女娲）。以鼎护住众人抵挡魔气侵蚀，最终与阴阳老祖并肩自爆，壮烈牺牲。"
     }
   ],
   "timeline": [
     {
-      "phase": "dragon_phoenix_war",
-      "name": "龙汉初劫",
-      "description": "三族争霸，洪荒染血。祖龙、元凤、始麒麟三族大战，生灵涂炭。",
-      "startNode": "node_phase1_start",
-      "endMilestone": "milestone_phase1_end"
+      "id": "era_chaos",
+      "event": "混沌开天",
+      "era": "混沌时期",
+      "description": "盘古开天辟地，身化万物。左眼为日，右眼为月，精血化十二祖巫。"
     },
     {
-      "phase": "luohuo_fall",
-      "name": "道魔之战",
-      "description": "鸿钧与罗睺决战，西方二圣助战。罗睺欲毁洪荒，鸿钧以造化玉碟镇压。",
-      "startNode": "node_phase2_start",
-      "endMilestone": "milestone_phase2_end"
+      "id": "era_longhan",
+      "event": "龙汉初劫",
+      "era": "洪荒初期",
+      "description": "龙、凤、麒麟三族争霸。罗睺暗中挑拨，以三族精血怨气解封诛仙四剑。"
     },
     {
-      "phase": "hongjun_lecture",
-      "name": "紫霄宫讲道",
-      "description": "鸿钧成圣，紫霄宫讲道三次。分座七圣，赐予鸿蒙紫气。",
-      "startNode": "node_phase3_start",
-      "endMilestone": "milestone_phase3_end"
+      "id": "era_daomo",
+      "event": "道魔之战",
+      "era": "龙汉末期",
+      "description": "鸿钧联合杨眉、阴阳、乾坤四圣破诛仙剑阵。阴阳、乾坤战死，罗睺自爆化为域外天魔。"
     },
     {
-      "phase": "wu_yao_rise",
-      "name": "巫妖崛起",
-      "description": "巫妖二族崛起，争夺天地主角之位。天庭立，巫族聚十二都天神煞大阵。",
-      "startNode": "node_phase4_start",
-      "endMilestone": "milestone_phase4_end"
+      "id": "era_zixiao",
+      "event": "紫霄宫讲道",
+      "era": "洪荒中期",
+      "description": "鸿钧三次讲道，定六圣位。分宝岩分宝，赐七道鸿蒙紫气。"
     },
     {
-      "phase": "wu_yao_final",
-      "name": "巫妖决战",
-      "description": "巫妖二族决战，同归于尽。人族崛起，三皇五帝治世。",
-      "startNode": "node_phase5_start",
-      "endMilestone": "milestone_game_end"
+      "id": "era_wuyao",
+      "event": "巫妖崛起",
+      "era": "洪荒中期",
+      "description": "帝俊太一立天庭，十二祖巫统大地。十日齐出，后羿射日，矛盾激化。"
+    },
+    {
+      "id": "era_juezhan",
+      "event": "巫妖决战",
+      "era": "洪荒中期",
+      "description": "共工撞不周山，女娲补天。十二都天神魔大阵 vs 周天星斗大阵。天庭覆灭，巫族凋零。"
     }
   ],
   "endings": [
@@ -1465,7 +1624,7 @@
       "phase": "dragon_phoenix_war",
       "type": "choice",
       "title": "命运之始",
-      "content": "你感受到体内的力量在涌动，属于你的命运即将展开……",
+      "content": "混沌初分，万千先天神魔于天地间化形而出。\n\n你立于虚空之中，感受着洪荒大地的脉动。远处的龙族吟啸划破长空，凤族的火焰映红了天际，麒麟族的蹄声震动大地。三族鼎立，各据一方——这是洪荒最混乱也最精彩的时代。\n\n你低头看着自己的双手，体内的血脉在沸腾。是谁？从何处来？往何处去？\n\n命运如同一张无形的巨网，将每一个生灵都编织其中。而你，将在其中走出属于自己的道路。\n\n「天地为棋盘，众生为棋子。」一个苍老的声音在你心底响起，「但你，或许可以成为执棋之人。」\n\n你深吸一口气——属于你的洪荒之旅，就此开始！",
       "choices": [
         {
           "id": "choice_char_dijun",
@@ -1987,7 +2146,7 @@
       "phase": "dragon_phoenix_war",
       "type": "battle",
       "title": "道魔对峙",
-      "content": "你与罗睺对峙，感受到他身上恐怖的魔气。\n\n「哦？区区先天神魔，竟敢主动找上吾？」罗睺饶有兴致地看着你，「你是想死，还是想活？」\n\n他的眼中闪烁着危险的光芒，杀意若隐若现。",
+      "content": "你与罗睺对峙，感受到他身上恐怖的魔气。\n\n「哦？区区先天神魔，竟敢主动找上吾？」罗睺饶有兴致地看着你，「你是想死，还是想活？」\n\n他的眼中闪烁着危险的光芒，杀意若隐若现。\n\n你心中一震——传说此四剑乃盘古开天时天道降下斩杀三千天魔的杀器，盘古忌惮其有伤天和而封印。罗睺竟以三族之血解开了封印！",
       "choices": [
         {
           "id": "choice_p1_fight_luohuo",
@@ -2702,7 +2861,7 @@
       "type": "battle",
       "title": "道魔决战",
       "milestone": "milestone_luohuo_battle",
-      "content": "道魔决战终于爆发！\n\n鸿钧率领道门众人，与罗睺在须弥山展开决战。\n\n天地变色，日月无光。道气与魔气在空中碰撞，引发无数爆炸。\n\n罗睺祭出诛仙四剑，欲以杀伐之力毁灭洪荒。鸿钧则以造化玉碟镇压，与罗睺展开殊死搏斗。",
+      "content": "道魔决战终于爆发！\n\n须弥山上，罗睺布下诛仙剑阵。四座剑门分列四方：诛仙剑门、戮仙剑门、陷仙剑门、绝仙剑门——每一门都透着令人窒息的杀伐之气，大罗金仙入阵即化为飞灰。\n\n鸿钧道祖立于虚空，身旁站着三位先天大能。\n\n「罗睺以三族精血怨气解封了盘古封印的诛仙四剑。要破此阵，非四位同级别高手不可。」鸿钧沉声道，「诸位道友，今日一战，关乎洪荒存亡。」\n\n第一位大能踏前一步——他是杨眉大仙，混沌魔神残魂转世，执掌空间法则。只见他大袖一挥，空间神通施展开来！诛仙阵外层的魔宝如同被无形之手投入虚空，罗睺的防御法宝一件件消失不见。「老夫走戮仙门。」杨眉轻描淡写地说道。\n\n第二位是阴阳老祖，先天阴阳二气化形。他祭出太极图——那黑白二气如游龙盘旋，阴阳之力定住了诛仙阵中翻涌的魔气变化。「陷仙门归我。阴阳轮转，定！」\n\n第三位是乾坤老祖，混沌乾坤之气所化。乾坤鼎悬浮在他头顶，垂下万道玄黄光芒，将众人护在其中。魔气触之即散，不能近身分毫。「绝仙门交给我。诸君，请！」\n\n鸿钧点头，祭出造化玉碟——「诛仙门，吾来破！」\n\n四位大能分攻四门：\n——杨眉以空间折叠之术绕开戮仙剑的斩杀，身形在虚实之间不断闪烁；\n——阴阳老祖手持太极图，阴阳鱼旋转如轮，将陷仙剑的剑势一一化解；\n——乾坤老祖头顶乾坤鼎，鼎中喷出混沌之气，死死压制住绝仙剑的剑芒；\n——鸿钧催动造化玉碟，三千大道法则同时绽放，正面硬撼诛仙剑！\n\n天地变色，日月无光。道气与魔气在空中疯狂碰撞，须弥山被震得山石崩飞。整个洪荒都能感受到这场巅峰对决的余波。",
       "choices": [
         {
           "id": "choice_p2_fight_luohuo_side",
@@ -2777,11 +2936,35 @@
       "type": "milestone",
       "title": "魔祖陨落",
       "milestone": "milestone_phase2_end",
-      "content": "最终，鸿钧以造化玉碟镇压了罗睺。\n\n「鸿钧！吾不甘心！」罗睺发出最后的怒吼，身影渐渐消散。\n\n魔祖陨落，道门获胜。但洪荒也付出了惨重的代价。\n\n西方二圣接引、准提因助战有功，得以在西方立教。三清也因此战崭露头角。",
+      "content": "四门告破！诛仙剑阵轰然崩溃。\n\n但代价是惨烈的——\n\n罗睺见阵法被破，狂怒之下将全部魔力注入陷仙门方向。阴阳老祖首当其冲！\n\n「诸位道友——洪荒就交给你们了！」\n\n阴阳老祖大喝一声，太极图在他手中绽放出最后的光芒。他整个人化作一道贯通天地的黑白光柱，以自身全部修为引爆了陷仙剑——\n\n轰！！！阴阳老祖，陨落。\n\n罗睺嘶吼着转向绝仙门。乾坤老祖深知这一刻终于来临。\n\n「乾坤有序，生死无常！」\n\n乾坤鼎轰鸣着升到半空，乾坤老祖的身躯化作混沌本源，与鼎一同撞向绝仙门！绝仙剑被这玉石俱焚的一击震飞出去。\n\n乾坤老祖，陨落。\n\n杨眉大仙在破戮仙门时已耗尽空间法则之力，浑身伤痕累累。他看了一眼战场，长叹一声：「老道尽力了。洪荒的因果，老道不再过问。」\n\n空间波纹荡漾——杨眉大仙飘然远去，从此云游混沌，再不涉足洪荒之事。漫天魔血之中，他留下了一句话：「鸿钧，剩下的事，交给你了。」\n\n鸿钧沉默片刻，造化玉碟绽放出万丈光芒。诛仙剑在失去其余三门支撑后被彻底镇压。\n\n「罗睺！结束了！」\n\n罗睺发出最后的怒吼：「鸿钧！吾不甘心！吾以杀证道——你们以功德成圣，凭什么？！」\n\n他毅然自爆身躯，同时引爆了西方地脉！整个西方大地灵脉崩碎，从此贫瘠荒凉。\n\n罗睺的真灵化作无穷心魔，融入天道——「道高一尺，魔高一丈！从今往后，洪荒修士历劫必经心魔！哈哈哈哈——」\n\n魔祖陨落。但他留下的心魔，将永远纠缠洪荒修士的修行之路。\n\n鸿钧默默收起了诛仙四剑、诛仙阵图和乾坤鼎。这些东西将在未来的分宝岩上，传给有缘之人。",
       "effects": [
         {
           "type": "set_flag",
           "target": "flag_luohuo_dead",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_yangmei_retreated",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_yinyang_sacrificed",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_qiankun_sacrificed",
+          "value": true
+        },
+        {
+          "type": "add_item",
+          "target": "item_qiankun_ding"
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_sacrifice",
           "value": true
         }
       ],
@@ -2885,7 +3068,7 @@
       "phase": "hongjun_lecture",
       "type": "story",
       "title": "蒲团之缘",
-      "content": "你成功占据了一个蒲团！\n\n三清、女娲、接引、准提也各自占据了蒲团。六人并排而坐，等待鸿钧讲道。\n\n红云老祖见你没有蒲团，主动让出了自己的位置。你心中感激，但也隐隐担忧——这番让座，不知会结下何种因果。",
+      "content": "紫霄宫中，六个蒲团并排而列——这是天地圣位的象征。\n\n三清率先坐定三个蒲团。女娲娘娘随后落座第四个。接引道人也占了一个。\n\n你看向最后一个蒲团——正要上前，却见准提道人匆匆从西方赶来，气喘吁吁，面露遗憾。\n\n准提对众人哭诉西方贫瘠之苦。红云老祖心生怜悯，站起身：「道友莫急，吾让出此位。」\n\n此言一出，在场众人面色各异：\n- 鲲鹏眼中闪过一丝寒光——这老好人，不知让座意味着什么！\n- 准提大喜，连忙坐定最后一个蒲团。\n\n六圣位遂定：三清、女娲、接引、准提。\n\n你心中明白——红云这一让，让出了圣人的因果，也埋下了杀身之祸的伏笔。",
       "effects": [
         {
           "type": "relationship_change",
@@ -2907,7 +3090,7 @@
       "type": "milestone",
       "title": "鸿钧讲道",
       "milestone": "milestone_first_lecture",
-      "content": "鸿钧道祖登上高台，开始讲道。\n\n「道可道，非常道。名可名，非常名……」\n\n鸿钧的声音如同天籁，每一个字都蕴含着无尽的大道至理。你沉浸其中，道行飞速提升。",
+      "content": "紫霄宫中，三千红尘客肃然端坐。\n\n鸿钧道祖登上了高台——他一袭灰袍，鹤发童颜，周身没有任何光华流转，却让人不敢直视。那种气息不是威压，而是如同面对整个天地——你不由自主地屏住了呼吸。\n\n「道可道，非常道。名可名，非常名。」\n\n鸿钧开口了。第一个字落下时，整个紫霄宫都微微震颤。那不是声音的震动，而是大道本身的共鸣。每一个音节都像是一把钥匙，打开了你心底一扇亘古未开的门。\n\n他讲的是金仙之道——如何从太乙金仙突破大罗金仙。\n\n「金者，不朽也。仙者，超脱也。以大罗之体，证不朽之身，方为金仙。」\n\n随着他的讲道，虚空之中竟然浮现出肉眼可见的道韵——无数金色符文在空中流转，有的化作莲花绽放，有的化作仙鹤翱翔，有的直接化作一道流光没入听道者的眉心。\n\n你完全沉浸其中。时间失去了意义——仿佛过了一瞬间，又仿佛过了千万年。你的道行在这天籁之音中飞速提升，许多困扰多年的修炼瓶颈在此刻豁然开朗。\n\n坐在前排的三清——老子闭目微笑，元始目光灼灼，通天握紧了拳头。\n\n女娲的眼中闪烁着泪光——那不是悲伤，而是被大道之美所震撼。\n\n接引和准提两位西方来客相视一眼，他们都看到了对方眼中的震撼：东方道法，果然名不虚传！\n\n第一次讲道，足足持续了百日。当鸿钧收声时，所有人都还沉浸在余韵中，久久无法回神。",
       "effects": [
         {
           "type": "attribute_change",
@@ -2953,7 +3136,7 @@
       "phase": "hongjun_lecture",
       "type": "story",
       "title": "二次讲道",
-      "content": "鸿钧讲道三次，你每次都认真聆听。\n\n第二次讲道后，鸿钧取出分宝岩，开始分发先天灵宝。无数宝物从天而降，众人纷纷争抢。",
+      "content": "千年之后，紫霄宫再度开启。这一次，来听道的人比第一次更多——整个洪荒都听说了鸿钧讲道的威名。\n\n鸿钧道祖立于高台，这一次他讲的是准圣之道——斩三尸证道法。\n\n「修行之途，金仙之后为准圣。欲证准圣，须斩三尸。」\n\n此言一出，满座哗然。斩三尸——这是从未有人听说过的修炼法门！\n\n鸿钧继续说道：「三尸者，善尸、恶尸、执尸也。善尸执着于善，恶尸执着于恶，执尸执着于'我'。三者不去，永困大罗，不得寸进。」\n\n他依次讲解了三尸的本质——善尸并非善良的化身，而是对\"做好事\"的执着，是修行者放不下的各种念头；恶尸不是邪恶，而是对抗争、杀伐、恐惧的执念；执尸最为难斩，因为它就是\"我执\"本身——斩了执尸，才能见到真正的自己。\n\n「斩三尸之法，各有其道。或以先天灵宝寄托三尸，或以无量功德化解三尸，或以大毅力强行斩断。」\n\n坐在前排的三清面色各异——老子若有所思，似乎已经领悟到什么；元始眉头紧锁，在思考灵宝寄托之法；通天眼中闪过一丝明悟，手不自觉地握住了刚得的诛仙四剑。\n\n女娲微微点头——她走的将是功德化解之路。\n\n接引和准提激烈地低声讨论着，准提甚至激动地站了起来：「师兄！这正是我西方教修行之法的最好印证！」\n\n第二次讲道持续了三百年。当鸿钧结束讲道时，他顿了顿——\n\n「第三次讲道之后，吾将分宝于分宝岩。诸君，好自为之。」\n\n消息传出，整个紫霄宫瞬间沸腾了。",
       "choices": [
         {
           "id": "choice_p3_grab_treasure",
@@ -3000,12 +3183,16 @@
       "phase": "hongjun_lecture",
       "type": "story",
       "title": "宝物争夺",
-      "content": "你参与争夺，虽然未能得到顶级灵宝，但也获得了一些不错的宝物。",
+      "content": "分宝岩上，宝光四溢，瑞气千条。\n\n鸿钧道祖立于混沌原石之上，大袖一挥——无数先天灵宝如同星辰般从岩中飞出，在虚空中划出一道道璀璨的光痕！\n\n「诛仙四剑与阵图，传予通天。」鸿钧的声音虚无缥缈，「此乃盘古封印、罗睺解封之天道第一杀器。杀伐虽重，慎用之。」\n\n四柄神剑带着凛冽的杀意落入通天教主手中。通天欣喜若狂，剑身上的煞气与他那锋芒毕露的道韵完美共鸣。\n\n「乾坤鼎，传予女娲。」——那是乾坤老祖的遗物，鼎身上还残留着道魔之战的斑驳痕迹。女娲双手接过，眼中闪过一丝悲悯。\n\n「太极图，传予老子。」——阴阳老祖以性命催动的至宝，如今安静地悬浮在老子掌心，黑白二气缓缓旋转。\n\n「盘古幡，传予元始天尊。」——盘古斧刃所化，攻伐第一。元始天尊神色沉稳地接过，周身气势为之一振。\n\n两千多听道之人各凭机缘，或得灵宝，或空手而归。剩余的宝物化作流光散落洪荒，等待有缘之人。\n\n你虽未能得到那些顶级至宝，但也在此次分宝中有所收获——一块蕴含着大道碎片的造化玉碟残片，落入你的手中。",
       "effects": [
         {
           "type": "attribute_change",
-          "target": "daohang",
-          "value": 5
+          "target": "qiyun",
+          "value": 10
+        },
+        {
+          "type": "add_item",
+          "target": "item_jade_disc_fragment"
         }
       ],
       "autoNextId": "node_phase3_third_lecture"
@@ -3017,7 +3204,7 @@
       "type": "milestone",
       "title": "三次讲道",
       "milestone": "milestone_third_lecture",
-      "content": "第三次讲道结束后，鸿钧宣布收徒。\n\n「老子、元始、通天、女娲、接引、准提，汝六人有缘，吾收汝等为徒。」\n\n六人拜入鸿钧门下，成为亲传弟子。鸿钧又赐予鸿蒙紫气，助其成圣。",
+      "content": "分宝岩的喧嚣散去之后，紫霄宫恢复了宁静。但所有人心中都明白——这最后一次讲道，才是真正决定命运的时刻。\n\n鸿钧道祖的面容比前两次更加深邃，那双眼睛仿佛已经看透了时间的长河。\n\n「第三次讲道，吾讲的是——成圣之道。」\n\n所有人都屏住了呼吸。成圣！这是整个洪荒所有修士追求的终极目标！\n\n「成圣之路，共有三条。」\n\n「第一条路——以力证道。以自身之力强行破开天道桎梏，不借外物，不假他人。此法最强，也最难。盘古大神走的是这条路，所以他失败了。但他失败的开天之举，却创造了洪荒。」\n\n「第二条路——斩三尸证道。将三尸尽数斩去，以纯净本源合道。此法为吾所行之路。修此法者，需以先天灵宝寄托三尸——灵宝品级越高，斩尸越彻底。」\n\n「第三条路——功德证道。以无量大功德感动天道，天道降下圣位。此法最易入门的，却也最难圆满。功德不足，终是伪圣；功德圆满，方为真圣。」\n\n三清互相看了一眼——他们三人乃是盘古元神所化，天生就有开天功德护体，走功德证道之路大有可能。但老子和元始对视一眼，眼中另有一层深意——以力证道的诱惑，谁能拒绝？\n\n女娲低头沉思——她做过的每一件事，造人、补天，都是功德。第三条路，仿佛就是为她量身定做的。\n\n准提和接引面露愁容——西方贫瘠，他们能拿什么来积累功德？\n\n「成圣之后，元神寄托天道，万劫不灭。」鸿钧缓缓说道，「但圣人有圣人的约束——天道在你身，你亦在天道之中。从此之后，一举一动，皆须顺应天道大势。」\n\n这话如同冷水浇头。原来成圣，也意味着失去一部分自由。\n\n鸿钧沉默了片刻，然后说出了一句更重要的话——\n\n「老子、元始、通天、女娲、接引、准提——汝六人有缘，吾收汝等为亲传弟子和记名弟子。」\n\n六人上前拜师。鸿钧赐予他们每人一道鸿蒙紫气——那是混沌初开时遗留下来的大道本源，是成圣之基。\n\n全场鸦雀无声。两千多听道者看着这六人，目光中有羡慕、有嫉妒、有叹息，也有暗藏杀机。红云老祖看着自己手中的鸿蒙紫气——那是他唯一的依仗，也是他今后灾祸的根源。\n\n第三次讲道，持续了整整一千年。\n\n当鸿钧从高台上起身时，所有人都知道——一个时代结束了。紫霄宫讲道的时代结束了。而接下来，是各凭本事、各争圣位的时代。",
       "effects": [
         {
           "type": "set_flag",
@@ -3082,7 +3269,7 @@
       "phase": "wu_yao_rise",
       "type": "choice",
       "title": "巫妖之争",
-      "content": "巫妖二族日益壮大，冲突不断。你必须选择立场。",
+      "content": "巫妖二族，如同两座即将碰撞的巨山。\n\n妖族天庭——帝俊与东皇太一在太阳星上建立了宏伟的天宫，河图洛书演化周天星斗，万妖来朝。十二祖巫——盘古精血所化的十二位霸主，占据不周山周围的洪荒大地，肉身强横无匹，吞天噬地。\n\n两股力量都在扩张，都在寻求天地气运的主导权。\n\n起初只是边境的摩擦。一队妖族斥候误入祝融部落的狩猎场，被火焰烧成灰烬。帝俊遣使问罪，祝融却怒斥妖族\"不过是扁毛畜生\"。\n\n帝俊没有发怒——他只是冷冷地说了一句话：「巫族占据大地太久了。」\n\n而十二祖巫中的帝江，也在同一时刻召集了祖巫会议：「那些金乌崽子，开始不安分了。」\n\n空气中弥漫着令人窒息的压迫感。整个洪荒都在等待——等待第一道裂缝的出现。\n\n你必须做出选择了。在这场即将到来的风暴中，没有人能真正置身事外。",
       "choices": [
         {
           "id": "choice_p4_join_yao",
@@ -3460,7 +3647,7 @@
       "phase": "wu_yao_final",
       "type": "choice",
       "title": "最终抉择",
-      "content": "巫妖决战在即，你必须做出最终的选择。",
+      "content": "共工撞断了不周山，天穹碎裂。女娲补天未竟，大地仍在震颤。\n\n巫族剩余的十一位祖巫重整阵型——帝江以空间法则为核心，凝聚起残缺的盘古真身。那尊遮天蔽日的巨人虚影，每踏出一步，大地便裂开一道深渊。\n\n妖族天庭的废墟之上，帝俊和太一将最后的希望押在了周天星斗大阵上。三百六十五颗星辰的光芒刺破血色的天空，河图洛书疯狂旋转，混沌钟每响一声，虚空便崩碎一片。\n\n这是最后的战役。双方的力量都已燃烧到了极限。\n\n帝俊回头看了一眼太一——兄弟二人不需要言语。\n\n十一祖巫齐齐抬起头——失去了共工和后土，但他们依然会战斗到最后一刻。\n\n天地为之颤抖，洪荒的命运悬于一线。而你，就站在这个旋涡的中心——你的选择，将决定你在这场浩劫中的结局。\n\n不周山的碎片还在从天空坠落，像一场永不停止的石雨。你握紧双拳，深吸了一口气……",
       "choices": [
         {
           "id": "choice_p5_fight_yao",
@@ -3976,7 +4163,7 @@
       "phase": "wu_yao_rise",
       "type": "story",
       "title": "诛仙剑阵",
-      "content": "作为通天教主，你炼制了诛仙四剑，布下诛仙剑阵。\n\n「非四圣不可破此阵！」你自信地说道。\n\n诛仙剑阵成为截教的护教大阵，威震洪荒。",
+      "content": "作为通天教主，你手中的诛仙四剑是鸿钧道祖于分宝岩所传。\n\n这四剑的来历非同小可——本是盘古开天时天道降下斩杀三千天魔的杀伐至宝。盘古忌惮其有伤天和，将其封印于西方须弥山之下。\n\n龙汉初劫中，魔祖罗睺以三族精血怨气冲开封印，得到诛仙四剑。道魔决战中鸿钧联合四位大能破阵，收取四剑。\n\n如今，这天道第一杀器归于你手。\n\n「非四圣不可破此阵！」你自信地说道。\n\n你在碧游宫外布下诛仙剑阵——诛仙剑门、戮仙剑门、陷仙剑门、绝仙剑门分列四方。剑光冲天，杀意弥漫，整个洪荒为之震动。\n\n诛仙剑阵成为截教的护教大阵，威震洪荒。但也因杀伐过重，注定无法镇压大教气运——这是后话。",
       "characterRestrictions": [
         "tongtian"
       ],
@@ -4082,7 +4269,7 @@
       "phase": "wu_yao_rise",
       "type": "story",
       "title": "红云之劫",
-      "content": "作为红云，你因让座之恩，结下了因果。\n\n鲲鹏、冥河等人觊觎你的鸿蒙紫气，对你展开了围杀。\n\n「吾一生行善，竟落得如此下场！」你悲愤地喊道。\n\n最终，你陨落了。但你的善心，被后人永远铭记。",
+      "content": "紫霄宫讲道结束，你与镇元子结伴而行。\n\n突然，天地变色！一道巨大的黑影从天而降——鲲鹏显出千里巨鲲真身，其翼若垂天之云，遮天蔽日！\n\n「红云！那鸿蒙紫气，你不配拥有！」鲲鹏厉声喝道。\n\n血海翻涌，冥河老祖脚踏业火红莲，手持元屠阿鼻双剑，从另一侧现身：「红云道友，识相的话，交出鸿蒙紫气和九九散魂葫芦。」\n\n你面色平静，取出赤色葫芦：「吾让座是出于善意，尔等却因此觊觎吾之鸿蒙紫气。也罢，今日便做个了断！」\n\n九九散魂葫芦喷出漫天红砂——触者魂飞魄散！\n\n鲲鹏展翅，扶摇九万里。冥河挥动双剑，血光漫天。\n\n一场关乎圣位传承的生死之战，在洪荒大地上爆发！",
       "characterRestrictions": [
         "hongyun"
       ],
@@ -4098,7 +4285,69 @@
           "value": 30
         }
       ],
-      "autoNextId": "ending_fall"
+      "choices": [
+        {
+          "id": "hongyun_fight",
+          "text": "拼死一战！九九散魂葫芦全力催动",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": -30
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            }
+          ],
+          "nextNodeId": "node_hongyun_final_battle"
+        },
+        {
+          "id": "hongyun_flee",
+          "text": "燃烧精血，遁逃而去",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": -50
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -30
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_hongyun_escaped",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_hongyun_aftermath"
+        },
+        {
+          "id": "hongyun_give",
+          "text": "交出鸿蒙紫气换命——留得青山在",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": -20
+            },
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": -50
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_hongyun_lost_qi",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_hongyun_aftermath"
+        }
+      ]
     },
     {
       "id": "node_minghe_asura",
@@ -4279,7 +4528,7 @@
       "phase": "wu_yao_rise",
       "type": "story",
       "title": "炼石补天",
-      "content": "作为女娲，在共工怒触不周山后，你决定炼石补天。\n\n「天倾西北，地陷东南。吾当补天，救万民于水火。」\n\n你炼制五色石，修补苍天。洪荒因此得以保全，你的功德再次增加。",
+      "content": "「天倾西北，地陷东南……」\n\n共工怒触不周山之后，天柱折，地维绝。天穹裂开一个大窟窿，天河之水倾泻而下，大地洪水滔天。\n\n作为女娲，你望着满目疮痍的洪荒，心中悲痛万分。\n\n「吾当补天，救万民于水火。」\n\n你选定了天台山作为炼石场。此山高耸可与不周山比肩，山顶遍布五彩石。\n\n五彩神石分青、黄、赤、白、黑五色，对应木、土、火、金、水五行之力。你将它们置于山中天坑，以天火焚烧，开始了漫长的炼石过程。\n\n每一块五色石都需要九九八十一天方能炼成。你日夜守护在炼石坑旁，不敢有丝毫懈怠。",
       "characterRestrictions": [
         "nuwa"
       ],
@@ -4300,7 +4549,59 @@
           "duration": 6
         }
       ],
-      "autoNextId": "node_phase4_end"
+      "choices": [
+        {
+          "id": "nuwa_patch_focus",
+          "text": "专心炼化五色石（耗时四年，炼就36501块）",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 30
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_patched_sky_diligent",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_nuwa_turtle"
+        },
+        {
+          "id": "nuwa_patch_help",
+          "text": "向众神求助，加速炼石",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 20
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_patched_sky_helped",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_nuwa_turtle"
+        },
+        {
+          "id": "nuwa_patch_dao",
+          "text": "在炼石中参悟五行大道",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 25
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_patched_sky_enlightened",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_nuwa_turtle"
+        }
+      ]
     },
     {
       "id": "node_houtu_reincarnation",
@@ -4646,7 +4947,7 @@
       "phase": "dragon_phoenix_war",
       "type": "random_event",
       "title": "顿悟",
-      "content": "在修炼中，你突然有所感悟。天地法则在你眼前展开一角...",
+      "content": "你盘膝坐于山洞之中，双目微闭，神识沉入道境。\n\n灵气如溪流般在你经脉中流转，每一次循环都与天地间的呼吸同步。渐渐地，你的意识开始模糊——不再困在肉体之中，而是扩张到整个山洞、整座山、整片天空。\n\n忽然——\n\n天地法则如同书卷般在你眼前展开。\n\n你\"看到\"了风的法则——那不是简单的空气流动，而是天地呼吸的律动，是阴阳二气的流转。你\"听到\"了火的法则——那不是单纯的燃烧，而是万物转化的一部分，是毁灭与新生的双重奏。\n\n万千法则如同无形的丝线，编织成洪荒的一切。而你，不过是这张大网上一个小小的节点——但这个节点，此刻正在发亮。\n\n「道不在高处，而在脚下。」一个明悟在你心中浮现，「万千大道，殊途同归。」\n\n当你重新睁开双眼时，世界还是那个世界——但你看向世界的目光，已经不一样了。你触碰到了那扇门，门后是更广阔的天地。\n\n道行精进，心神澄澈。你轻轻吐出一口浊气，站起身来——是时候继续前进了。",
       "effects": [
         {
           "type": "attribute_change",
@@ -4667,7 +4968,7 @@
       "phase": "dragon_phoenix_war",
       "type": "story",
       "title": "命悬一线",
-      "content": "你感到气运正在流逝，道行也开始不稳。如果继续这样下去，恐怕会有陨落之危...",
+      "content": "一股彻骨的寒意从你的脊椎蔓延到四肢。\n\n你低头看向自己的双手——指尖正在变得透明，体内的法力如同沙漏中的沙子般不断流失。每一次呼吸都比上一次更加艰难。\n\n气运——那是洪荒修士最根本的依仗——正在你体内急速衰退。就像一棵大树被抽干了养分，枝叶开始枯萎。\n\n「这就是陨落的预兆吗？」\n\n你的意识开始恍惚。恍惚间，你似乎看到了那些在洪荒大劫中殒落的生灵——三族战场上的龙骸凤骨、被魔气吞噬的散修、在大道争锋中倒下的天才。\n\n他们也曾意气风发，也曾以为自己能走到最后。\n\n「不。」你咬紧牙关，「我不能在这里倒下。」\n\n你强行运转体内残存的法力，稳住了最后一丝气运。但你知道，这只是暂时的。如果不能尽快改变现状——找到机缘、提升道行、稳固气运——下一次，恐怕就不会再有这样的警告了。\n\n洪荒不养废人。弱者陨落，强者生存——这是这片天地间最残酷也最真实的法则。\n\n你擦去嘴角的血迹，眼中燃起了一团火。为了活下去，你必须变得更强。",
       "effects": [
         {
           "type": "set_flag",
@@ -5329,6 +5630,350 @@
           "nextNodeId": "ending_retire"
         }
       ]
+    },
+    {
+      "id": "node_nuwa_turtle",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "斩鳌立极",
+      "content": "三万六千五百零一块五色石终于炼成！\n\n你将五色石一颗颗镶嵌到天穹裂缝上。五彩神石在天空中排列成丝带，从大地飘向苍穹，如天女散花一般一一嵌入天穹裂隙。苍天渐渐愈合，不再漏水。\n\n然而——天穹仍然倾斜！失去了不周山的支撑，天柱已断，四极不稳。\n\n这时，一只巨大的神鳌从东海浮出水面。它仰首望天，发出浑厚的声音：\n\n「娘娘补天，功德无量。吾愿献出四足，以立四极！」\n\n你心中不忍——这神鳌修行万年，若失四足，将受何等苦楚。\n\n但为苍生，你必须做出抉择。",
+      "characterRestrictions": [
+        "nuwa"
+      ],
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_patch_sky_phase2",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "nuwa_turtle_kill",
+          "text": "含泪挥剑斩鳌足——为苍生，不得不为",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 25
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_killed_turtle",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_nuwa_kill_dragon"
+        },
+        {
+          "id": "nuwa_turtle_mercy",
+          "text": "以建木嫩枝接续鳌足——仁慈之道",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 35
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_spared_turtle",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_nuwa_kill_dragon"
+        }
+      ]
+    },
+    {
+      "id": "node_nuwa_kill_dragon",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "平定四方",
+      "content": "四只鳌足化作擎天巨柱，矗立于东南西北四方——天地终于平稳！\n\n但大地上仍有灾祸。北方冀州，一条黑龙兴风作浪，吞云吐雾，致使风雨不止、洪水肆虐，百姓苦不堪言。\n\n你手持长剑，腾身跃起，凌空劈下——\n\n剑光划过天际，黑龙被拦腰斩断！它在空中挣扎嚎叫几番后轰然坠落。冀州风停雨住，彩虹横跨天际。\n\n随后，你命祝融率领部众收集南方芦苇，焚烧成灰。芦灰堆积于大地各处，堵塞洪水决口，平抑泛滥的淫水。\n\n终于——苍天补，四极正，冀州平，淫水涸。狡虫死，颛民生。\n\n你望着自己修复的天地，心中涌起一丝慰藉。女娲补天，功成！",
+      "characterRestrictions": [
+        "nuwa"
+      ],
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "shengwang",
+          "value": 40
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": 30
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_patched_sky_complete",
+          "value": true
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_patch_sky",
+          "value": true
+        },
+        {
+          "type": "add_buff",
+          "buffId": "buff_sage_merit",
+          "duration": 999
+        }
+      ],
+      "choices": [
+        {
+          "id": "nuwa_return",
+          "text": "功成身退，继续守护人族",
+          "effects": [],
+          "nextNodeId": "node_phase3_end"
+        }
+      ]
+    },
+    {
+      "id": "node_hongyun_final_battle",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "battle",
+      "title": "陨落之战",
+      "content": "你以九九散魂葫芦对抗鲲鹏与冥河。\n\n漫天红砂中，鲲鹏显出千里巨鲲真身——吞天噬地！冥河的元屠阿鼻双剑挥出漫天血光！\n\n你虽以一敌二，却毫不畏惧。散魂葫芦催动到极致，红砂化作百万利箭射向二魔。\n\n然而——鲲鹏的速度太快了。他一个闪烁便到了你身后，利爪撕裂了你的护体神光。\n\n「红云！受死！」\n\n你在最后一刻，将鸿蒙紫气打入虚空——\n\n「此气……归于天地……有缘者……得之……」\n\n一道紫色流光消失在混沌之中。你的身躯逐渐化作红色的云霞，缓缓消散于天地之间。\n\n洪荒第一善神，就此陨落。但你的善良，在洪荒中留下了永恒的传说。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_hongyun_dead",
+          "value": true
+        },
+        {
+          "type": "add_buff",
+          "buffId": "buff_honorable_death",
+          "duration": 999
+        }
+      ],
+      "choices": [
+        {
+          "id": "hongyun_ascend",
+          "text": "红云消散，归于天地",
+          "effects": [],
+          "nextNodeId": "ending_sacrifice"
+        }
+      ]
+    },
+    {
+      "id": "node_hongyun_aftermath",
+      "chapter": "专属剧情",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "劫后余生",
+      "content": "你付出了巨大的代价，从鲲鹏与冥河的截杀中脱身。\n\n回首望去，道行大损，气运暴跌。但你还活着——在这残酷的洪荒中，活着本身就是一种胜利。\n\n镇元子——你在洪荒中唯一的好友——迎了上来：「红云道友！你……你还活着！」\n\n你惨然一笑：「活着便好。镇元道友，这三界之中，唯有真心最贵。吾失了圣位，却看清了人心。」\n\n从此，你隐居万寿山五庄观，与镇元子为伴。虽失了成圣之机，却也远离了洪荒的纷争。\n\n五庄观中，人参果树下，你与镇元子对弈品茶，倒也自在逍遥。",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_hongyun_survived",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "hongyun_retire",
+          "text": "隐居五庄观，不问世事",
+          "effects": [],
+          "nextNodeId": "ending_retire"
+        }
+      ]
+    },
+    {
+      "id": "node_buzhou_gourd",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "不周山葫芦藤",
+      "content": "你听闻不周山上有一株先天葫芦藤——十大顶级先天灵根之一！\n\n此藤生长于盘古脊柱所化之地，吸收混沌之气，不知多少元会，终于结了七个葫芦，分赤、橙、黄、绿、青、蓝、紫七色，每个都蕴含先天至宝的潜力。\n\n当你赶到不周山时，洪荒各路大能已经齐聚！\n\n三清（老子、元始、通天）仗着盘古元神所化之身，占据最有利位置。东皇太一现出三足金乌本相，悬停于半空。女娲踏五彩祥云而至，身后跟着红云老祖。\n\n葫芦即将成熟——神光闪耀，宝气冲天！一场争夺先天至宝的大战一触即发！",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_witnessed_gourd",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "gourd_rush",
+          "text": "抢先出手夺取葫芦——先下手为强！",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "qiyun",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_gourd_result"
+        },
+        {
+          "id": "gourd_observe",
+          "text": "静观其变——这场争夺自有天数",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 10
+            },
+            {
+              "type": "attribute_change",
+              "target": "xinxing",
+              "value": 5
+            }
+          ],
+          "nextNodeId": "node_gourd_result"
+        },
+        {
+          "id": "gourd_deal",
+          "text": "与三清谈判——以退为进谋取好处",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 10
+            }
+          ],
+          "nextNodeId": "node_gourd_result"
+        }
+      ]
+    },
+    {
+      "id": "node_gourd_result",
+      "chapter": "第三章·紫霄宫讲道",
+      "phase": "hongjun_lecture",
+      "type": "story",
+      "title": "葫芦有主",
+      "content": "七个葫芦瓜熟蒂落，各显神光！\n\n赤色葫芦被红云老祖收走（后炼为\"九九散魂葫芦\"，可散人魂魄）。\n橙色葫芦归了女娲娘娘（后炼为\"招妖幡\"，可召天下万妖）。\n黄色葫芦被东皇太一夺得（后传陆压道人，炼成\"斩仙飞刀\"，\"请宝贝转身\"）。\n绿色葫芦归元始天尊（内含一片混沌，名\"混沌葫芦\"）。\n青色葫芦归通天教主（内含水火麒麟，名\"水火葫芦\"）。\n蓝色葫芦被一道金光摄走——那是鸿钧道祖的手笔（后传昊天上帝）。\n紫色葫芦落入老子手中（紫金红葫芦，盛丹之宝）。\n\n葫芦藤因耗尽本源而枯萎。女娲娘娘将葫芦藤与孕育它的息壤一并收走——日后，这便是抟土造人的关键之物。\n\n你虽未得到葫芦，但亲眼见证了这场先天灵宝的分配，对洪荒大势与天道机缘有了更深的感悟。",
+      "effects": [
+        {
+          "type": "attribute_change",
+          "target": "daohang",
+          "value": 10
+        },
+        {
+          "type": "set_flag",
+          "target": "flag_gourd_witnessed",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "id": "gourd_to_zixiao",
+          "text": "继续前往紫霄宫听道",
+          "effects": [],
+          "nextNodeId": "node_phase3_arrival"
+        }
+      ]
+    },
+    {
+      "id": "node_gonggong_buzhou",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_war",
+      "type": "story",
+      "title": "共工怒触不周山",
+      "content": "巫妖大战愈演愈烈。\n\n十二祖巫齐声怒喝，十二道法则之力交织——十二都天神魔大阵！\n\n一尊顶天立地的盘古真身虚影凝聚成形，那巍峨的巨人一拳砸向妖族天庭！周天星斗为之震动。\n\n帝俊祭出河图洛书，太一敲响混沌钟——周天星斗大阵全力催动，三百六十五颗星辰之力汇聚。\n\n两股足以撕裂洪荒的力量正面碰撞！大地崩裂，山河倒转！\n\n就在这关键时刻——共工与祝融因战法争执，爆发内讧！\n\n「你这火蛮子！吾水神之力岂容你小觑！每次都是你出风头！」共工怒吼道。\n「共工！你疯了！现在不是内斗的时候——」祝融怒喝回应。\n\n共工暴怒之下，一头撞向不周山——那通天彻地的天柱！\n\n轰——————！！！\n\n天柱崩折，天穹倾塌。天河之水从裂缝中倾泻而下，地火喷涌。\n\n天倾西北，故日月星辰移焉；\n地陷东南，故水潦尘埃归焉。\n\n十二都天神魔大阵失去共工，盘古真身轰然消散。妖族趁机全面反攻！\n\n十二祖巫中的十一位，面临着生死存亡的最后抉择……",
+      "effects": [
+        {
+          "type": "set_flag",
+          "target": "flag_buzhou_broken",
+          "value": true
+        },
+        {
+          "type": "attribute_change",
+          "target": "qiyun",
+          "value": -15
+        }
+      ],
+      "choices": [
+        {
+          "id": "buzhou_witness",
+          "text": "目睹这场天地浩劫——震撼道心",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "daohang",
+              "value": 15
+            }
+          ],
+          "nextNodeId": "node_wu_yao_final_showdown"
+        },
+        {
+          "id": "buzhou_rescue",
+          "text": "救助天塌中受难的洪荒生灵",
+          "effects": [
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 25
+            },
+            {
+              "type": "set_flag",
+              "target": "flag_rescued_from_skyfall",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_wu_yao_final_showdown"
+        }
+      ]
+    },
+    {
+      "id": "node_wu_yao_final_showdown",
+      "chapter": "第五章·巫妖决战",
+      "phase": "wu_yao_war",
+      "type": "battle",
+      "title": "终焉对决",
+      "content": "不周山崩，天地失衡。但这并未阻止巫妖之间的死战——双方都已杀红了眼。\n\n帝江以空间法则为核心，重新整合剩余十位祖巫的力量——残缺的盘古真身再次凝聚，虽不及完整版的威力，但依然毁天灭地！\n\n帝俊和太一也不顾一切了。河图洛书光芒万丈，周天星斗尽数亮起。混沌钟每敲一下，天穹便破碎一分。\n\n「兄长！吾等兄弟，今日同生共死！」太一紧握混沌钟。\n「太一，若有来生——」帝俊没有说完。\n\n两股足以毁灭洪荒的力量，正面撞在了一起——\n刺目的白光吞没了一切……",
+      "choices": [
+        {
+          "id": "final_yao",
+          "text": "全力支援妖族——助帝俊催动周天星斗",
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_sided_yao",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase5_final_end"
+        },
+        {
+          "id": "final_wu",
+          "text": "全力支援巫族——助帝江稳定盘古真身",
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_sided_wu",
+              "value": true
+            }
+          ],
+          "nextNodeId": "node_phase5_final_end"
+        },
+        {
+          "id": "final_human",
+          "text": "不参与任何一方——全力保护人族",
+          "effects": [
+            {
+              "type": "set_flag",
+              "target": "flag_protect_human",
+              "value": true
+            },
+            {
+              "type": "attribute_change",
+              "target": "shengwang",
+              "value": 30
+            }
+          ],
+          "nextNodeId": "node_phase5_final_end"
+        }
+      ]
     }
   ],
   "buffTypes": {
@@ -5387,6 +6032,22 @@
       "attribute": "shengwang",
       "value": -20,
       "isDebuff": true
+    },
+    "buff_sage_merit": {
+      "name": "补天功德",
+      "description": "女娲补天所得无量功德，声望+30，气运+20",
+      "attribute": "shengwang",
+      "value": 30,
+      "duration": 999,
+      "isDebuff": false
+    },
+    "buff_honorable_death": {
+      "name": "慷慨赴义",
+      "description": "为道义而死，名垂洪荒",
+      "attribute": "shengwang",
+      "value": 50,
+      "duration": 999,
+      "isDebuff": false
     }
   }
 }
